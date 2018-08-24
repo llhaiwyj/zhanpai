@@ -17,11 +17,19 @@
 			<div class="daohang">
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
-					<router-link to="./Index" @click.native="flushCom"><li>首页</li></router-link>
+					<router-link to="./Index" @click.native="flushCom">
+						<li>首页</li>
+					</router-link>
 					<li @click="zhan">3D展馆</li>
-					<router-link to="./Product" @click.native="flushCom"><li>产品中心</li></router-link>
-					<router-link to="./Buyinformation" @click.native="flushCom"><li>求购信息</li></router-link>
-					<router-link to="./Enterprise" @click.native="flushCom"><li>商务合作</li></router-link>
+					<router-link to="./Product" @click.native="flushCom">
+						<li>产品中心</li>
+					</router-link>
+					<router-link to="./Buyinformation" @click.native="flushCom">
+						<li>求购信息</li>
+					</router-link>
+					<router-link to="./Enterprise" @click.native="flushCom">
+						<li>商务合作</li>
+					</router-link>
 				</ul>
 				<button class="kaitong" @click="zhan">开通展位</button>
 			</div>
@@ -31,9 +39,9 @@
 			<div class="cont">
 				<div class="cont-left">
 					<div class="chanpintou">
-						<img :src="qinginfo.imgUrl" class="chanpin"/>
+						<img :src="qinginfo.imgUrl" class="chanpin" />
 						<div class="wenzijieshao">
-							<p class="fen">分享<img src=''/></p>
+							<p class="fen">分享<img src='' /></p>
 							<p class="chanpinming">{{qinginfo.pname}}</p>
 							<p class="xiaochanpinming">{{qinginfo.firmName}}</p>
 							<p class="sa">
@@ -55,15 +63,15 @@
 							<p class="dc">应用领域：{{qinginfo.field}}</p>
 						</div>
 						<div class="suotu">
-							<img :src="qinginfo.imgUrl" class="suot"/>
-							<img :src="qinginfo.imgUrl" class="suot"/>
-							<img :src="qinginfo.imgUrl" class="suot"/>
+							<img :src="qinginfo.imgUrl" class="suot" />
+							<img :src="qinginfo.imgUrl" class="suot" />
+							<img :src="qinginfo.imgUrl" class="suot" />
 						</div>
 					</div>
 					<div class="chanpinjieshao">
 						<p class="cpjs">产品介绍</p>
 						<p class="xian"></p>
-						<p class="cahnpinjjie">{{qinginfo.introduce}}</p>
+						<!--<p class="cahnpinjjie" v-html="qinginfo.introduce"></p>-->
 					</div>
 					<!--<div class="chanpintedian">
 						<p class="cpjs">产品特点</p>
@@ -73,7 +81,12 @@
 					<div class="chanpincanshu">
 						<p class="cpjs">产品参数</p>
 						<p class="xian"></p>
-						<div class="wenben">{{qinginfo.detailed}}</div>
+						
+						<!--<el-upload class="avatar-uploader" style="display:none" :action="serverUrl" :show-file-list="false" :on-success="uploadSuccess" :on-error="uploadError" :before-upload="beforeUpload">
+						</el-upload>
+						<quill-editor v-model="qinginfo.detailed" :content="qinginfo.introduce" ref="myQuillEditor" :options="editorOption" @change="onEditorChange($event)" @ready="onEditorReady($event)">
+						</quill-editor>-->
+						<div class="wenben" v-html="qinginfo.introduce"></div>
 					</div>
 					<div class="chanpinpeizhi">
 						<p class="cpjs">产品配置</p>
@@ -84,7 +97,7 @@
 				<div class="cont-right">
 					<p class="tongleituijian">同类推荐</p>
 					<div class="imgming" v-for="item in tonglei">
-						<img :src="item.url" class="imgxian"/>
+						<img :src="item.url" class="imgxian" />
 						<p class="imga"><span>{{item.pname}}</span></p>
 					</div>
 					<!--<div class="imgming">
@@ -122,7 +135,7 @@
 					</li>
 				</ul>
 				<p class="dress">©2017 LiVE System.</p>
-				<p class="lainxi">泰富总部    0731-52837000  泰富营销   0731-52837288  <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号   <br/>E-mail：sales@tidfore.com</p>
+				<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
 			</div>
 		</div>
 	</div>
@@ -133,7 +146,7 @@
 		data() {
 			return {
 				qinginfo: this.$route.params.xianginfos,
-				tonglei:'',
+				tonglei: '',
 			}
 		},
 		mounted: function() {
@@ -141,8 +154,19 @@
 			console.log(this.qinginfo)
 		},
 		methods: {
-			fined(){
-				this.$ajax.post(this.$Url+"/fp/getPSame", this.$qs.stringify({})).then(data => {
+//			onEditorChange({
+//				editor,
+//				html,
+//				text
+//			}) {
+//				this.qinginfo.detailed = html;
+//			},
+//			onEditorReady(res) {},
+//			onEditorBlur(editor) {
+//				this.$emit('getValue', his.qinginfo.detailed)
+//			},
+			fined() {
+				this.$ajax.post(this.$Url + "/fp/getPSame", this.$qs.stringify({})).then(data => {
 						console.log(data)
 						this.tonglei = data.data.data.list
 					})
@@ -150,10 +174,10 @@
 						console.log(error);
 					});
 			},
-			flushCom:function(){
+			flushCom: function() {
 				this.$router.go(0);
 			},
-			zhan(){
+			zhan() {
 				window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=")
 			},
 

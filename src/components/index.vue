@@ -4,7 +4,7 @@
 		<div class="kong"></div>
 		<div class="header">
 			<div class="h-top">
-				<img src="../assets/img/dingwei.png" class="dw-ioin" />
+				<img src="../assets/img/icon－ding.png" class="dw-ioin" />
 				<p class="city">天津</p>
 				<p class="login">
 					<router-link to="./" @click.native="flushCom">登陆 / </router-link>
@@ -13,12 +13,11 @@
 				<p class="zhuce">
 					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
 				</p>
-
-				<ul class="nav">
+                <ul class="nav">
 					<li>我的浏览&nbsp;&nbsp;|</li>
 					<li @click="zhan">我的收藏&nbsp;&nbsp;|</li>
 					<li>个人中心&nbsp;&nbsp;|</li>
-					<li>手机版 </li>
+					<router-link to="./Indexs" @click.native="flushCom"><li class="shoujiban">手机版 </li></router-link>
 				</ul>
 			</div>
 			<div class="daohang">
@@ -45,14 +44,15 @@
 			<img src="../assets/img/zahn.png" class="biglodo" />
 			<div class="sousuo">
 				<input type="text" class="sou" placeholder="输入文字" v-model="cont" />
-				<!--<select v-model="xuan" v-on:change="areaprov($event)">
+				<select v-model="xuan" v-on:change="areaprov($event)">
 					<option selected="selected">3D</option>
 					<option>极简</option>
-				</select>-->
-				<el-select class="sel" v-model="xuan" placeholder="请选择" v-on:change="areaprov($event)">
+				</select>
+				<p class="el-icon-arrow-down xiajian"></p>
+				<!--<el-select class="sel" v-model="xuan" placeholder="请选择" v-on:change="areaprov($event)">
 					<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
 					</el-option>
-				</el-select>
+				</el-select>-->
 				<!--<select v-model="xuan">
 					<option selected="selected">3D</option>
 					<option>极简</option>
@@ -124,7 +124,7 @@
 		</div>
 		<div class="hezuo">
 			<div class="zuixin">
-				<p class="zui"><b>合作伙伴</b></p>
+				<p class="zui">合作伙伴</p>
 				<p class="find">查看更多</p>
 			</div>
 			<ul class="huoban">

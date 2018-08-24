@@ -81,7 +81,7 @@
 									</p>
 								</div>
 							</li>
-							<li>
+							<!--<li>
 								<img src="../assets/img/img-zhanwei.png" class="shangpin" />
 								<div class="jieshaos">
 									<p class="chanpinming">崂应3026型 红外烟气综合分析 仪 智能</p>
@@ -100,7 +100,7 @@
 										<span class="lilan">522人看过</span>
 									</p>
 								</div>
-							</li>
+							</li>-->
 						</ul>
 					</div>
 				</div>

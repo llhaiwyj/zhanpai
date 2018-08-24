@@ -11,6 +11,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,6 +19,9 @@ export default {
   height:auto;
   width:100%;
  
+}
+a{
+	color:#fff;
 }
 .el-carousel__indicators {
 		width: 100px;
@@ -31,9 +35,12 @@ export default {
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
-		background: #fff;
+		background-color:rgba(255,255,255,0.3) !important;
 		margin-left: 10px;
 		padding: 0px !important;
+	}
+	.el-carousel__indicators--outside button{
+		background-color:rgba(255,255,255,1) !important;
 	}
 	.el-carousel__button {
 		width: 10px;
@@ -71,16 +78,20 @@ export default {
 	.el-carousel__item:nth-child(2n){
 		background-color:#fff !important;
 	}
-	.el-input__inner{
-	background-color:rgba(255,255,255,0) !important;
-	border:none !important;
-	color:#ccc;
-	width:90px !important;
-	height:20px !important;
-	font-size:14px;
-}
-.el-input__suffix{
-	right:-7px;
-	top:11px !important;
-}
+	.el-carousel__arrow{
+		width:32px;
+		height:64px;
+		border-radius: 0px !important;
+		background:#000 !important;
+		background-color:rgba(0,0,0,0.3) !important;
+	}
+	.el-carousel__arrow--right{
+		right:6px;
+	}
+	.el-carousel__arrow--left{
+		left:6px;
+	}
+	.el-carousel__arrow i{
+		font-size: 25px;
+	}
 </style>

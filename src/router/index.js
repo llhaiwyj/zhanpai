@@ -10,6 +10,7 @@ import Login from '@/components/login'
 import Register from '@/components/register'
 import Retrieve from '@/components/retrieve'
 import Productserch from '@/components/productserch'
+import Indexs from '@/components/indexs'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
 			path: '/Index',
 			name: 'Index',
 			component: Index
+		},
+		{
+			path: '/Indexs',
+			name: 'Indexs',
+			component: Indexs
 		},
 		{
 			path: '/Product',
