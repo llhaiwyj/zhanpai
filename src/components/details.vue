@@ -5,8 +5,8 @@
 				<img src="../assets/img/dingwei.png" class="dw-ioin" />
 				<p class="city">天津</p>
 				<p class="login">嘉科仪科技 </p>
-				<img src="" class="xinjian" />
-				<p class="zhuce">消息 <span>1</span></p>
+				<!--<img src="" class="xinjian" />
+				<p class="zhuce">消息 <span>1</span></p>-->
 				<ul class="nav">
 					<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>
@@ -17,10 +17,12 @@
 			<div class="daohang">
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
-					<router-link to="./Index" @click.native="flushCom">
+					<router-link to="./" @click.native="flushCom">
 						<li>首页</li>
 					</router-link>
-					<li @click="zhan">3D展馆</li>
+					<router-link to="./News" @click.native="flushCom">
+						<li>新闻资讯</li>
+					</router-link>
 					<router-link to="./Product" @click.native="flushCom">
 						<li>产品中心</li>
 					</router-link>
@@ -31,7 +33,7 @@
 						<li>商务合作</li>
 					</router-link>
 				</ul>
-				<button class="kaitong" @click="zhan">开通展位</button>
+				<button class="kaitong">开通展位</button>
 			</div>
 		</div>
 		<div class="content">
@@ -178,7 +180,7 @@
 				this.$router.go(0);
 			},
 			zhan() {
-				window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=")
+				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
 			},
 
 		},

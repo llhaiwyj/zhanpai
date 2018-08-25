@@ -306,7 +306,14 @@
 }
 .jieshaos{
 	width:100%;
-	height:90px;
+	height:auto;
+}
+.jieshaos p{
+	width:100%;
+	height:auto;
+}
+.jieshaos p img{
+	float:left;
 }
 .diqu{
 	width:90%;
@@ -370,7 +377,8 @@
 }
 .qiyejianjie{
 	width:100%;
-	height:220px;
+	/*height:220px;*/
+	height:auto;
 	float:left;
 	background:#fff;
 }
@@ -389,11 +397,19 @@
 }
 .jieshao{
 	width:90%;
+	height:auto !important;
 	margin-left:2%;
 	margin-top:23px;
 	color:#333;
 	height:110px;
+	float:left;
 	text-indent: 25px;
+}
+.jieshao p{
+	width:100%;
+}
+.jieshao p img{
+	float:left;
 }
 .tuijianxhanpin{
 	width:100%;

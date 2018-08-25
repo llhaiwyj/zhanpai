@@ -4,8 +4,14 @@
 			<div class="h-top">
 				<img src="../assets/img/dingwei.png" class="dw-ioin" />
 				<p class="city">天津</p>
-				<p class="login">登陆 / </p>
-				<p class="zhuce"> 注册</p>
+				<p class="login" v-show="us">
+					<router-link to="./" @click.native="flushCom">登陆 / </router-link>
+				</p>
+
+				<p class="zhuce" v-show="us">
+					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
+				</p>
+				<p class="login" v-show="dianhua">{{iphone}}</p>
 				<ul class="nav">
 					<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>
@@ -16,11 +22,11 @@
 			<div class="daohang">
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
-					<router-link to="./Index" @click.native="flushCom">
+					<router-link to="./" @click.native="flushCom">
 						<li>首页</li>
 					</router-link>
 					<router-link to="./News" @click.native="flushCom">
-						<li>3D展馆</li>
+						<li>新闻资讯</li>
 					</router-link>
 					<router-link to="./Product" @click.native="flushCom">
 						<li>产品中心</li>
@@ -32,7 +38,7 @@
 						<li>商务合作</li>
 					</router-link>
 				</ul>
-				<button class="kaitong" @click="zhan">开通展位</button>
+				<button class="kaitong">开通展位</button>
 			</div>
 			<p class="xuqiu">新闻动态</br> <span>相关行业政策信息、媒体报道和公司举办的活动等</span></p>
 			<ul class="newsfenlei">
@@ -218,19 +224,33 @@
 				xianew: [],
 				arrs:'',
 				id:this.$route.params.ids,
+				iphone:localStorage["username"],
+				dianhua:false,
+				us:true,
 			}
 		},
 		mounted: function() {
 			console.log(this.id)
-			if(this.id!=''){
+			if(this.iphone == '' || this.iphone == undefined) {
+				this.us = true;
+				this.dianhua = false
+			} else {
+				this.us = false;
+				this.dianhua = true
+			}
+			if(this.id==''||this.id==undefined){
+				this.fined();
+				this.ermennews()
+			}else{
 				this.yin = false;
 				this.xian = true;
 				this.firstxin();
 				this.ermennews()
-			}else{
-				this.fined();
-				this.ermennews()
+				
 			}
+//			if(this.id==''||this.id==undefined){
+//				
+//			}
 		},
 		methods: {
 			handleCurrentChange(page) {
@@ -275,7 +295,7 @@
 							b.da = dates[a].substring(10, 8)
 							b.ds = dates[a].substring(0, 7)
 							this.riqi.push(b)
-							console.log(this.riqi)
+//							console.log(this.riqi)
 						}
 					})
 					.catch(function(error) {
@@ -356,7 +376,7 @@
 				this.$router.go(0);
 			},
 			zhan() {
-				window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=")
+				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
 			},
 
 		},

@@ -5,8 +5,8 @@
 				<img src="../assets/img/dingwei.png" class="dw-ioin" />
 				<p class="city">天津</p>
 				<p class="login">嘉科仪科技 </p>
-				<img src="" class="xinjian" />
-				<p class="zhuce">消息 <span>1</span></p>
+				<!--<img src="" class="xinjian" />
+				<p class="zhuce">消息 <span>1</span></p>-->
 				<ul class="nav">
 					<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>
@@ -17,13 +17,15 @@
 			<div class="daohang">
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
-					<router-link to="./Index" @click.native="flushCom"><li>首页</li></router-link>
-					<router-link to="./News" @click.native="flushCom">3D展馆</li></router-link>
+					<router-link to="./" @click.native="flushCom"><li>首页</li></router-link>
+					<router-link to="./News" @click.native="flushCom">
+						<li>新闻资讯</li>
+					</router-link>
 					<router-link to="./Product" @click.native="flushCom"><li>产品中心</li></router-link>
 					<router-link to="./Buyinformation" @click.native="flushCom"><li>求购信息</li></router-link>
 					<router-link to="./Enterprise" @click.native="flushCom"><li>商务合作</li></router-link>
 				</ul>
-				<button class="kaitong" @click="zhan">开通展位</button>
+				<button class="kaitong">开通展位</button>
 			</div>
 		</div>
 		<div class="search">
@@ -66,7 +68,7 @@
 				<div class="con-right">
 					<div class="qiyejianjie">
 						<div class="qyjj">公司简介<span class="more">查看更多</span></div>
-						<p class="jieshao">{{i.introduce}}</p>
+						<p class="jieshao" v-html="i.introduce"></p>
 					</div>
 					<div class="tuijianxhanpin">
 						<div class="tjcp">推荐产品<span class="more">查看更多</span></div>

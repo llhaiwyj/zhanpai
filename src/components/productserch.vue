@@ -17,13 +17,15 @@
 			<div class="daohang">
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
-					<router-link to="./Index" @click.native="flushCom"><li>首页</li></router-link>
-					<li @click="zhan">3D展馆</li>
+					<router-link to="./" @click.native="flushCom"><li>首页</li></router-link>
+					<router-link to="./News" @click.native="flushCom">
+						<li>新闻资讯</li>
+					</router-link>
 					<router-link to="./Product" @click.native="flushCom"><li>产品中心</li></router-link>
 					<router-link to="./Buyinformation" @click.native="flushCom"><li>求购信息</li></router-link>
 					<router-link to="./Enterprise" @click.native="flushCom"><li>商务合作</li></router-link>
 				</ul>
-				<button class="kaitong" @click="zhan">开通展位</button>
+				<button class="kaitong">开通展位</button>
 			</div>
 		</div>
 		<div class="search">
@@ -64,7 +66,7 @@
 			    </ul>
 			</div>
 			<ul class="chanpin">
-				<li v-for="item in shuju">
+				<li v-for="item in shuju" @click="chaninfo(item.id)">
 					<img :src="item.imgUrl" class="shangpin" />
 					<div class="jieshao">
 						<p class="diqu">
@@ -138,7 +140,7 @@
 		data() {
 			return {
 				currentPage: 1,
-				total: '',
+				total: this.$route.params.totals,
 				length: 10,
 				leibie:'',
 				erjis:false,
@@ -147,7 +149,7 @@
 				erjilei:'',
 				sanjilei:'',
 				sijilei:'',
-				shuju:'',
+				shuju: this.$route.params.shujus,
 				zonghe:'',
 				guanzhu:'',
 				shijian:'',
@@ -162,8 +164,14 @@
 			}
 		},
 		mounted: function() {
-			this.fined();
-			this.fenlei();
+			console.log(this.shuju)
+			if(this.shuju==''||this.shuju==undefined){
+				this.fined();
+			    this.fenlei();
+			}else{
+				
+			}
+			
 		},
 		methods: {
 			handleCurrentChange(page) {
@@ -196,6 +204,24 @@
 					});
 				
 			},
+			chaninfo(id) {
+				console.log(id)
+				this.$ajax.post(this.$Url + "/fp/getP", this.$qs.stringify({
+						id: id
+					})).then(data => {
+						console.log(data)
+						this.xianginfo = data.data.data.info
+						this.$router.push({
+							name: 'Details',
+							params: {
+								xianginfos: this.xianginfo
+							}
+						});
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},
 			//获取初始分类
 			fenlei(){
 				this.$ajax.post("api/pt/sTs", this.$qs.stringify()).then(data => {
@@ -209,16 +235,22 @@
 			//综合排序
 			ranking(){
 				this.zonghe=1
+				this.guanzhu=0
+				this.shijian=0
 				this.fined();
 			},
 			//人气
 			renqi(){
 				this.guanzhu=1
+				this.shijian=0
+				this.zonghe=0
 				this.fined();
 			},
 			//发布时间
 			fabudata(){
 				this.shijian=1
+				this.guanzhu=0
+				this.zonghe=0
 				this.fined();
 			},
 			//所在地区
@@ -303,7 +335,7 @@
 				this.$router.go(0);
 			},
 			zhan() {
-				window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=")
+				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
 			},
 
 		},

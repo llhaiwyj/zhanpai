@@ -70,7 +70,9 @@
 					})).then(datas => {
 						console.log(datas)
 						if(datas.data.msg == 'success') {
-							localStorage.setItem("ACCESS_TOKEN",datas.data.data.ACCESS_TOKEN);
+							localStorage.setItem("ACCESS_TOKEN", datas.data.data.ACCESS_TOKEN);
+							localStorage.setItem("username", datas.data.data.userInfo.username);
+							localStorage.setItem("Id", datas.data.data.userInfo.id);
 							this.$router.push({
 								name: 'Index',
 							});

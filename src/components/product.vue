@@ -4,13 +4,14 @@
 			<div class="h-top">
 				<img src="../assets/img/dingwei.png" class="dw-ioin" />
 				<p class="city">天津</p>
-				<p class="login">
+				<p class="login" v-show="us">
 					<router-link to="./" @click.native="flushCom">登陆 / </router-link>
 				</p>
 
-				<p class="zhuce">
+				<p class="zhuce" v-show="us">
 					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
 				</p>
+				<p class="login" v-show="dianhua">{{iphone}}</p>
 				<ul class="nav">
 					<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>
@@ -21,10 +22,12 @@
 			<div class="daohang">
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
-					<router-link to="./Index" @click.native="flushCom">
+					<router-link to="./" @click.native="flushCom">
 						<li>首页</li>
 					</router-link>
-					<li @click="zhan">3D展馆</li>
+					<router-link to="./News" @click.native="flushCom">
+						<li>新闻资讯</li>
+					</router-link>
 					<router-link to="./Product" @click.native="flushCom">
 						<li>产品中心</li>
 					</router-link>
@@ -35,7 +38,7 @@
 						<li>商务合作</li>
 					</router-link>
 				</ul>
-				<button class="kaitong" @click="zhan">开通展位</button>
+				<button class="kaitong">开通展位</button>
 			</div>
 			<ul class="leibie">
 				<li>实验室仪器</li>
@@ -49,9 +52,8 @@
 			</div>
 		</div>
 		<div class="search">
-			<router-link to="./productserch"><input type="text" placeholder="请输入搜索内容" class="find" />
-				<p><img src="../assets/img/icon_search.png" /></p>
-			</router-link>
+			    <input type="text" placeholder="请输入搜索内容" class="find" v-model="gaunjain"/>
+				<p @click="finedss"><img src="../assets/img/icon_search.png" /></p>
 		</div>
 		<div class="content">
 			<ul class="chanpin">
@@ -133,9 +135,20 @@
 				shuju: this.$route.params.shop,
 				xianginfo: '',
 				types:0,
+				gaunjain:'',
+				iphone:localStorage["username"],
+				dianhua:false,
+				us:true,
 			}
 		},
 		mounted: function() {
+			if(this.iphone == '' || this.iphone == undefined) {
+				this.us = true;
+				this.dianhua = false
+			} else {
+				this.us = false;
+				this.dianhua = true
+			}
 			this.fined();
 		},
 //		watch: {
@@ -186,11 +199,36 @@
 						console.log(error);
 					});
 			},
+			finedss(){
+				this.shuju='';
+				this.$ajax.post(this.$Url + "/fp/selPWeb", this.$qs.stringify({
+						pageSize: this.length,
+						pageNum: this.currentPage,
+						str:this.guanjian,
+					})).then(data => {
+						console.log(data)
+						this.shuju = data.data.data.list.list
+						this.total=data.data.data.list.total
+						if(data.data.msg=='success'){
+							this.$router.push({
+								name: 'Productserch',
+								params: {
+									shujus: this.shuju,
+									totals:this.total
+								}
+						    });
+						}
+						
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},
 			flushCom: function() {
 				this.$router.go(0);
 			},
 			zhan() {
-				window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=")
+				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
 			},
 
 		},

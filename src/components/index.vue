@@ -6,28 +6,31 @@
 			<div class="h-top">
 				<img src="../assets/img/icon－ding.png" class="dw-ioin" />
 				<p class="city">天津</p>
-				<p class="login">
-					<router-link to="./" @click.native="flushCom">登陆 / </router-link>
+				<p class="login" v-show="us">
+					<router-link to="./Login" @click.native="flushCom">登陆 / </router-link>
 				</p>
 
-				<p class="zhuce">
+				<p class="zhuce" v-show="us">
 					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
 				</p>
-                <ul class="nav">
+				<p class="login" v-show="dianhua">{{iphone}}</p>
+				<ul class="nav">
 					<li>我的浏览&nbsp;&nbsp;|</li>
 					<li @click="zhan">我的收藏&nbsp;&nbsp;|</li>
 					<li>个人中心&nbsp;&nbsp;|</li>
-					<router-link to="./Indexs" @click.native="flushCom"><li class="shoujiban">手机版 </li></router-link>
+					<router-link to="./Indexs" @click.native="flushCom">
+						<li class="shoujiban">手机版 </li>
+					</router-link>
 				</ul>
 			</div>
 			<div class="daohang">
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
-					<router-link to="./Index">
+					<router-link to="./">
 						<li>首页</li>
 					</router-link>
 					<router-link to="./News">
-						<li>3D展馆</li>
+						<li>新闻资讯</li>
 					</router-link>
 					<router-link to="./Product">
 						<li>产品中心</li>
@@ -39,7 +42,7 @@
 						<li>商务合作</li>
 					</router-link>
 				</ul>
-				<button class="kaitong" @click="zhan">开通展位</button>
+				<button class="kaitong">开通展位</button>
 			</div>
 			<img src="../assets/img/zahn.png" class="biglodo" />
 			<div class="sousuo">
@@ -92,10 +95,10 @@
 		<div class="zuixinruzhu">
 			<div class="zuixin">
 				<p class="zui">最新入驻</p>
-				<p class="find">查看更多</p>
+				<p class="find" @click="more">查看更多</p>
 			</div>
 			<ul class="shangjia">
-				<li v-for="i in zhanwei">
+				<li v-for="i in zhanwei" @click="zhanguan(i.id)">
 					<p>
 						<img :src="i.standCover" class="shangtu" />
 					</p>
@@ -106,7 +109,7 @@
 		<div class="new">
 			<div class="zuixin">
 				<p class="zui">新闻动态</p>
-				<p class="find">查看更多</p>
+				<p class="find" @click="newmore(undefined)">查看更多</p>
 			</div>
 			<ul class="dongtai">
 				<li v-for="s in newslist" @click="xinwen(s.id)">
@@ -210,19 +213,30 @@
 				erji: false,
 				shop: '',
 				xuan: '3D',
+				iphone: localStorage["username"],
 				b: '',
+				dianhua: false,
+				us: true,
 				zuinewinfo: [],
-				options:[{
+				options: [{
 					value: '0',
-                    label: '3D'
-				},{
+					label: '3D'
+				}, {
 					value: '1',
-                    label: '极简'
+					label: '极简'
 				}]
 				//				zhis: this.unitys.zhi,
 			};
 		},
 		mounted: function() {
+			console.log(this.iphone)
+			if(this.iphone == '' || this.iphone == undefined) {
+				this.us = true;
+				this.dianhua = false
+			} else {
+				this.us = false;
+				this.dianhua = true
+			}
 			this.fined();
 		},
 		methods: {
@@ -267,7 +281,8 @@
 			severs() {
 				console.log(this.xuan)
 				if(this.xuan == '3D' && this.cont != '') {
-					window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=" + this.cont)
+					window.open( encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=" + this.cont), '_blank');
+//					window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=" + this.cont)
 				} else if(this.xuan == '极简' && this.cont != '') {
 					this.$ajax.post(this.$Url + "/fp/selPWeb", this.$qs.stringify({
 							str: this.cont
@@ -324,7 +339,27 @@
 				}
 			},
 			zhan() {
-				window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?id=" + this.cont)
+				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
+			},
+			more() {
+			window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
+			},
+			zhanguan(id) {
+				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?id=" + id), '_blank');
+			},
+			//			查看更多跳转新闻列表页
+			newmore(id) {
+				console.log(id)
+				//				this.$router.replace({
+				//					path:'./News',
+				//					name: 'News',
+				//				});
+				this.$router.push({
+					name: 'News',
+					params: {
+						ids: id
+					}
+				});
 			},
 			areaprov(even) {
 				this.xuan = even.target.value
@@ -333,6 +368,9 @@
 			flushCom: function() {
 				this.$router.go(0);
 			},
+//			denglu(){
+//				window.open("http://39.105.24.238/busys.html?, '_blank'");
+//			}
 		},
 	}
 </script>

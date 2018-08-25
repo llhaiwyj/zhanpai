@@ -19,7 +19,7 @@
 	position:absolute;
 	top:0px;
 	left:0px;
-	z-index:0;
+	z-index:1;
 }
 .header{
 	width:100%;
@@ -361,6 +361,7 @@
 	list-style: none;
 	float:left;
 	margin-right:2%;
+	cursor: pointer;
 }
 .newtu{
 	width:100%;

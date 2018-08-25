@@ -4,8 +4,14 @@
 			<div class="h-top">
 				<img src="../assets/img/dingwei.png" class="dw-ioin" />
 				<p class="city">天津</p>
-				<p class="login">登陆 / </p>
-				<p class="zhuce"> 注册</p>
+				<p class="login" v-show="us">
+					<router-link to="./" @click.native="flushCom">登陆 / </router-link>
+				</p>
+
+				<p class="zhuce" v-show="us">
+					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
+				</p>
+				<p class="login" v-show="dianhua">{{iphone}}</p>
 				<ul class="nav">
 					<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>
@@ -16,10 +22,12 @@
 			<div class="daohang">
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
-					<router-link to="./Index" @click.native="flushCom">
+					<router-link to="./" @click.native="flushCom">
 						<li>首页</li>
 					</router-link>
-					<li @click="zhan">3D展馆</li>
+					<router-link to="./News" @click.native="flushCom">
+						<li>新闻资讯</li>
+					</router-link>
 					<router-link to="./Product" @click.native="flushCom">
 						<li>产品中心</li>
 					</router-link>
@@ -30,15 +38,16 @@
 						<li>商务合作</li>
 					</router-link>
 				</ul>
-				<button class="kaitong" @click="zhan">开通展位</button>
+				<button class="kaitong">开通展位</button>
 			</div>
 			<p class="xuqiu">您的需求</br> 我们都可以满足</p>
-			<button class="fabu">发布需求</button>
+			<button class="fabu" @click="fabuxuqiu">发布需求</button>
 		</div>
 		<div class="cotnet">
 			<div class="tag"></div>
 			<div class="content">
-				<xiangqing v-show="xiangqings" v-bind:xiangqingye="xiangqingye"></xiangqing>
+				<xiangqing v-show="xiangqings" v-bind:xiangqingyes="xiangqingye"></xiangqing>
+				<fabuxuqiu v-show="fabu" v-on:success="serlfs"></fabuxuqiu>
 				<div class="con-left" v-show="listshow">
 					<div class="leibie">
 						<p class="jtfenlei" @click="qicai">实验室器材</p>
@@ -66,7 +75,7 @@
 						</p>
 						<p class="chazhao">
 							<input type="text" class="sousuokuang" placeholder="请输入关键字" />
-							<img src="../assets/img/icon_search.png" />
+							<img src="../assets/img/search.png" />
 						</p>
 					</div>
 					<div class="list">
@@ -74,7 +83,7 @@
 							<li v-for="i in infomation" @click="inforxiang(i.id)">
 								<p class="li-left">
 									<span class="listname">{{i.title}}</span>
-									<span class="listnamejie">{{i.content}}</span>
+									<!--<span class="listnamejie" v-html="i.content"></span>-->
 								</p>
 								<p class="li-right">
 									<span class="li-right-l">
@@ -132,30 +141,30 @@
 					<div class="geren">
 						<div class="gerenname">
 							<img src="" class="touxaing" />
-							<p class="xname">张先生</p>
+							<p class="xname">{{user.username}}</p>
 						</div>
 						<div class="hangyexinxi">
-							<p class="guanhzuhangye"><span class="xiaobiao">关注行业:</span><span class="xiangxi">实验仪器、化学原料 </span></p>
-							<p class="guanhzuhangye"><span class="xiaobiao">经营模式:</span><span class="xiangxi">生产商</span></p>
-							<p class="guanhzuhangye"><span class="xiaobiao">所在地区:</span><span class="xiangxi">天津 南开区</span></p>
+							<p class="guanhzuhangye"><span class="xiaobiao">关注行业:</span><span class="xiangxi"> </span></p>
+							<p class="guanhzuhangye"><span class="xiaobiao">经营模式:</span><span class="xiangxi"></span></p>
+							<p class="guanhzuhangye"><span class="xiaobiao">所在地区:</span><span class="xiangxi"></span></p>
 						</div>
 						<p class="xian"></p>
 						<p class="mainqiugou">我的求购</p>
-						<div class="yijiejue">
+						<div class="yijiejue" @click="yijiejue">
 							<img src="../assets/img/icon-yi.png" class="jiebiao" />
 							<p class="yj">已解决</p>
 							<p class="shuliang">{{shu.resolved}}</p>
 						</div>
-						<div class="weijiejue">
+						<div class="weijiejue" @click="weijiejue">
 							<img src="../assets/img/icon-wei.png" class="jiebiao" />
 							<p class="yj">未解决</p>
 							<p class="shuliang">{{shu.unsolved}}</p>
 						</div>
-						<button class="fabuxuqiu">发布需求</button>
+						<button class="fabuxuqiu" @click="fabuxuqiu">发布需求</button>
 					</div>
 					<div class="xiqiu">
 						<p class="edxq">热点需求</p>
-						<p class="edxuqius" v-for="r in redian">{{r.title}}</p>
+						<p class="edxuqius" v-for="r in redian" @click="inforxiang(r.id)">{{r.title}}</p>
 						<!--<div class="xuqiupin" v-for="r in redian">
 							<img src="" class="cqp" />
 							<p class="chanpinname">{{r.title}}</p>
@@ -204,9 +213,11 @@
 
 <script>
 	import xiangqing from './buyinforxiangqing.vue'
+	import fabuxuqiu from './fabuxuqiu.vue'
 	export default {
 		components: {
 			xiangqing,
+			fabuxuqiu
 		},
 		data() {
 			return {
@@ -223,12 +234,25 @@
 				xiangqingye: '',
 				token:localStorage["ACCESS_TOKEN"],
 				shu:'',
+				user:'',
+				iphone:localStorage["username"],
+				dianhua:false,
+				us:true,
+				fabu:false,
 			}
 		},
 		mounted: function() {
+			if(this.iphone == '' || this.iphone == undefined) {
+				this.us = true;
+				this.dianhua = false
+			} else {
+				this.us = false;
+				this.dianhua = true
+			}
 			this.fined();
 			this.erdain();
 			this.geren();
+			this.gereninfo();
 		},
 		methods: {
 			handleCurrentChange(page) {
@@ -246,11 +270,34 @@
 					})).then(ret => {
 						console.log(ret)
 						this.infomation = ret.data.data.list
+						for(let i in this.infomation){
+							this.infomation[i].createTime=this.infomation[i].createTime.substring(0,10)
+						}
 					})
 					.catch(function(error) {
 						console.log(error);
 					});
 			},
+			//发布需求
+			fabuxuqiu(){
+			    this.xiangqings=false;
+			    this.listshow=false;
+			    this.fabu=true
+			},
+			//查询个人信息
+			gereninfo(){
+				this.$ajax.post(this.$Url + "/st/sS", this.$qs.stringify({
+						ACCESS_TOKEN:this.token
+					})).then(ret => {
+						console.log(ret)
+						this.user=ret.data.data.user
+						console.log(this.user)
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},
+			//查询个人求购信息--未解决---已解决
 			geren(){
 				this.$ajax.post(this.$Url+"/as/sAso", this.$qs.stringify({
 						ACCESS_TOKEN:this.token
@@ -291,10 +338,11 @@
 				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
 						id: this.id
 					})).then(ret => {
+						console.log(ret)
 						this.xiangqings=true;
 						this.listshow=false
-						console.log(ret)
-						this.xiangqingye = ret.data.data.list
+						this.xiangqingye = ret.data.data.ask
+						console.log(this.xiangqingye)
 					})
 					.catch(function(error) {
 						console.log(error);
@@ -311,11 +359,17 @@
 						console.log(error);
 					});
 			},
+			serlfs(){
+				this.xiangqings=false;
+				this.listshow=true;
+				this.fabu=false;
+				this.fined();
+			},
 			flushCom: function() {
 				this.$router.go(0);
 			},
 			zhan() {
-				window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?id=" + this.cont)
+				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?id=" + this.cont), '_blank');
 			},
 		},
 	}
