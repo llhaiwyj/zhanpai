@@ -10,6 +10,10 @@ import Login from '@/components/login'
 import Register from '@/components/register'
 import Retrieve from '@/components/retrieve'
 import Productserch from '@/components/productserch'
+import Newsinformation from '@/components/newsinformation'
+import Buyinforxiangqing from '@/components/buyinforxiangqing'
+import Fabuxuqiu from '@/components/fabuxuqiu'
+//import Ceshi from '@/components/ceshi'
 
 Vue.use(Router)
 
@@ -24,6 +28,26 @@ export default new Router({
 			path: '/Login',
 			name: 'Login',
 			component: Login
+		},
+		{
+			path: '/Newsinformation',
+			name: 'Newsinformation',
+			component: Newsinformation
+		},
+//		{
+//			path: '/Ceshi',
+//			name: 'Ceshi',
+//			component: Ceshi
+//		},
+		{
+			path: '/Fabuxuqiu',
+			name: 'Fabuxuqiu',
+			component: Fabuxuqiu
+		},
+		{
+			path: '/Buyinforxiangqing',
+			name: 'Buyinforxiangqing',
+			component: Buyinforxiangqing
 		},
 		{
 			path: '/Product',

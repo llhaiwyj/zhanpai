@@ -51,7 +51,7 @@
 			<input type="text" placeholder="请输入搜索内容" class="find" />
 			<p><img src="../assets/img/icon_search.png" /></p>
 		</div>
-		<div class="content" v-show="yin">
+		<div class="content">
 			<div class="con-left">
 				<div class="shounews" v-for="item in firstnew" @click="firstxin(item.id)">
 					<p class="firsttitle">{{item.title}}</p>
@@ -66,7 +66,6 @@
 					</div>
 				</div>
 				<ul class="morenews">
-				
 					<li v-for="(n,index) in arrs" :key="index" @click="firstxin(n.id)">
 						<div class="cang">
 							<p class="shijian">
@@ -126,7 +125,7 @@
 				</ul>-->
 			</div>
 		</div>
-		<div class="content1" v-show="xian" v-for="x in zuinewinfo">
+		<!--<div class="content1" v-for="x in zuinewinfo">
 			<div class="con-left">
 				<p class="c-l-t">{{x.title}}</p>
 				<div class="c-l-she">
@@ -169,7 +168,7 @@
 				<p class="remen">热门新闻</p>
 				<p class="x-r-xin" v-for="f in fivenew">{{f.title}}</p>
 			</div>
-		</div>
+		</div>-->
 		<div class="footer">
 			<div class="wei">
 				<ul class="weinav">
@@ -202,9 +201,6 @@
 
 <script scoped>
 	export default {
-		components: {
-
-		},
 		data() {
 			return {
 				currentPage: 1,
@@ -216,8 +212,8 @@
 				firstnew: [],
 				riqi: [],
 				zuinews: '',
-				yin: true,
-				xian: false,
+//				yin: true,
+//				xian: false,
 				zuinewinfo:[],
 				fivenew: '',
 				shangnew: [],
@@ -230,6 +226,7 @@
 			}
 		},
 		mounted: function() {
+			this.fined();
 			console.log(this.id)
 			if(this.iphone == '' || this.iphone == undefined) {
 				this.us = true;
@@ -238,16 +235,16 @@
 				this.us = false;
 				this.dianhua = true
 			}
-			if(this.id==''||this.id==undefined){
-				this.fined();
-				this.ermennews()
-			}else{
-				this.yin = false;
-				this.xian = true;
-				this.firstxin();
-				this.ermennews()
-				
-			}
+//			if(this.id==''||this.id==undefined){
+//				this.fined();
+//				this.ermennews()
+//			}else{
+//				this.yin = false;
+//				this.xian = true;
+//				this.firstxin();
+//				this.ermennews()
+//				
+//			}
 //			if(this.id==''||this.id==undefined){
 //				
 //			}
@@ -334,50 +331,56 @@
 				this.fined()
 			},
 			firstxin(id) {
-				console.log(id);
-				let Id=id
-				if(Id==''||Id==undefined){
-					Id=this.id
-				}
-				console.log(Id)
-				this.yin = false;
-				this.xian = true;
-				this.$ajax.post(this.$Url + "/ne/gN", this.$qs.stringify({
-						id: Id,
-					})).then(data => {
-						console.log(data)
-						this.zuinewinfo.push(data.data.data.info)
-					})
-					.catch(function(error) {
-						console.log(error);
-					});
-				//上一篇的新闻
-				this.$ajax.post(this.$Url + "/ne/sNuad", this.$qs.stringify({
-						id: Id,
-					})).then(data => {
-						console.log(data)
-						this.shangnew.push(data.data.data.previous)
-						console.log(this.shangnew)
-						this.xianew.push(data.data.data.next)
-						console.log(this.xianew)
-					})
-					.catch(function(error) {
-						console.log(error);
-					});
+				this.$router.push({
+					name: 'Newsinformation',
+					params: {
+						ids: id
+					}
+				});
+//				console.log(id);
+//				let Id=id
+//				if(Id==''||Id==undefined){
+//					Id=this.id
+//				}
+//				console.log(Id)
+//				this.yin = false;
+//				this.xian = true;
+//				this.$ajax.post(this.$Url + "/ne/gN", this.$qs.stringify({
+//						id: Id,
+//					})).then(data => {
+//						console.log(data)
+//						this.zuinewinfo.push(data.data.data.info)
+//					})
+//					.catch(function(error) {
+//						console.log(error);
+//					});
+//				//上一篇的新闻
+//				this.$ajax.post(this.$Url + "/ne/sNuad", this.$qs.stringify({
+//						id: Id,
+//					})).then(data => {
+//						console.log(data)
+//						this.shangnew.push(data.data.data.previous)
+//						console.log(this.shangnew)
+//						this.xianew.push(data.data.data.next)
+//						console.log(this.xianew)
+//					})
+//					.catch(function(error) {
+//						console.log(error);
+//					});
 			},
-			back() {
-				this.yin = true;
-				this.xian = false;
-//				this.flushCom()
-				this.fined();
-				this.ermennews()
-			}, 
+//			back() {
+//				this.yin = true;
+//				this.xian = false;
+////				this.flushCom()
+//				this.fined();
+//				this.ermennews()
+//			}, 
 			flushCom: function() {
 				this.$router.go(0);
 			},
-			zhan() {
-				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
-			},
+//			zhan() {
+//				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
+//			},
 
 		},
 	}

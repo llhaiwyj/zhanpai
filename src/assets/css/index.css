@@ -321,6 +321,7 @@
 	height:290px;
 	float:left;
 	margin-right:1%;
+	cursor: pointer;
 }
 .shangjia li p{
 	width:100%;

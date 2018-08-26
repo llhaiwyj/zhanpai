@@ -175,7 +175,16 @@
 	width:68.5%;
 	height:1551px;
 	margin-left:20%;
+	margin-top:30px;
+	float:left;
+}
+.con-con{
+	width:68.5%;
+	height:1551px;
+	margin-left:20%;
 	margin-top:15px;
+	background:red;
+	float:left;
 }
 .con-left{
 	width:73%;

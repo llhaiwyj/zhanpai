@@ -149,6 +149,20 @@
 	background:#fff;
 	/*background:blue;*/
 }
+.con-left1{
+	width:75%;
+	height:auto;
+	float:left;
+	background:#fff;
+	/*background:blue;*/
+}
+.con-left2{
+	width:75%;
+	height:1497px;
+	float:left;
+	background:#fff;
+	/*background:blue;*/
+}
 .title{
 	width:100%;
 	height:58px;
@@ -179,6 +193,11 @@
 	margin-top: 10px;
 }
 .xiangxi{
+	width:100%;
+	height:1429px;
+	background:#fff;
+}
+.xiangxi1{
 	width:100%;
 	height:1429px;
 	background:#fff;
@@ -275,6 +294,12 @@
 .con-right{
 	width:24%;
 	height:1488px;
+	float:left;
+	margin-left:1%;
+}
+.con-right1{
+	width:24%;
+	height:auto;
 	float:left;
 	margin-left:1%;
 }
@@ -720,7 +745,7 @@
 .edxuqius{
 	width:85%;
 	height:30px;
-	margin-left:5%;
+	margin-left:10%;
 	margin-top:10px;
 	line-height: 30px;
 	overflow: hidden;

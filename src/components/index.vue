@@ -18,9 +18,9 @@
 					<li>我的浏览&nbsp;&nbsp;|</li>
 					<li @click="zhan">我的收藏&nbsp;&nbsp;|</li>
 					<li>个人中心&nbsp;&nbsp;|</li>
-					<router-link to="./Indexs" @click.native="flushCom">
+					<!--<router-link to="./Ceshi" @click.native="flushCom">-->
 						<li class="shoujiban">手机版 </li>
-					</router-link>
+				<!--	</router-link>-->
 				</ul>
 			</div>
 			<div class="daohang">
@@ -80,7 +80,7 @@
 				<li @click="yilei(3)">
 					<sapn class="haocai" :class="{'haocais':3===b}"></sapn>实验室试剂与耗材</li>
 			</ul>
-			<ul class="erjilie" v-show="erji">
+			<ul class="erjilie" v-show="erji" v-clickoutside="handleClose">
 				<li v-for="e in erjilei" erjilei>{{e.typeName}}</li>
 			</ul>
 			<div class="tu">
@@ -200,9 +200,35 @@
 </template>
 
 <script>
+	const clickoutside = {
+ // 初始化指令
+  bind(el, binding, vnode) {
+    function documentHandler(e) {
+  // 这里判断点击的元素是否是本身，是本身，则返回
+      if (el.contains(e.target)) {
+        return false;
+  }
+  // 判断指令中是否绑定了函数
+      if (binding.expression) {
+  // 如果绑定了函数 则调用那个函数，此处binding.value就是handleClose方法
+        binding.value(e);
+      }
+ }
+ // 给当前元素绑定个私有变量，方便在unbind中可以解除事件监听
+    el.__vueClickOutside__ = documentHandler;
+    document.addEventListener('click', documentHandler);
+  },
+  update() {},
+  unbind(el, binding) {
+ // 解除事件监听
+    document.removeEventListener('click', el.__vueClickOutside__);
+    delete el.__vueClickOutside__;
+  },
+};
 	export default {
 		data() {
 			return {
+				directives: {clickoutside},
 				imglist: '',
 				zhanwei: '',
 				newslist: '',
@@ -238,8 +264,12 @@
 				this.dianhua = true
 			}
 			this.fined();
+			this.directives()
 		},
 		methods: {
+			handleClose(e){
+				this.erji = false;
+			},
 			fined() {
 				//获取轮播图片
 				this.$ajax.post(this.$Url + "/ap/sAPli", this.$qs.stringify({
@@ -281,8 +311,8 @@
 			severs() {
 				console.log(this.xuan)
 				if(this.xuan == '3D' && this.cont != '') {
-					window.open( encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=" + this.cont), '_blank');
-//					window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=" + this.cont)
+					window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=" + this.cont), '_blank');
+					//					window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=" + this.cont)
 				} else if(this.xuan == '极简' && this.cont != '') {
 					this.$ajax.post(this.$Url + "/fp/selPWeb", this.$qs.stringify({
 							str: this.cont
@@ -306,7 +336,7 @@
 			xinwen(id) {
 				console.log(id)
 				this.$router.push({
-					name: 'News',
+					name: 'Newsinformation',
 					params: {
 						ids: id
 					}
@@ -342,7 +372,7 @@
 				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
 			},
 			more() {
-			window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
+				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
 			},
 			zhanguan(id) {
 				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?id=" + id), '_blank');
@@ -368,9 +398,9 @@
 			flushCom: function() {
 				this.$router.go(0);
 			},
-//			denglu(){
-//				window.open("http://39.105.24.238/busys.html?, '_blank'");
-//			}
+			//			denglu(){
+			//				window.open("http://39.105.24.238/busys.html?, '_blank'");
+			//			}
 		},
 	}
 </script>

@@ -46,8 +46,8 @@
 		<div class="cotnet">
 			<div class="tag"></div>
 			<div class="content">
-				<xiangqing v-show="xiangqings" v-bind:xiangqingyes="xiangqingye"></xiangqing>
-				<fabuxuqiu v-show="fabu" v-on:success="serlfs"></fabuxuqiu>
+				<!--<xiangqing v-show="xiangqings" v-bind:xiangqingyes="xiangqingye"></xiangqing>
+				<fabuxuqiu v-show="fabu" v-on:success="serlfs"></fabuxuqiu>-->
 				<div class="con-left" v-show="listshow">
 					<div class="leibie">
 						<p class="jtfenlei" @click="qicai">实验室器材</p>
@@ -212,13 +212,13 @@
 </template>
 
 <script>
-	import xiangqing from './buyinforxiangqing.vue'
-	import fabuxuqiu from './fabuxuqiu.vue'
+//	import xiangqing from './buyinforxiangqing.vue'
+//	import fabuxuqiu from './fabuxuqiu.vue'
 	export default {
-		components: {
-			xiangqing,
-			fabuxuqiu
-		},
+//		components: {
+//			xiangqing,
+//			fabuxuqiu
+//		},
 		data() {
 			return {
 				xiangqings: false,
@@ -280,9 +280,9 @@
 			},
 			//发布需求
 			fabuxuqiu(){
-			    this.xiangqings=false;
-			    this.listshow=false;
-			    this.fabu=true
+			  this.$router.push({
+					name: 'Fabuxuqiu',
+				});
 			},
 			//查询个人信息
 			gereninfo(){
@@ -335,18 +335,25 @@
 			},
 			inforxiang(id) {
 				this.id = id
-				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
-						id: this.id
-					})).then(ret => {
-						console.log(ret)
-						this.xiangqings=true;
-						this.listshow=false
-						this.xiangqingye = ret.data.data.ask
-						console.log(this.xiangqingye)
-					})
-					.catch(function(error) {
-						console.log(error);
-					});
+				console.log(this.id)
+				this.$router.push({
+					name: 'Buyinforxiangqing',
+					params: {
+						ids: this.id
+					}
+				});
+//				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
+//						id: this.id
+//					})).then(ret => {
+//						console.log(ret)
+//						this.xiangqings=true;
+//						this.listshow=false
+//						this.xiangqingye = ret.data.data.ask
+//						console.log(this.xiangqingye)
+//					})
+//					.catch(function(error) {
+//						console.log(error);
+//					});
 			},
 			erdain() {
 				this.$ajax.post(this.$Url + "/as/sAhot", this.$qs.stringify({
