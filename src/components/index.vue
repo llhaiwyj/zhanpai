@@ -18,9 +18,9 @@
 					<li>我的浏览&nbsp;&nbsp;|</li>
 					<li @click="zhan">我的收藏&nbsp;&nbsp;|</li>
 					<li>个人中心&nbsp;&nbsp;|</li>
-					<!--<router-link to="./Ceshi" @click.native="flushCom">-->
+					<router-link to="./Ceshi" @click.native="flushCom">
 						<li class="shoujiban">手机版 </li>
-				<!--	</router-link>-->
+					</router-link>
 				</ul>
 			</div>
 			<div class="daohang">
@@ -71,17 +71,17 @@
 			<ul class="fenlei">
 				<li class="tou">商品中心</li>
 				<!--<li v-for="(l,index) in leibie" @click="yilei(index)"><img src=""/>{{l.typeName}}</li>-->
-				<li @click="yilei(0)">
+				<li @click.stop="yilei(0)">
 					<sapn class="shiyanshi" :class="{'shiyanshis':0===b}"></sapn>实验室仪器</li>
-				<li @click="yilei(1)">
+				<li @click.stop="yilei(1)">
 					<sapn class="fuwu" :class="{'fuwus':1===b}"></sapn>实验室服务</li>
-				<li @click="yilei(2)">
+				<li @click.stop="yilei(2)">
 					<sapn class="jiaju" :class="{'jiajus':2===b}"></sapn>实验室家具</li>
-				<li @click="yilei(3)">
+				<li @click.stop="yilei(3)">
 					<sapn class="haocai" :class="{'haocais':3===b}"></sapn>实验室试剂与耗材</li>
 			</ul>
-			<ul class="erjilie" v-show="erji" v-clickoutside="handleClose">
-				<li v-for="e in erjilei" erjilei>{{e.typeName}}</li>
+			<ul class="erjilie" id="erjilie" v-show="erji" @click.stop="sanjilei">
+				<li v-for="e in erjilei">{{e.typeName}}</li>
 			</ul>
 			<div class="tu">
 				<el-carousel indicator-position="outside">
@@ -200,35 +200,14 @@
 </template>
 
 <script>
-	const clickoutside = {
- // 初始化指令
-  bind(el, binding, vnode) {
-    function documentHandler(e) {
-  // 这里判断点击的元素是否是本身，是本身，则返回
-      if (el.contains(e.target)) {
-        return false;
-  }
-  // 判断指令中是否绑定了函数
-      if (binding.expression) {
-  // 如果绑定了函数 则调用那个函数，此处binding.value就是handleClose方法
-        binding.value(e);
-      }
- }
- // 给当前元素绑定个私有变量，方便在unbind中可以解除事件监听
-    el.__vueClickOutside__ = documentHandler;
-    document.addEventListener('click', documentHandler);
-  },
-  update() {},
-  unbind(el, binding) {
- // 解除事件监听
-    document.removeEventListener('click', el.__vueClickOutside__);
-    delete el.__vueClickOutside__;
-  },
-};
+     document.onclick = function(){
+       alert(document.getElementById('erjilie').style.display)
+       document.getElementById('erjilie').style.display="none";
+       alert(2)
+    }
 	export default {
 		data() {
 			return {
-				directives: {clickoutside},
 				imglist: '',
 				zhanwei: '',
 				newslist: '',
@@ -360,13 +339,19 @@
 			},
 			yilei(index) {
 				this.b = index;
-				this.erji = true
+//				if(document.getElementById('erjilie').style.display=="none"||document.getElementById('erjilie').style.display==''){
+				document.getElementById('erjilie').style.display="block";
+//				}
+//					this.erji = true
 				var num = index + 1
 				for(var i in this.leibie) {
 					if(num == this.leibie[i].id) {
 						this.erjilei = this.leibie[i].list
 					}
 				}
+			},
+			sanjilei(){
+				document.getElementById('erjilie').style.display="block";
 			},
 			zhan() {
 				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
