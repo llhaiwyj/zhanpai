@@ -166,10 +166,10 @@
 				chengshis:[],
 				shengkuang:false,
 				shiji:false,
-				one:'',
-				two:'',
-				three:'',
-				four:'',
+				one:this.$route.params.one,
+				two:this.$route.params.two,
+				three:this.$route.params.three,
+				four:this.$route.params.four,
 				
 			}
 		},
@@ -180,6 +180,11 @@
 				this.fined();
 			}else{
 				
+			}
+			if(this.one==''){
+				
+			}else{
+				this.fined();
 			}
 			
 		},

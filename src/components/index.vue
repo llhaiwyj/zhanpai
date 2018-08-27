@@ -14,6 +14,7 @@
 					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
 				</p>
 				<p class="login" v-show="dianhua">{{iphone}}</p>
+				<button class="tuichu" v-show="dianhua" @click="tui">退出</button>
 				<ul class="nav">
 					<!--<li>我的浏览&nbsp;&nbsp;|</li>
 					<li @click="zhan">我的收藏&nbsp;&nbsp;|</li>-->
@@ -71,17 +72,23 @@
 			<ul class="fenlei">
 				<li class="tou">商品中心</li>
 				<!--<li v-for="(l,index) in leibie" @click="yilei(index)"><img src=""/>{{l.typeName}}</li>-->
-				<li @click.stop="yilei(0)">
+				<li class="fl" @click.stop="yilei(0)" :class="{'fl1':0===b}">
 					<sapn class="shiyanshi" :class="{'shiyanshis':0===b}"></sapn>实验室仪器</li>
-				<li @click.stop="yilei(1)">
+				<li class="fl" @click.stop="yilei(1)" :class="{'fl1':1===b}">
 					<sapn class="fuwu" :class="{'fuwus':1===b}"></sapn>实验室服务</li>
-				<li @click.stop="yilei(2)">
+				<li class="fl" @click.stop="yilei(2)" :class="{'fl1':2===b}">
 					<sapn class="jiaju" :class="{'jiajus':2===b}"></sapn>实验室家具</li>
-				<li @click.stop="yilei(3)">
+				<li class="fl" @click.stop="yilei(3)" :class="{'fl1':3===b}">
 					<sapn class="haocai" :class="{'haocais':3===b}"></sapn>实验室试剂与耗材</li>
 			</ul>
-			<ul class="erjilie" id="erjilie" v-show="erji" @click.stop="sanjilei">
-				<li v-for="e in erjilei">{{e.typeName}}</li>
+			<ul class="erjilie" id="erjilie" v-show="erji">
+				<li class="lc" v-for="(e,index) in erjilei" @click.stop="sanjilei(index,e.id)" :class="{'lys':index===c}">{{e.typeName}}</li>
+			</ul>
+			<ul class="sanjilie" id="sanjilie" v-show="erji">
+				<li class="lc" v-for="(e,index) in sajnjilei" @click.stop="sijilei(index,e.id)" :class="{'lys1':index===d}">{{e.typeName}}</li>
+			</ul>
+			<ul class="sijilie" id="sijilie" v-show="erji">
+				<li class="lc" v-for="(e,index) in sijnjilei" @click.stop="wujilei(e.id)">{{e.typeName}}</li>
 			</ul>
 			<div class="tu">
 				<el-carousel indicator-position="outside">
@@ -210,11 +217,15 @@
 				newslists: '',
 				leibie: '',
 				erjilei: '',
+				sajnjilei:'',
+				sijnjilei:'',
 				erji: false,
 				shop: '',
 				xuan: '3D',
 				iphone: localStorage["username"],
 				b: '',
+				c:'',
+				d:'',
 				dianhua: false,
 				us: true,
 				zuinewinfo: [],
@@ -224,13 +235,19 @@
 				}, {
 					value: '1',
 					label: '极简'
-				}]
+				}],
+				one:'',
+				two:'',
+				three:'',
+				four:'',
 				//				zhis: this.unitys.zhi,
 			};
 		},
 		created(){
 			document.onclick = function(){
                 document.getElementById('erjilie').style.display="none";
+				document.getElementById('sanjilie').style.display="none";
+				document.getElementById('sijilie').style.display="none";
             }
 		},
 		mounted: function() {
@@ -338,20 +355,60 @@
 				//					});
 			},
 			yilei(index) {
+				this.one=index
 				this.b = index;
+				this.erjilei='';
+				if(this.one!=0){
+				    document.getElementById('sanjilie').style.display="none";
+				    document.getElementById('sijilie').style.display="none";
+				}
 //				if(document.getElementById('erjilie').style.display=="none"||document.getElementById('erjilie').style.display==''){
 				document.getElementById('erjilie').style.display="block";
 //				}
 //					this.erji = true
-				var num = index + 1
-				for(var i in this.leibie) {
-					if(num == this.leibie[i].id) {
-						this.erjilei = this.leibie[i].list
-					}
-				}
+                this.erjilei=this.leibie[index].list
+                console.log(this.erjilei)
+//				var num = index + 1
+//				for(var i in this.leibie) {
+//					if(num == this.leibie[i].id) {
+//						this.erjilei = this.leibie[i].list
+//					}
+//				}
 			},
-			sanjilei(){
+			sanjilei(index,id){
+				this.two=id
+				this.c = index;
+				console.log(this.c)
+				this.sajnjilei='',
 				document.getElementById('erjilie').style.display="block";
+				document.getElementById('sanjilie').style.display="block";
+//				document.getElementById('sanjilie').style.backgroun="#ededed"
+				 this.sajnjilei=this.erjilei[index].list
+				 console.log( this.sajnjilei)
+			},
+			sijilei(index,id){
+				this.three=id
+				this.d = index;
+				console.log(this.d)
+				document.getElementById('erjilie').style.display="block";
+				document.getElementById('sanjilie').style.display="block";
+				document.getElementById('sijilie').style.display="block";
+				this.sijnjilei='',
+				 this.sijnjilei=this.sajnjilei[index].list
+				 console.log( this.sijnjilei)
+			},
+			wujilei(id){
+				this.four=id
+				console.log(this.one)
+				this.$router.push({
+					name: 'Productserch',
+					params: {
+						one: this.one,
+						two:this.two,
+						three:this.three,
+						four:this.four,
+					}
+				});
 			},
 			zhan() {
 				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
@@ -383,6 +440,12 @@
 			flushCom: function() {
 				this.$router.go(0);
 			},
+			tui(){
+				localStorage.removeItem('ACCESS_TOKEN')
+				this.$router.push({
+					name: 'Login',
+				});
+			}
 			//			denglu(){
 			//				window.open("http://39.105.24.238/busys.html?, '_blank'");
 			//			}

@@ -176,6 +176,7 @@
 				fabu: false,
 				user: '',
 				iphone: localStorage["username"],
+				token: localStorage["ACCESS_TOKEN"],
 				shu: '',
 			}
 		},
@@ -253,9 +254,13 @@
 					});
 			},
 			fabuxuqiu(){
-			  this.$router.push({
-					name: 'Fabuxuqiu',
-				});
+			  if(this.token==''||this.token==undefined){
+					this.$message.error("请先登陆");
+				}else{
+					this.$router.push({
+					    name: 'Fabuxuqiu',
+				    });
+				}
 			},
 		},
 	}
