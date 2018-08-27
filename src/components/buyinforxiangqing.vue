@@ -13,8 +13,8 @@
 				</p>
 				<p class="login" v-show="dianhua">{{iphone}}</p>
 				<ul class="nav">
-					<li>我的浏览&nbsp;&nbsp;|</li>
-					<li>我的收藏&nbsp;&nbsp;|</li>
+					<!--<li>我的浏览&nbsp;&nbsp;|</li>
+					<li>我的收藏&nbsp;&nbsp;|</li>-->
 					<li>个人中心&nbsp;&nbsp;|</li>
 					<li>手机版 </li>
 				</ul>
@@ -60,8 +60,9 @@
 							<p class="x-title">{{xiangqingye.title}}</p>
 							<p class="chnegshi">{{xiangqingye.addressA}} {{xiangqingye.addressB}} {{xiangqingye.addressC}}</p>
 							<p class="shijian">{{xiangqingye.createTime}}</p>
+							<p class="x-x"></p>
 							<p class="x-co" v-html="xiangqingye.content"></p>
-							<!--<p class="x-x"></p>-->
+							
 							<!--<span>回复</span>-->
 						</div>
 						<!--<div class="yilun">

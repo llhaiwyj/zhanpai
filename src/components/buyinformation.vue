@@ -87,18 +87,18 @@
 								</p>
 								<p class="li-right">
 									<span class="li-right-l">
-							<span class="renmuch">
-								<img src="../assets/img/persens.png" class="xiaoren"/>
-								<span class="numb">1</span>
-									</span>
-									<span class="liuyan">
-								<img src="../assets/img/icon－x.png" class="xiaoren"/>
-								<span class="numb">1</span>
-									</span>
+							            <span class="renmuch">
+								            <img src="../assets/img/persens.png" class="xiaoren"/>
+								            <span class="numb">{{i.pageView}}</span>
+									    </span>
+									    <!--<span class="liuyan">
+								            <img src="../assets/img/icon－x.png" class="xiaoren"/>
+								            <span class="numb">1</span>
+									    </span>-->
 									</span>
 									<span class="li-right-r">
-							<span class="diming">{{i.addressA}} {{i.addressC}}</span>
-									<span class="dhijiant">{{i.createTime}}</span>
+							            <span class="diming">{{i.addressA}} {{i.addressC}}</span>
+									    <span class="dhijiant">{{i.createTime}}</span>
 									</span>
 								</p>
 							</li>
@@ -212,13 +212,13 @@
 </template>
 
 <script>
-//	import xiangqing from './buyinforxiangqing.vue'
-//	import fabuxuqiu from './fabuxuqiu.vue'
+	//	import xiangqing from './buyinforxiangqing.vue'
+	//	import fabuxuqiu from './fabuxuqiu.vue'
 	export default {
-//		components: {
-//			xiangqing,
-//			fabuxuqiu
-//		},
+		//		components: {
+		//			xiangqing,
+		//			fabuxuqiu
+		//		},
 		data() {
 			return {
 				xiangqings: false,
@@ -232,13 +232,13 @@
 				solve: '',
 				id: '',
 				xiangqingye: '',
-				token:localStorage["ACCESS_TOKEN"],
-				shu:'',
-				user:'',
-				iphone:localStorage["username"],
-				dianhua:false,
-				us:true,
-				fabu:false,
+				token: localStorage["ACCESS_TOKEN"],
+				shu: '',
+				user: '',
+				iphone: localStorage["username"],
+				dianhua: false,
+				us: true,
+				fabu: false,
 			}
 		},
 		mounted: function() {
@@ -258,20 +258,25 @@
 			handleCurrentChange(page) {
 				console.log(page)
 				this.currentPage = page;
+				this.fined();
 			}, //改变条数触发
 			handleIndexChange(index) {
 				console.log(index)
 				this.length = index;
+				this.fined();
 			},
 			fined() {
 				this.$ajax.post(this.$Url + "/as/sAty", this.$qs.stringify({
 						typea: this.typea,
-						solve: this.solve
+						solve: this.solve,
+						pageSize:this.length,
+						pageNum:this.currentPage,
 					})).then(ret => {
 						console.log(ret)
-						this.infomation = ret.data.data.list
-						for(let i in this.infomation){
-							this.infomation[i].createTime=this.infomation[i].createTime.substring(0,10)
+						this.infomation = ret.data.data.list.list
+						this.total = ret.data.data.list.total
+						for(let i in this.infomation) {
+							this.infomation[i].createTime = this.infomation[i].createTime.substring(0, 10)
 						}
 					})
 					.catch(function(error) {
@@ -279,18 +284,18 @@
 					});
 			},
 			//发布需求
-			fabuxuqiu(){
-			  this.$router.push({
+			fabuxuqiu() {
+				this.$router.push({
 					name: 'Fabuxuqiu',
 				});
 			},
 			//查询个人信息
-			gereninfo(){
+			gereninfo() {
 				this.$ajax.post(this.$Url + "/st/sS", this.$qs.stringify({
-						ACCESS_TOKEN:this.token
+						ACCESS_TOKEN: this.token
 					})).then(ret => {
 						console.log(ret)
-						this.user=ret.data.data.user
+						this.user = ret.data.data.user
 						console.log(this.user)
 					})
 					.catch(function(error) {
@@ -298,12 +303,12 @@
 					});
 			},
 			//查询个人求购信息--未解决---已解决
-			geren(){
-				this.$ajax.post(this.$Url+"/as/sAso", this.$qs.stringify({
-						ACCESS_TOKEN:this.token
+			geren() {
+				this.$ajax.post(this.$Url + "/as/sAso", this.$qs.stringify({
+						ACCESS_TOKEN: this.token
 					})).then(data => {
 						console.log(data)
-						this.shu=data.data.data.data
+						this.shu = data.data.data.data
 					})
 					.catch(function(error) {
 						console.log(error);
@@ -342,18 +347,18 @@
 						ids: this.id
 					}
 				});
-//				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
-//						id: this.id
-//					})).then(ret => {
-//						console.log(ret)
-//						this.xiangqings=true;
-//						this.listshow=false
-//						this.xiangqingye = ret.data.data.ask
-//						console.log(this.xiangqingye)
-//					})
-//					.catch(function(error) {
-//						console.log(error);
-//					});
+				//				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
+				//						id: this.id
+				//					})).then(ret => {
+				//						console.log(ret)
+				//						this.xiangqings=true;
+				//						this.listshow=false
+				//						this.xiangqingye = ret.data.data.ask
+				//						console.log(this.xiangqingye)
+				//					})
+				//					.catch(function(error) {
+				//						console.log(error);
+				//					});
 			},
 			erdain() {
 				this.$ajax.post(this.$Url + "/as/sAhot", this.$qs.stringify({
@@ -366,10 +371,10 @@
 						console.log(error);
 					});
 			},
-			serlfs(){
-				this.xiangqings=false;
-				this.listshow=true;
-				this.fabu=false;
+			serlfs() {
+				this.xiangqings = false;
+				this.listshow = true;
+				this.fabu = false;
 				this.fined();
 			},
 			flushCom: function() {

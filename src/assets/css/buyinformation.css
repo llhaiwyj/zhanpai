@@ -49,7 +49,7 @@
 	line-height: 40px;
 }
 .nav{
-	width:308px;
+	width:157px;
 	height:40px;
 	float:right;
 	margin-right:180px;
@@ -144,7 +144,7 @@
 }
 .con-left{
 	width:75%;
-	height:1488px;
+	height:1110px;
 	float:left;
 	background:#fff;
 	/*background:blue;*/
@@ -259,12 +259,16 @@
 	color:#0077FF;
 }
 .block{
-	width:20%;
+	width:43%;
 	height:32px;
 	float:right;
-	margin-right:17.5%;
+	margin-right:2.5%;
 	margin-top:20px;
 	margin-bottom:48px;
+	text-align: right;
+}
+.el-pagination__rightwrapper{
+  margin-left:20px !important;
 }
 .fabiao{
 	width:95%;
@@ -293,7 +297,7 @@
 }
 .con-right{
 	width:24%;
-	height:1488px;
+	height:1110px;
 	float:left;
 	margin-left:1%;
 }
@@ -411,7 +415,7 @@
 }
 .xiqiu{
 	width:100%;
-	height:1048px;
+	height:660px;
 	margin-top:40px;
 	background:#fff;
 	margin-top:20px;
@@ -648,13 +652,13 @@
 }
 .list{
 	width:100%;
-	height:1280px;
+	height:821px;
 	background:#fff;
 	border:none;
 }
 .qiulist{
 	width:100%;
-	height:1200px;
+	height:835px;
 }
 .qiulist li{
 	width:100%;
@@ -706,7 +710,7 @@
 	width:100%;
 	height:15px;
 	display:block;
-	margin-top:20px;
+	margin-top:23px;
 }
 .xiaoren{
 	width:14px;

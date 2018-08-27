@@ -15,8 +15,8 @@
 				</p>
 				<p class="login" v-show="dianhua">{{iphone}}</p>
 				<ul class="nav">
-					<li>我的浏览&nbsp;&nbsp;|</li>
-					<li @click="zhan">我的收藏&nbsp;&nbsp;|</li>
+					<!--<li>我的浏览&nbsp;&nbsp;|</li>
+					<li @click="zhan">我的收藏&nbsp;&nbsp;|</li>-->
 					<li>个人中心&nbsp;&nbsp;|</li>
 					<router-link to="./Ceshi" @click.native="flushCom">
 						<li class="shoujiban">手机版 </li>
@@ -200,13 +200,8 @@
 </template>
 
 <script>
-     document.onclick = function(){
-       alert(document.getElementById('erjilie').style.display)
-       document.getElementById('erjilie').style.display="none";
-       alert(2)
-    }
 	export default {
-		data() {
+		data() { 
 			return {
 				imglist: '',
 				zhanwei: '',
@@ -232,6 +227,11 @@
 				}]
 				//				zhis: this.unitys.zhi,
 			};
+		},
+		created(){
+			document.onclick = function(){
+                document.getElementById('erjilie').style.display="none";
+            }
 		},
 		mounted: function() {
 			console.log(this.iphone)

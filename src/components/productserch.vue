@@ -8,8 +8,8 @@
 				<img src="" class="xinjian" />
 				<p class="zhuce">消息 <span>1</span></p>
 				<ul class="nav">
-					<li>我的浏览&nbsp;&nbsp;|</li>
-					<li>我的收藏&nbsp;&nbsp;|</li>
+					<!--<li>我的浏览&nbsp;&nbsp;|</li>
+					<li>我的收藏&nbsp;&nbsp;|</li>-->
 					<li>个人中心&nbsp;&nbsp;|</li>
 					<li>手机版 </li>
 				</ul>
@@ -38,31 +38,31 @@
 			</div>
 			<div class="feilei1">
 				<p class="xgfl">相关分类：</p>
-				<p v-for="(l,index) in leibie" @click="yiji(index)">{{l.typeName}}</p>
+				<p v-for="(l,index) in leibie" @click="yiji(index,l.id)">{{l.typeName}}</p>
 			</div>
 			<div class="fenlei2" v-show="erjis">
-				<p v-for="(i,index) in erjilei" @click="erji(i.id)">{{i.typeName}}</p>
+				<p v-for="(i,index) in erjilei" @click="erji(index,i.id)">{{i.typeName}}</p>
 			</div>
 			<div class="fenlei2" v-show="sanjis">
-				<p v-for="(s,index) in sanjilei" @click="sanji(s.id)">{{s.typeName}}</p>
+				<p v-for="(s,index) in sanjilei" @click="sanji(index,s.id)">{{s.typeName}}</p>
 			</div>
 			<div class="fenlei2" v-show="sijis">
-				<p v-for="(s,index) in sijilei">{{s.typeName}}</p>
+				<p v-for="(s,index) in sijilei" @click="siji(s.id)">{{s.typeName}}</p>
 			</div>
 			<div class="shuaixuan">
 				<p @click="ranking">综合排序</p>
 				<p @click="renqi">人气</p>
 			    <p @click="fabudata">发布时间</p>
-			    <p @click="diqu">所在地区</p>
+			    <p @click.stop="diqu">所在地区</p>
 			    <p>经营模式</p>
 			    <div class="tiao">共{{total}}条产品信息</div>
-			    <ul class="liandong" v-show="shengkuang">
-			    	<li v-for="se in shengs" @click="shis(se.sid)">
+			    <ul class="liandong" id="sheng" v-show="shengkuang">
+			    	<li v-for="se in shengs" @click.stop="shis(se.sid)">
 			    		{{se.sn}}
 			    	</li>
 			    </ul>
-			    <ul class="ldshi" v-show="shiji">
-			    	<li v-for="shis in chengshis" @click="chengshi(shis.sid)">{{shis.sn}}</li>
+			    <ul class="ldshi" id="shi" v-show="shiji">
+			    	<li v-for="shis in chengshis" @click.stop="chengshi(shis.sid)">{{shis.sn}}</li>
 			    </ul>
 			</div>
 			<ul class="chanpin">
@@ -135,6 +135,12 @@
 </template>
 
 <script scoped>
+	document.onclick = function(){
+//     alert(document.getElementById('erjilie').style.display)
+       document.getElementById('sheng').style.display="none";
+        document.getElementById('shi').style.display="none";
+//     alert(2)
+    }
 	import {newArr} from '../../static/city.js'
 	export default {
 		data() {
@@ -160,14 +166,18 @@
 				chengshis:[],
 				shengkuang:false,
 				shiji:false,
+				one:'',
+				two:'',
+				three:'',
+				four:'',
 				
 			}
 		},
 		mounted: function() {
 			console.log(this.shuju)
+			this.fenlei();
 			if(this.shuju==''||this.shuju==undefined){
 				this.fined();
-			    this.fenlei();
 			}else{
 				
 			}
@@ -194,6 +204,10 @@
 						areaA:this.areas,
 						areaB:this.areaB,
 						str:this.guanjian,
+						one:this.one,
+						two:this.two,
+						three:this.three,
+						four:this.four,
 					})).then(data => {
 						console.log(data)
 						this.shuju = data.data.data.list.list
@@ -224,7 +238,7 @@
 			},
 			//获取初始分类
 			fenlei(){
-				this.$ajax.post("api/pt/sTs", this.$qs.stringify()).then(data => {
+				this.$ajax.post(this.$Url +"/pt/sTs", this.$qs.stringify()).then(data => {
 					console.log(data)
 					this.leibie = data.data.data.info.list
 				})
@@ -257,7 +271,8 @@
 			diqu(){
 				this.shengs=[];
 				console.log(newArr)
-				this.shengkuang=true
+//				this.shengkuang=true
+				document.getElementById('sheng').style.display="block";
 				for(let d in newArr){
 					if(newArr[d].areaParentId=='0'){
 						let sf={}
@@ -273,7 +288,9 @@
 			shis(id){
 				this.areas=id;
 				this.chengshis=[];
-				this.shiji=true
+//				this.shiji=true
+				document.getElementById('sheng').style.display="block";
+                document.getElementById('shi').style.display="block";
 				for(let sh in newArr){
 					for(let shis in newArr[sh].list){
 						if(newArr[sh].list[shis].areaParentId==id){
@@ -291,6 +308,8 @@
 				this.areaB=even
 				this.fined();
 				if(this.areaB!=''){
+//					document.getElementById('sheng').style.display="none";
+//                  document.getElementById('shi').style.display="none";
 					this.shengkuang=false
 					this.shiji=false
 				}
@@ -300,36 +319,49 @@
 				this.fined();
 			},
 			//一级分类
-			yiji(index){
+			yiji(index,id){
+				console.log(id)
+				this.one=id
+				this.erjilei=this.leibie[index].list
 				this.erjis = true
-				var num = index + 1
-				for(var i in this.leibie) {
-					if(num == this.leibie[i].id) {
-						this.erjilei = this.leibie[i].list
-					}
-				}
+//				var num = index + 1
+//				for(var i in this.leibie[index].list) {
+//					if(num == this.leibie[i].id) {
+//						this.erjilei = this.leibie[i].list
+//					}
+//				}
 			},
 			//二级分类
-			erji(index){
+			erji(index,id){
+				this.two=id
+				this.sanjilei=this.erjilei[index].list
 				this.sanjis = true
-			   console.log(index)	
-			   let num=index
-			   for(var i in this.erjilei) {
-					if(num == this.erjilei[i].id) {
-						this.sanjilei = this.erjilei[i].list
-					}
-				}
+//			   console.log(index)	
+//			   let num=index+30
+//			   console.log(this.erjilei)
+//			   for(var i in this.erjilei) {
+//			   	     console.log(this.erjilei[0].id)
+//					if(num == this.erjilei[i].id) {
+//						this.sanjilei = this.erjilei[i].list
+//					}
+//				}
 			},
 //			三级分类
-			sanji(index){
+			sanji(index,id){
+				this.three=id
 			   this.sijis = true
-			   console.log(index)	
-			   let num=index
-			   for(var i in this.sanjilei) {
-					if(num == this.sanjilei[i].id) {
-						this.sijilei = this.sanjilei[i].list
-					}
-				}
+			   this.sijilei=this.sanjilei[index].list
+//			   console.log(index)	
+//			   let num=index
+//			   for(var i in this.sanjilei) {
+//					if(num == this.sanjilei[i].id) {
+//						this.sijilei = this.sanjilei[i].list
+//					}
+//				}
+			},
+			siji(id){
+				this.four=id
+				this.fined()
 			},
 			flushCom:function(){
 				this.$router.go(0);

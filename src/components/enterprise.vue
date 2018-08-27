@@ -8,8 +8,8 @@
 				<!--<img src="" class="xinjian" />
 				<p class="zhuce">消息 <span>1</span></p>-->
 				<ul class="nav">
-					<li>我的浏览&nbsp;&nbsp;|</li>
-					<li>我的收藏&nbsp;&nbsp;|</li>
+					<!--<li>我的浏览&nbsp;&nbsp;|</li>
+					<li>我的收藏&nbsp;&nbsp;|</li>-->
 					<li>个人中心&nbsp;&nbsp;|</li>
 					<li>手机版 </li>
 				</ul>
