@@ -18,8 +18,8 @@ Vue.use(VueQuillEditor)
 
 Vue.prototype.$qs = qs
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-//Vue.prototype.$Url = "http://39.105.24.238" 
-Vue.prototype.$Url = '/api'
+Vue.prototype.$Url = "http://39.105.24.238" 
+//Vue.prototype.$Url = '/api'
 //全局header设置TOKEN
 router.beforeEach((to, from, next) => {
   if (localStorage["ACCESS_TOKEN"] != null || localStorage["ACCESS_TOKEN"] != '' || !localStorage["ACCESS_TOKEN"] || localStorage["ACCESS_TOKEN"] != undefined) {

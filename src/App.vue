@@ -11,7 +11,15 @@ export default {
 </script>
 
 <style>
-
+@import './common/font.css'
+*{
+	font-family: '思源黑体';
+	margin:0px;
+	padding:0px;
+}
+body{
+	margin:0px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

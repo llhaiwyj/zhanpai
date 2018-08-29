@@ -1,76 +1,142 @@
 <template>
 	<div class="product">
 		<div class="header">
-			<div class="h-top">
-				<img src="../assets/img/dingwei.png" class="dw-ioin" />
-				<p class="city">天津</p>
-				<p class="login" v-show="us">
-					<router-link to="./" @click.native="flushCom">登陆 / </router-link>
-				</p>
+			<p class="xain"></p>
+			<p class="xain1"></p>
+			<div class="header-zi">
+				<div class="h-top">
+					<img src="../assets/img/dingwei.png" class="dw-ioin" />
+					<p class="city">天津</p>
+					<p class="login" v-show="us">
+						<router-link to="./" @click.native="flushCom">登陆 / </router-link>
+					</p>
 
-				<p class="zhuce" v-show="us">
-					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
-				</p>
-				<p class="login" v-show="dianhua">{{iphone}}</p>
-				<ul class="nav">
-					<!--<li>我的浏览&nbsp;&nbsp;|</li>
+					<p class="zhuce" v-show="us">
+						<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
+					</p>
+					<p class="login" v-show="dianhua">{{iphone}}</p>
+					<ul class="nav">
+						<!--<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>-->
-					<li>个人中心&nbsp;&nbsp;|</li>
-					<li>手机版 </li>
-				</ul>
-			</div>
-			<div class="daohang">
-				<img src="../assets/img/logo.png" class="logo" />
-				<ul class="dh">
-					<router-link to="./" @click.native="flushCom">
-						<li>首页</li>
-					</router-link>
-					<router-link to="./News" @click.native="flushCom">
-						<li>新闻资讯</li>
-					</router-link>
-					<router-link to="./Product" @click.native="flushCom">
-						<li>产品中心</li>
-					</router-link>
-					<router-link to="./Buyinformation" @click.native="flushCom">
-						<li>求购信息</li>
-					</router-link>
-					<router-link to="./Enterprise" @click.native="flushCom">
-						<li>商务合作</li>
-					</router-link>
-				</ul>
-				<button class="kaitong">开通展位</button>
-			</div>
-			<ul class="leibie">
+						<li>个人中心&nbsp;&nbsp;|</li>
+						<li>手机版 </li>
+					</ul>
+				</div>
+				<div class="daohang">
+					<img src="../assets/img/logo.png" class="logo" />
+					<ul class="dh">
+						<router-link to="./" @click.native="flushCom">
+							<li class="shou">首页</li>
+						</router-link>
+						<router-link to="./News" @click.native="flushCom">
+							<li>新闻资讯</li>
+						</router-link>
+						<router-link to="./Product" @click.native="flushCom">
+							<li>产品中心</li>
+						</router-link>
+						<router-link to="./Buyinformation" @click.native="flushCom">
+							<li>求购信息</li>
+						</router-link>
+						<router-link to="./Enterprise" @click.native="flushCom">
+							<li>商务合作</li>
+						</router-link>
+					</ul>
+					<button class="kaitong">开通展位</button>
+				</div>
+				<!--<ul class="leibie">
 				<li>实验室仪器</li>
 				<li>实验室仪器</li>
 				<li>实验室仪器</li>
 				<li>实验室仪器</li>
-			</ul>
-			<div class="pro">
-				<p class="p-center">产品中心</p>
-				<p class="dingwei">海量精密仪器，满足各种工业需求。精确搜索，定位准确</p>
+			</ul>-->
+				<div class="pro">
+					<p class="p-center">产品中心</p>
+					<p class="dingwei">海量精密仪器，满足各种工业需求。精确搜索，定位准确</p>
+				</div>
 			</div>
 		</div>
 		<div class="search">
-			    <input type="text" placeholder="请输入搜索内容" class="find" v-model="gaunjain"/>
+			<div class="searz">
+				<input type="text" placeholder="请输入搜索内容" class="find" v-model="gaunjain" />
 				<p @click="finedss"><img src="../assets/img/icon_search.png" /></p>
+			</div>
 		</div>
 		<div class="content">
-			<ul class="chanpin">
-				<li v-for="item in shuju" @click="chaninfo(item.id)">
-					<img :src="item.imgUrl" class="shangpin" />
-					<div class="jieshao">
-						<p class="diqu">
-							<span class="diming">{{item.firmAddress}}</span>
-							<span class="lilan">522人看过</span>
-						</p>
-						<p class="chanpinming">{{item.pname}}</p>
-						<p class="copyname">
-							<img src="" />{{item.firmName}}
-						</p>
+			<div class="conts">
+				<div class="category">
+					<div class="cate">
+						<p class="gory1">{{leibie[0].typeName}}：</p>
+						<div class="gory1-left">
+							<p class="gory2">
+								<span v-for="(l,index) in erjis0" @click="erji0(index,l.id)">{{l.typeName}}</span>
+							</p>
+							<!--<p class="gory3" v-show="sanjis">
+								<span v-for="(j,index) in sanjilei" @click="sanji(index,j.id)">{{j.typeName}}</span>
+							</p>
+							<p class="gory3" v-show="sijis">
+								<span v-for="s in sijilei">{{s.typeName}}</span>
+							</p>-->
+						</div>
 					</div>
-				</li>
-				<!--<li>
+					<div class="cate">
+						<p class="gory1">{{leibie[1].typeName}}：</p>
+						<div class="gory1-left">
+							<p class="gory2">
+								<span v-for="(l,index) in erjis1" @click="erji1(index,l.id)">{{l.typeName}}</span>
+							</p>
+							<!--<p class="gory3" v-show="sanjis">
+								<span v-for="(j,index) in sanjilei1" @click="sanji1(index,j.id)">{{j.typeName}}</span>
+							</p>
+							<p class="gory3" v-show="sijis">
+								<span v-for="s in sijilei">{{s.typeName}}</span>
+							</p>-->
+						</div>
+					</div>
+					<div class="cate">
+						<p class="gory1">{{leibie[2].typeName}}：</p>
+						<div class="gory1-left">
+							<p class="gory2">
+								<span v-for="(l,index) in erjis2" @click="erji2(index,l.id)">{{l.typeName}}</span>
+							</p>
+							<!--<p class="gory3" v-show="sanjis">
+								<span v-for="(j,index) in sanjilei" @click="sanji(index,j.id)">{{j.typeName}}</span>
+							</p>
+							<p class="gory3" v-show="sijis">
+								<span v-for="s in sijilei">{{s.typeName}}</span>
+							</p>-->
+						</div>
+					</div>
+					<div class="cate">
+						<p class="gory1">{{leibie[3].typeName}}：</p>
+						<div class="gory1-left">
+							<p class="gory2">
+								<span v-for="(l,index) in erjis3" @click="erji3(index,l.id)">{{l.typeName}}</span>
+							</p>
+							<!--<p class="gory3" v-show="sanjis">
+								<span v-for="(j,index) in sanjilei" @click="sanji(index,j.id)">{{j.typeName}}</span>
+							</p>
+							<p class="gory3" v-show="sijis">
+								<span v-for="s in sijilei">{{s.typeName}}</span>
+							</p>-->
+						</div>
+					</div>
+				</div>
+				<ul class="chanpin">
+					<li v-for="item in shuju" @click="chaninfo(item.id)">
+						<img :src="item.imgUrl" class="shangpin" />
+						<div class="jieshao">
+							<p class="diqu">
+								<span class="diming">{{item.firmAddress}}</span>
+								<span class="lilan">522人看过</span>
+							</p>
+							<p class="chanpinming">{{item.pname}}</p>
+							<p class="copyname">
+								<img src="../assets/img/icon-copy.png" />
+								<span class="copys">{{item.firmName}}</span>
+							</p>
+						</div>
+					</li>
+					<!--<li>
 					<img src="../assets/img/img-zhanwei.png" class="shangpin" />
 					<div class="jieshao">
 						<p class="diqu">
@@ -83,17 +149,19 @@
 						</p>
 					</div>
 				</li>-->
-			</ul>
-		</div>
-		<div class="block">
-			<el-row>
-				<el-col>
-					<div class="pages">
-						<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" layout="total, sizes, prev, pager, next, jumper" :total="total">
-						</el-pagination>
-					</div>
-				</el-col>
-			</el-row>
+				</ul>
+				<div class="block">
+					<el-row>
+						<el-col>
+							<div class="pages">
+								<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" layout="total, sizes, prev, pager, next, jumper" :total="total">
+								</el-pagination>
+							</div>
+						</el-col>
+					</el-row>
+				</div>
+			</div>
+
 		</div>
 		<div class="footer">
 			<div class="wei">
@@ -131,14 +199,24 @@
 			return {
 				currentPage: 1,
 				total: '',
-				length: 10,
+				length: 15,
 				shuju: this.$route.params.shop,
 				xianginfo: '',
-				types:0,
-				gaunjain:'',
-				iphone:localStorage["username"],
-				dianhua:false,
-				us:true,
+				types: 0,
+				gaunjain: localStorage["guanjian"],
+				iphone: localStorage["username"],
+				dianhua: false,
+				us: true,
+				leibie: '',
+				erjilei:'',
+				sanjilei1:'',
+				sijilei:'',
+				sanjis:false,
+				sijis:false,
+				erjis0:'',
+				erjis1:'',
+				erjis2:'',
+				erjis3:'',
 			}
 		},
 		mounted: function() {
@@ -150,12 +228,13 @@
 				this.dianhua = true
 			}
 			this.fined();
+			this.fenlei()
 		},
-//		watch: {
-//			'$route' (to, from) {
-//				this.$router.go(0);
-//			}
-//		},
+		//		watch: {
+		//			'$route' (to, from) {
+		//				this.$router.go(0);
+		//			}
+		//		},
 		methods: {
 			handleCurrentChange(page) {
 				console.log(page)
@@ -166,12 +245,13 @@
 				console.log(index)
 				this.length = index;
 				this.fined();
+
 			},
 			fined() {
 				this.$ajax.post(this.$Url + "/fp/selPWeb", this.$qs.stringify({
 						pageSize: this.length,
 						pageNum: this.currentPage,
-						type:this.types
+						type: this.types
 					})).then(data => {
 						console.log(data)
 						this.shuju = data.data.data.list.list
@@ -191,7 +271,8 @@
 						this.$router.push({
 							name: 'Details',
 							params: {
-								xianginfos: this.xianginfo
+								xianginfos: this.xianginfo,
+								imglist: data.data.data.imgList,
 							}
 						});
 					})
@@ -199,30 +280,54 @@
 						console.log(error);
 					});
 			},
-			finedss(){
-				this.shuju='';
+			finedss() {
+				this.shuju = '';
+				localStorage.setItem("guanjian", this.gaunjain);
 				this.$ajax.post(this.$Url + "/fp/selPWeb", this.$qs.stringify({
 						pageSize: this.length,
 						pageNum: this.currentPage,
-						str:this.guanjian,
+						str: this.gaunjain,
 					})).then(data => {
 						console.log(data)
 						this.shuju = data.data.data.list.list
-						this.total=data.data.data.list.total
-						if(data.data.msg=='success'){
+						this.total = data.data.data.list.total
+						if(data.data.msg == 'success') {
 							this.$router.push({
 								name: 'Productserch',
 								params: {
 									shujus: this.shuju,
-									totals:this.total
+									totals: this.total
 								}
-						    });
+							});
 						}
-						
+
 					})
 					.catch(function(error) {
 						console.log(error);
 					});
+			},
+			fenlei() {
+				this.$ajax.post(this.$Url + "/pt/sTs", this.$qs.stringify()).then(data => {
+						console.log(data)
+						this.leibie = data.data.data.info.list
+						this.erjis0=this.leibie[0].list
+						this.erjis1=this.leibie[1].list
+						this.erjis2=this.leibie[2].list
+						this.erjis3=this.leibie[3].list
+					})
+					.catch(function(error) {
+						console.log(error);
+					})
+			},
+			erji1(index,id){
+//				this.two=id
+				this.sanjilei1=this.erjilei0[index].list
+//				this.sanjis = true
+			},
+			sanji(index,id){
+//				this.three=id
+//			   this.sijis = true
+			   this.sijilei=this.sanjilei[index].list
 			},
 			flushCom: function() {
 				this.$router.go(0);

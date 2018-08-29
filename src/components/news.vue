@@ -1,89 +1,96 @@
 <template>
 	<div class="news">
 		<div class="header">
-			<div class="h-top">
-				<img src="../assets/img/dingwei.png" class="dw-ioin" />
-				<p class="city">天津</p>
-				<p class="login" v-show="us">
-					<router-link to="./" @click.native="flushCom">登陆 / </router-link>
-				</p>
+			<p class="xain"></p>
+			<p class="xain1"></p>
+			<div class="header-zi">
+				<div class="h-top">
+					<img src="../assets/img/dingwei.png" class="dw-ioin" />
+					<p class="city">天津</p>
+					<p class="login" v-show="us">
+						<router-link to="./" @click.native="flushCom">登陆 / </router-link>
+					</p>
 
-				<p class="zhuce" v-show="us">
-					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
-				</p>
-				<p class="login" v-show="dianhua">{{iphone}}</p>
-				<ul class="nav">
-					<!--<li>我的浏览&nbsp;&nbsp;|</li>
+					<p class="zhuce" v-show="us">
+						<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
+					</p>
+					<p class="login" v-show="dianhua">{{iphone}}</p>
+					<ul class="nav">
+						<!--<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>-->
-					<li>个人中心&nbsp;&nbsp;|</li>
-					<li>手机版 </li>
+						<li>个人中心&nbsp;&nbsp;|</li>
+						<li>手机版 </li>
+					</ul>
+				</div>
+				<div class="daohang">
+					<img src="../assets/img/logo.png" class="logo" />
+					<ul class="dh">
+						<router-link to="./" @click.native="flushCom">
+							<li class="shou">首页</li>
+						</router-link>
+						<router-link to="./News" @click.native="flushCom">
+							<li>新闻资讯</li>
+						</router-link>
+						<router-link to="./Product" @click.native="flushCom">
+							<li>产品中心</li>
+						</router-link>
+						<router-link to="./Buyinformation" @click.native="flushCom">
+							<li>求购信息</li>
+						</router-link>
+						<router-link to="./Enterprise" @click.native="flushCom">
+							<li>商务合作</li>
+						</router-link>
+					</ul>
+					<button class="kaitong">开通展位</button>
+				</div>
+				<p class="xuqiu">新闻动态</br> <span>相关行业政策信息、媒体报道和公司举办的活动等</span></p>
+				<ul class="newsfenlei">
+					<li @click="pingtai">平台动态</li>
+					<li @click="hangye">行业新闻</li>
+					<li @click="zhengce">政策法规</li>
 				</ul>
 			</div>
-			<div class="daohang">
-				<img src="../assets/img/logo.png" class="logo" />
-				<ul class="dh">
-					<router-link to="./" @click.native="flushCom">
-						<li>首页</li>
-					</router-link>
-					<router-link to="./News" @click.native="flushCom">
-						<li>新闻资讯</li>
-					</router-link>
-					<router-link to="./Product" @click.native="flushCom">
-						<li>产品中心</li>
-					</router-link>
-					<router-link to="./Buyinformation" @click.native="flushCom">
-						<li>求购信息</li>
-					</router-link>
-					<router-link to="./Enterprise" @click.native="flushCom">
-						<li>商务合作</li>
-					</router-link>
-				</ul>
-				<button class="kaitong">开通展位</button>
-			</div>
-			<p class="xuqiu">新闻动态</br> <span>相关行业政策信息、媒体报道和公司举办的活动等</span></p>
-			<ul class="newsfenlei">
-				<li @click="pingtai">平台动态</li>
-				<li @click="hangye">行业新闻</li>
-				<li @click="zhengce">政策法规</li>
-			</ul>
 		</div>
 		<div class="search">
-			<input type="text" placeholder="请输入搜索内容" class="find" />
-			<p><img src="../assets/img/icon_search.png" /></p>
+			<div class="searz">
+				<input type="text" placeholder="请输入搜索内容" class="find" />
+				<p><img src="../assets/img/icon_search.png" /></p>
+			</div>
 		</div>
 		<div class="content">
-			<div class="con-left">
-				<div class="shounews" v-for="item in firstnew" @click="firstxin(item.id)">
-					<p class="firsttitle">{{item.title}}</p>
-					<p class="firstfutit">{{item.createTime}}<span>作者 |{{item.author}}</span></p>
-					<div class="neirong">
-						<img :src="item.coverImg" class="pict" />
-						<div class="wen">
-							<p class="liulanliang">浏览量 | {{item.pageView}}次<span>分享按钮</span></p>
-							<p class="xiangwen">{{item.intro}}</p>
-							<button class="liaojiegengduo">了解更多</button>
+			<div class="conts">
+				<div class="con-left">
+					<div class="shounews" v-for="item in firstnew" @click="firstxin(item.id)">
+						<p class="firsttitle">{{item.title}}</p>
+						<p class="firstfutit">{{item.createTime}}<span>作者 |{{item.author}}</span></p>
+						<div class="neirong">
+							<img :src="item.coverImg" class="pict" />
+							<div class="wen">
+								<p class="liulanliang">浏览量 | {{item.pageView}}次<span>分享按钮</span></p>
+								<p class="xiangwen">{{item.intro}}</p>
+								<button class="liaojiegengduo">了解更多</button>
+							</div>
 						</div>
 					</div>
-				</div>
-				<ul class="morenews">
-					<li v-for="(n,index) in arrs" :key="index" @click="firstxin(n.id)">
-						<div class="cang">
-							<p class="shijian">
-								<span class="nain">{{riqi[index].ds}}</span>
-								<span class="ri">{{riqi[index].da}}</span>
-							</p>
-						</div>
-						<div class="tuwen">
-							<p class="newstitle">{{n.title}}</p>
-							<p class="zuozhe">
-								<span class="bizhe">作者 | {{n.author}}</span>
-								<span class="fenixnag">浏览量 | {{n.pageView}}次  拷贝<span>分享按钮</span></span>
-							</p>
-							<p class="wz">{{n.intro}}</p>
-							<p class="liaojiemore">了解更多>></p>
-						</div>
-					</li>
-					<!--<li>
+					<ul class="morenews">
+						<li v-for="(n,index) in arrs" :key="index" @click="firstxin(n.id)">
+							<div class="cang">
+								<p class="shijian">
+									<span class="nain">{{riqi[index].ds}}</span>
+									<span class="ri">{{riqi[index].da}}</span>
+								</p>
+							</div>
+							<div class="tuwen">
+								<p class="newstitle">{{n.title}}</p>
+								<p class="zuozhe">
+									<span class="bizhe">作者 | {{n.author}}</span>
+									<span class="fenixnag">浏览量 | {{n.pageView}}次  拷贝<span>分享按钮</span></span>
+								</p>
+								<p class="wz">{{n.intro}}</p>
+								<p class="liaojiemore">了解更多>></p>
+							</div>
+						</li>
+						<!--<li>
 						<p class="shijian">
 							<span class="nain">2018年3月</span>
 							<span class="ri">23</span>
@@ -98,31 +105,32 @@
 							<p class="liaojiemore">了解更多>></p>
 						</div>
 					</li>-->
-				</ul>
-				<div class="block">
-					<el-row>
-						<el-col>
-							<div class="pages">
-								<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" layout="total, sizes, prev, pager, next, jumper" :total="total">
-								</el-pagination>
-							</div>
-						</el-col>
-					</el-row>
+					</ul>
+					<div class="block">
+						<el-row>
+							<el-col>
+								<div class="pages">
+									<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" layout="total, sizes, prev, pager, next, jumper" :total="total">
+									</el-pagination>
+								</div>
+							</el-col>
+						</el-row>
+					</div>
 				</div>
-			</div>
-			<div class="con-right">
-				<p class="tuijian">推荐视频</p>
-				<div class="video" v-for="z in zuinews" @click="firstxin(z.id)">
-					<p class="laiyuan">{{z.title}}</p>
-					<p class="riqi">{{z.createTime}}</p>
-					<!--<video class="shipin"></video>-->
-					<img :src="z.coverImg" class="shipin" />
-				</div>
-				<!--<ul class="newsbiaoti">
+				<div class="con-right">
+					<p class="tuijian">推荐视频</p>
+					<div class="video" v-for="z in zuinews" @click="firstxin(z.id)">
+						<p class="laiyuan">{{z.title}}</p>
+						<p class="riqi">{{z.createTime}}</p>
+						<!--<video class="shipin"></video>-->
+						<img :src="z.coverImg" class="shipin" />
+					</div>
+					<!--<ul class="newsbiaoti">
 					<li>中国分子诊断产业及发…<span>+</span></li>
 					<li>中国分子诊断产业及发…<span>+</span></li>
 					<li>中国分子诊断产业及发…<span>+</span></li>
 				</ul>-->
+				</div>
 			</div>
 		</div>
 		<!--<div class="content1" v-for="x in zuinewinfo">
@@ -170,30 +178,32 @@
 			</div>
 		</div>-->
 		<div class="footer">
-			<div class="wei">
-				<ul class="weinav">
-					<li>|&nbsp;&nbsp;首页|</li>
-					<li>3D展馆&nbsp;&nbsp;|</li>
-					<li>产品中心&nbsp;&nbsp;|</li>
-					<li>求购信息&nbsp;&nbsp;|</li>
-					<li>商务合作&nbsp;&nbsp;|</li>
-				</ul>
-				<ul class="qibiao">
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-				</ul>
-				<p class="dress">©2017 LiVE System.</p>
-				<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+			<div class="foot">
+				<div class="wei">
+					<ul class="weinav">
+						<li>|&nbsp;&nbsp;首页|</li>
+						<li>3D展馆&nbsp;&nbsp;|</li>
+						<li>产品中心&nbsp;&nbsp;|</li>
+						<li>求购信息&nbsp;&nbsp;|</li>
+						<li>商务合作&nbsp;&nbsp;|</li>
+					</ul>
+					<ul class="qibiao">
+						<li>
+							<img src="../assets/img/tu2.png" />
+						</li>
+						<li>
+							<img src="../assets/img/tu2.png" />
+						</li>
+						<li>
+							<img src="../assets/img/tu2.png" />
+						</li>
+						<li>
+							<img src="../assets/img/tu2.png" />
+						</li>
+					</ul>
+					<p class="dress">©2017 LiVE System.</p>
+					<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -212,17 +222,17 @@
 				firstnew: [],
 				riqi: [],
 				zuinews: '',
-//				yin: true,
-//				xian: false,
-				zuinewinfo:[],
+				//				yin: true,
+				//				xian: false,
+				zuinewinfo: [],
 				fivenew: '',
 				shangnew: [],
 				xianew: [],
-				arrs:'',
-				id:this.$route.params.ids,
-				iphone:localStorage["username"],
-				dianhua:false,
-				us:true,
+				arrs: '',
+				id: this.$route.params.ids,
+				iphone: localStorage["username"],
+				dianhua: false,
+				us: true,
 			}
 		},
 		mounted: function() {
@@ -235,19 +245,19 @@
 				this.us = false;
 				this.dianhua = true
 			}
-//			if(this.id==''||this.id==undefined){
-//				this.fined();
-//				this.ermennews()
-//			}else{
-//				this.yin = false;
-//				this.xian = true;
-//				this.firstxin();
-//				this.ermennews()
-//				
-//			}
-//			if(this.id==''||this.id==undefined){
-//				
-//			}
+			//			if(this.id==''||this.id==undefined){
+			//				this.fined();
+			//				this.ermennews()
+			//			}else{
+			//				this.yin = false;
+			//				this.xian = true;
+			//				this.firstxin();
+			//				this.ermennews()
+			//				
+			//			}
+			//			if(this.id==''||this.id==undefined){
+			//				
+			//			}
 		},
 		methods: {
 			handleCurrentChange(page) {
@@ -264,13 +274,13 @@
 				let arrer = [];
 				let dates = [];
 				let riqis = [];
-				this.zuinewinfo=[];
-				this.news='';
-				this.riqi=[];
-				this.zuinews='';
-				this.fivenew='';
-				this.arrs='';
-				this.firstnew=[];
+				this.zuinewinfo = [];
+				this.news = '';
+				this.riqi = [];
+				this.zuinews = '';
+				this.fivenew = '';
+				this.arrs = '';
+				this.firstnew = [];
 				this.$ajax.post(this.$Url + "/ne/sN", this.$qs.stringify({
 						pageSize: this.length,
 						pageNum: this.currentPage,
@@ -279,7 +289,8 @@
 						console.log(data)
 						this.firstnew.push(data.data.data.info)
 						console.log(this.firstnew)
-						this.news=data.data.data.list.list
+						this.news = data.data.data.list.list
+						this.total=data.data.data.list.total
 						this.arrs = this.news.splice(1, 9)
 						console.log(this.arrs)
 						this.total = this.news.total
@@ -292,7 +303,7 @@
 							b.da = dates[a].substring(10, 8)
 							b.ds = dates[a].substring(0, 7)
 							this.riqi.push(b)
-//							console.log(this.riqi)
+							//							console.log(this.riqi)
 						}
 					})
 					.catch(function(error) {
@@ -306,7 +317,7 @@
 						console.log(error);
 					});
 			},
-			ermennews(){
+			ermennews() {
 				//详情页面右边的五条新闻
 				this.$ajax.post(this.$Url + "/ne/sNHn", this.$qs.stringify({})).then(data => {
 						console.log(data)
@@ -317,17 +328,17 @@
 						console.log(error);
 					});
 			},
-			pingtai(){
-				this.types=1
+			pingtai() {
+				this.types = 1
 				console.log(this.types)
 				this.fined()
 			},
-			hangye(){
-				this.types=2
+			hangye() {
+				this.types = 2
 				this.fined()
 			},
-			zhengce(){
-				this.types=3
+			zhengce() {
+				this.types = 3
 				this.fined()
 			},
 			firstxin(id) {
@@ -337,50 +348,50 @@
 						ids: id
 					}
 				});
-//				console.log(id);
-//				let Id=id
-//				if(Id==''||Id==undefined){
-//					Id=this.id
-//				}
-//				console.log(Id)
-//				this.yin = false;
-//				this.xian = true;
-//				this.$ajax.post(this.$Url + "/ne/gN", this.$qs.stringify({
-//						id: Id,
-//					})).then(data => {
-//						console.log(data)
-//						this.zuinewinfo.push(data.data.data.info)
-//					})
-//					.catch(function(error) {
-//						console.log(error);
-//					});
-//				//上一篇的新闻
-//				this.$ajax.post(this.$Url + "/ne/sNuad", this.$qs.stringify({
-//						id: Id,
-//					})).then(data => {
-//						console.log(data)
-//						this.shangnew.push(data.data.data.previous)
-//						console.log(this.shangnew)
-//						this.xianew.push(data.data.data.next)
-//						console.log(this.xianew)
-//					})
-//					.catch(function(error) {
-//						console.log(error);
-//					});
+				//				console.log(id);
+				//				let Id=id
+				//				if(Id==''||Id==undefined){
+				//					Id=this.id
+				//				}
+				//				console.log(Id)
+				//				this.yin = false;
+				//				this.xian = true;
+				//				this.$ajax.post(this.$Url + "/ne/gN", this.$qs.stringify({
+				//						id: Id,
+				//					})).then(data => {
+				//						console.log(data)
+				//						this.zuinewinfo.push(data.data.data.info)
+				//					})
+				//					.catch(function(error) {
+				//						console.log(error);
+				//					});
+				//				//上一篇的新闻
+				//				this.$ajax.post(this.$Url + "/ne/sNuad", this.$qs.stringify({
+				//						id: Id,
+				//					})).then(data => {
+				//						console.log(data)
+				//						this.shangnew.push(data.data.data.previous)
+				//						console.log(this.shangnew)
+				//						this.xianew.push(data.data.data.next)
+				//						console.log(this.xianew)
+				//					})
+				//					.catch(function(error) {
+				//						console.log(error);
+				//					});
 			},
-//			back() {
-//				this.yin = true;
-//				this.xian = false;
-////				this.flushCom()
-//				this.fined();
-//				this.ermennews()
-//			}, 
+			//			back() {
+			//				this.yin = true;
+			//				this.xian = false;
+			////				this.flushCom()
+			//				this.fined();
+			//				this.ermennews()
+			//			}, 
 			flushCom: function() {
 				this.$router.go(0);
 			},
-//			zhan() {
-//				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
-//			},
+			//			zhan() {
+			//				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
+			//			},
 
 		},
 	}

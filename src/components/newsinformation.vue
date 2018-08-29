@@ -1,7 +1,10 @@
 <template>
 	<div class="newsinfor">
 		<div class="header">
-			<div class="h-top">
+			<p class="xain"></p>
+			<p class="xain1"></p>
+			<div class="header-zi">
+				<div class="h-top">
 				<img src="../assets/img/dingwei.png" class="dw-ioin" />
 				<p class="city">天津</p>
 				<p class="login" v-show="us">
@@ -23,7 +26,7 @@
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
 					<router-link to="./" @click.native="flushCom">
-						<li>首页</li>
+						<li class="shou">首页</li>
 					</router-link>
 					<router-link to="./News" @click.native="flushCom">
 						<li>新闻资讯</li>
@@ -46,9 +49,11 @@
 				<li @click="hangye">行业新闻</li>
 				<li @click="zhengce">政策法规</li>
 			</ul>
+			</div>
 		</div>
 		<div class="content1" v-for="x in zuinewinfo">
-			<div class="con-left">
+			<div class="conts">
+				<div class="con-left">
 				<p class="c-l-t">{{x.title}}</p>
 				<div class="c-l-she">
 					<p class="c-l-ri">{{x.createTime}}</p>
@@ -90,32 +95,35 @@
 				<p class="remen">热门新闻</p>
 				<p class="x-r-xin" v-for="f in fivenew">{{f.title}}</p>
 			</div>
+			</div>
 		</div>
 		<div class="footer">
-			<div class="wei">
-				<ul class="weinav">
-					<li>|&nbsp;&nbsp;首页|</li>
-					<li>3D展馆&nbsp;&nbsp;|</li>
-					<li>产品中心&nbsp;&nbsp;|</li>
-					<li>求购信息&nbsp;&nbsp;|</li>
-					<li>商务合作&nbsp;&nbsp;|</li>
-				</ul>
-				<ul class="qibiao">
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-				</ul>
-				<p class="dress">©2017 LiVE System.</p>
-				<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+			<div class="foot">
+				<div class="wei">
+					<ul class="weinav">
+						<li>|&nbsp;&nbsp;首页|</li>
+						<li>3D展馆&nbsp;&nbsp;|</li>
+						<li>产品中心&nbsp;&nbsp;|</li>
+						<li>求购信息&nbsp;&nbsp;|</li>
+						<li>商务合作&nbsp;&nbsp;|</li>
+					</ul>
+					<ul class="qibiao">
+						<li>
+							<img src="../assets/img/tu2.png" />
+						</li>
+						<li>
+							<img src="../assets/img/tu2.png" />
+						</li>
+						<li>
+							<img src="../assets/img/tu2.png" />
+						</li>
+						<li>
+							<img src="../assets/img/tu2.png" />
+						</li>
+					</ul>
+					<p class="dress">©2017 LiVE System.</p>
+					<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+				</div>
 			</div>
 		</div>
 	</div>

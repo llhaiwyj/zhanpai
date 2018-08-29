@@ -1,0 +1,6 @@
+@font-face {  
+  font-family: '思源黑体';  //重命名字体名
+  src: url('SourceHanSansSC-Regular.otf');  //引入字体
+  font-weight: normal;  
+  font-style: normal;  
+}

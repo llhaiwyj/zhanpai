@@ -86,6 +86,18 @@
 							</select>
 						</div>
 					</div>
+					<div class="dianhua">
+						<p class="f-biao">电话</p>
+						<input class="f-biaocont" v-model="phone" />
+					</div>
+					<div class="dianhua">
+						<p class="f-biao">QQ</p>
+						<input class="f-biaocont" v-model="qq" />
+					</div>
+					<div class="dianhua">
+						<p class="f-biao">微信</p>
+						<input class="f-biaocont" v-model="weixin" />
+					</div>
 					<button class="f-truefabu" @click="truefa">确认发布</button>
 				</div>
 				<div class="con-right1">
@@ -235,6 +247,9 @@
 				addressC: '',
 				id: localStorage["Id"],
 				leibie: '',
+				phone:'',
+				qq:'',
+				weixin:'',
 				a: '',
 				imgs: [],
 				iphoneNo: localStorage["username"],
@@ -416,6 +431,18 @@
 				this.$message.error("图片插入失败");
 			},
 			truefa() {
+				let r = /^((0\d{2,3}-\d{7,8})|(1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}))$/;
+				if(!r.test(this.phone)){
+					this.$message.error("请输入正确的手机号码")
+				}
+				var regexps =  /^[1-9][0-9]{4,9}$/gim;
+				if(!regexps.test(this.qq)){
+					this.$message.error("请输入正确的QQ")
+				}
+//				var  judge = "^[a-zA-Z][a-zA-Z0-9_-]{5,19}$";
+//				if(this.weixin!=myreg){
+//					this.$message.error("请输入正确的微信号")
+//				}
 				for(let i in newArr) {
 					if(newArr[i].id == this.provice) {
 						this.addressA = newArr[i].areaName

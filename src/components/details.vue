@@ -1,6 +1,8 @@
 <template>
 	<div class="details">
 		<div class="header">
+			<p class="xain"></p>
+			<p class="xain1"></p>
 			<div class="h-top">
 				<img src="../assets/img/dingwei.png" class="dw-ioin" />
 				<p class="city">天津</p>
@@ -41,39 +43,42 @@
 			<div class="cont">
 				<div class="cont-left">
 					<div class="chanpintou">
-						<img :src="qinginfo.imgUrl" class="chanpin" />
+						<img :src="qinginfo.imgUrl" class="chanpin" v-show="tuyin"/>
+						<img :src="Url" class="chanpin" v-show="tuxian"/>
 						<div class="wenzijieshao">
-							<p class="fen">分享<img src='' /></p>
+							<p class="fen">分享<img src='../assets/img/icon-fengxiang.png' class="fenxiang"/></p>
 							<p class="chanpinming">{{qinginfo.pname}}</p>
 							<p class="xiaochanpinming">{{qinginfo.firmName}}</p>
 							<p class="sa">
 								<span class="diqu">地区：{{qinginfo.firmAddress}}</span>
-								<span class="changshang">厂商类型：{{qinginfo.firmType}}</span>
+								<span class="changshang" v-show="sheng">厂商类型：生产商</span>
+								<span class="changshang" v-show="dai">厂商类型：代理商</span>
+								<!--<span class="changshang">厂商类型：{{qinginfo.firmType}}</span>-->
 							</p>
 							<p class="ba">
 								<span class="diqu">品牌：{{qinginfo.brandName}}</span>
 								<span class="changshang">型号：{{qinginfo.version}}</span>
 							</p>
 							<div class="ca">
-								<p class="lainxifangshi">联系方式</p>
-								<p class="phone">
+								<p class="lainxifangshi" @click="lain">联系方式</p>
+								<p class="phone" v-show="lainxi">
 									<span>电话：17610038211</span>
 									<span>QQ:1224948850</span>
 									<span>微信:17610038211</span>
 								</p>
 							</div>
-							<p class="dc">应用领域：{{qinginfo.field}}</p>
+							<!--<p class="dc">应用领域：{{qinginfo.field}}</p>-->
 						</div>
 						<div class="suotu">
-							<img :src="qinginfo.imgUrl" class="suot" />
-							<img :src="qinginfo.imgUrl" class="suot" />
-							<img :src="qinginfo.imgUrl" class="suot" />
+						    <span v-for="(i,index) in imgList"><img :src="i.url" class="suot" :class="{'suots':index===b}" @click="xiaotu(i.url,index)"/></span>
+							<!--<img :src="qinginfo.imgUrl" class="suot" />
+							<img :src="qinginfo.imgUrl" class="suot" />-->
 						</div>
 					</div>
 					<div class="chanpinjieshao">
 						<p class="cpjs">产品介绍</p>
 						<p class="xian"></p>
-						<!--<p class="cahnpinjjie" v-html="qinginfo.introduce"></p>-->
+						<p class="cahnpinjjie" v-html="qinginfo.introduce"></p>
 					</div>
 					<!--<div class="chanpintedian">
 						<p class="cpjs">产品特点</p>
@@ -83,12 +88,12 @@
 					<div class="chanpincanshu">
 						<p class="cpjs">产品参数</p>
 						<p class="xian"></p>
-						
+
 						<!--<el-upload class="avatar-uploader" style="display:none" :action="serverUrl" :show-file-list="false" :on-success="uploadSuccess" :on-error="uploadError" :before-upload="beforeUpload">
 						</el-upload>
 						<quill-editor v-model="qinginfo.detailed" :content="qinginfo.introduce" ref="myQuillEditor" :options="editorOption" @change="onEditorChange($event)" @ready="onEditorReady($event)">
 						</quill-editor>-->
-						<div class="wenben" v-html="qinginfo.introduce"></div>
+						<div class="wenben" v-html="qinginfo.detailed"></div>
 					</div>
 					<div class="chanpinpeizhi">
 						<p class="cpjs">产品配置</p>
@@ -98,7 +103,7 @@
 				</div>
 				<div class="cont-right">
 					<p class="tongleituijian">同类推荐</p>
-					<div class="imgming" v-for="item in tonglei">
+					<div class="imgming" v-for="item in tonglei" @click="tuijianxiang(item.id)">
 						<img :src="item.url" class="imgxian" />
 						<p class="imga"><span>{{item.pname}}</span></p>
 					</div>
@@ -149,24 +154,37 @@
 			return {
 				qinginfo: this.$route.params.xianginfos,
 				tonglei: '',
+				sheng: false,
+				dai: false,
+				lainxi:false,
+				imgList:this.$route.params.imglist,
+				tuyin:true,
+				tuxian:false,
+				Url:'',
+				b:'',
 			}
 		},
 		mounted: function() {
 			this.fined()
 			console.log(this.qinginfo)
+			if(this.qinginfo.firmType == 0) {
+				this.sheng = true
+			} else {
+				this.dai = true
+			}
 		},
 		methods: {
-//			onEditorChange({
-//				editor,
-//				html,
-//				text
-//			}) {
-//				this.qinginfo.detailed = html;
-//			},
-//			onEditorReady(res) {},
-//			onEditorBlur(editor) {
-//				this.$emit('getValue', his.qinginfo.detailed)
-//			},
+			//			onEditorChange({
+			//				editor,
+			//				html,
+			//				text
+			//			}) {
+			//				this.qinginfo.detailed = html;
+			//			},
+			//			onEditorReady(res) {},
+			//			onEditorBlur(editor) {
+			//				this.$emit('getValue', his.qinginfo.detailed)
+			//			},
 			fined() {
 				this.$ajax.post(this.$Url + "/fp/getPSame", this.$qs.stringify({})).then(data => {
 						console.log(data)
@@ -176,12 +194,39 @@
 						console.log(error);
 					});
 			},
+			tuijianxiang(id) {
+				this.qinginfo = ''
+				this.$ajax.post(this.$Url + "/fp/getP", this.$qs.stringify({
+						id: id
+					})).then(data => {
+						console.log(data)
+						this.qinginfo = data.data.data.info
+						if(this.qinginfo.firmType == 0) {
+							this.sheng = true
+						} else {
+							this.dai = true
+						}
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},
 			flushCom: function() {
 				this.$router.go(0);
 			},
-			zhan() {
-				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
+			lain(){
+				this.lainxi=true;
 			},
+//			zhan() {
+//				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
+//			},
+			xiaotu(url,inde){
+				this.b=inde
+				this.tuyin=false
+				this.tuxian=true
+				this.Url=url
+				console.log(this.Url)
+			}
 
 		},
 	}

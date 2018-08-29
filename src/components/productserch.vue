@@ -147,7 +147,7 @@
 			return {
 				currentPage: 1,
 				total: this.$route.params.totals,
-				length: 10,
+				length: 12,
 				leibie:'',
 				erjis:false,
 				sanjis:false,
@@ -161,7 +161,7 @@
 				shijian:'',
 				areas:'',
 				areaB:'',
-				guanjian:'',
+				guanjian:localStorage["guanjian"],
 				shengs:[],
 				chengshis:[],
 				shengkuang:false,
@@ -233,7 +233,8 @@
 						this.$router.push({
 							name: 'Details',
 							params: {
-								xianginfos: this.xianginfo
+								xianginfos: this.xianginfo,
+								imglist:data.data.data.imgList,
 							}
 						});
 					})
