@@ -19,7 +19,9 @@
 					<button class="tuichu" v-show="dianhua" @click="tui">退出</button>
 					<ul class="nav">
 						<!--	<li>我的浏览&nbsp;&nbsp;|</li>-->
-						<router-link to="./Collection"><li>我的收藏&nbsp;&nbsp;|</li></router-link>
+						<router-link to="./Collection">
+							<li>我的收藏&nbsp;&nbsp;|</li>
+						</router-link>
 						<li>企业后台&nbsp;&nbsp;|</li>
 						<!--	<router-link to="./Ceshi" @click.native="flushCom">-->
 						<li class="shoujiban">手机版 </li>
@@ -50,11 +52,15 @@
 				<img src="../assets/img/zahn.png" class="biglodo" />
 				<div class="sousuo">
 					<input type="text" class="sou" placeholder="输入文字" v-model="cont" />
-					<select v-model="xuan" v-on:change="areaprov($event)">
+					<el-select v-model="xuan" @change="areaprov">
+						<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+						</el-option>
+					</el-select>
+					<!--<select v-model="xuan" v-on:change="areaprov($event)">
 						<option selected="selected">3D</option>
 						<option>极简</option>
-					</select>
-					<p class="el-icon-arrow-down xiajian"></p>
+					</select>-->
+					<!--<p class="el-icon-arrow-down xiajian"></p>-->
 					<!--<el-select class="sel" v-model="xuan" placeholder="请选择" v-on:change="areaprov($event)">
 						<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
 						</el-option>
@@ -236,7 +242,7 @@
 				sijnjilei: '',
 				erji: false,
 				shop: '',
-				xuan: '3D',
+				xuan: '',
 				iphone: localStorage["username"],
 				b: '',
 				c: '',
@@ -255,7 +261,7 @@
 				two: '',
 				three: '',
 				four: '',
-				fouername:'',
+				fouername: '',
 				//				zhis: this.unitys.zhi,
 			};
 		},
@@ -265,8 +271,9 @@
 				document.getElementById('sanjilie').style.display = "none";
 				document.getElementById('sijilie').style.display = "none";
 				document.getElementById('shipin').style.loop = "loop";
-				
+
 			}
+            this.xuan = this.options[0].value;
 		},
 		mounted: function() {
 			console.log(this.iphone)
@@ -324,10 +331,10 @@
 			},
 			severs() {
 				console.log(this.xuan)
-				if(this.xuan == '3D' && this.cont != '') {
+				if(this.xuan == '0'&& this.cont != '') {
 					window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=" + this.cont), '_blank');
 					//					window.location.href = encodeURI("http://39.105.31.48:8080/ud/index.html?keyword=" + this.cont)
-				} else if(this.xuan == '极简' && this.cont != '') {
+				} else if(this.xuan == '1' && this.cont != '') {
 					this.$ajax.post(this.$Url + "/fp/selPWeb", this.$qs.stringify({
 							str: this.cont
 						})).then(data => {
@@ -428,21 +435,21 @@
 				console.log(this.sijnjilei)
 			},
 			wujilei(id) {
-				this.b=''
+				this.b = ''
 				this.four = id
 				console.log(this.one)
-				for(let i in this.sijnjilei){
-					if(this.four==this.sijnjilei[i].id){
-						this.fouername=this.sijnjilei[i].typeName
+				for(let i in this.sijnjilei) {
+					if(this.four == this.sijnjilei[i].id) {
+						this.fouername = this.sijnjilei[i].typeName
 					}
 				}
 				console.log(this.fouername)
 				this.$router.push({
 					name: 'Productserch',
 					params: {
-//						one: this.one,
-//						two: this.two,
-//						three: this.three,
+						//						one: this.one,
+						//						two: this.two,
+						//						three: this.three,
 						four: this.fouername,
 					}
 				});
@@ -470,8 +477,7 @@
 					}
 				});
 			},
-			areaprov(even) {
-				this.xuan = even.target.value
+			areaprov() {
 				console.log(this.xuan)
 			},
 			flushCom: function() {

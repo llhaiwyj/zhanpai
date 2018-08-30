@@ -106,4 +106,44 @@ a{
 		width:0px !important;
 		height:0px !important;
 	}*/
+	.el-select{
+	position: absolute !important;
+    left: 18px !important;
+    top: 5px !important;
+    width: 30px !important;
+    z-index: 999;
+}
+.el-input__inner{
+	background-color:rgba(255,255,255,0) !important;
+}
+.el-input__suffix {
+    right: -27px !important;
+   
+}
+.el-input__inner{
+	color:rgba(255,255,255,0.5) !important;
+	border:none !important;
+}
+.el-input--suffix .el-input__inner{
+	padding-left:0px !important;
+	padding-right:0px !important;
+}
+.el-scrollbar{
+	width:50px !important;
+	background-color:rgba(255,255,255,0) !important;
+}
+.el-select-dropdown__list{
+	background-color:rgba(255,255,255,0) !important;
+	text-align: center;
+}
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover{
+	background-color:rgba(255,255,255,0) !important;
+}
+.el-select-dropdown{
+	background-color:rgba(255,255,255,0.3) !important;
+	border:none !important;
+}
+.popper__arrow{
+	left:19px !important;
+}
 </style>
