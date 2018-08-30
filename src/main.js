@@ -11,6 +11,7 @@ import  VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+import VueLazyLoad from 'vue-lazyload'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -21,6 +22,13 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 Vue.prototype.$Url = "http://39.105.24.238" 
 //Vue.prototype.$Url = '/api'
 //全局header设置TOKEN
+//图片懒加载
+Vue.use(VueLazyLoad, {
+    error:'http://jkytest.oss-cn-beijing.aliyuncs.com/staticimg/break_img.png',
+    loading:'http://jkytest.oss-cn-beijing.aliyuncs.com/staticimg/loading_circle.png',
+    attempt: 1,
+    throttleWait: 500
+})
 router.beforeEach((to, from, next) => {
   if (localStorage["ACCESS_TOKEN"] != null || localStorage["ACCESS_TOKEN"] != '' || !localStorage["ACCESS_TOKEN"] || localStorage["ACCESS_TOKEN"] != undefined) {
     axios.defaults.headers.common["ACCESS_TOKEN"] = localStorage["ACCESS_TOKEN"]

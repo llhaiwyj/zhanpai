@@ -1,108 +1,112 @@
 <template>
 	<div class="buy">
 		<div class="header">
-			<div class="h-top">
-				<img src="../assets/img/dingwei.png" class="dw-ioin" />
-				<p class="city">天津</p>
-				<p class="login" v-show="us">
-					<router-link to="./" @click.native="flushCom">登陆 / </router-link>
-				</p>
+			<p class="xain"></p>
+			<p class="xain1"></p>
+			<div class="header-zi">
+				<div class="h-top">
+					<img src="../assets/img/dingwei.png" class="dw-ioin" />
+					<p class="city">天津</p>
+					<p class="login" v-show="us">
+						<router-link to="./" @click.native="flushCom">登陆 / </router-link>
+					</p>
 
-				<p class="zhuce" v-show="us">
-					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
-				</p>
-				<p class="login" v-show="dianhua">{{iphone}}</p>
-				<ul class="nav">
-					<li>我的浏览&nbsp;&nbsp;|</li>
-					<li>我的收藏&nbsp;&nbsp;|</li>
-					<li>个人中心&nbsp;&nbsp;|</li>
-					<li>手机版 </li>
-				</ul>
+					<p class="zhuce" v-show="us">
+						<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
+					</p>
+					<p class="login" v-show="dianhua">{{iphone}}</p>
+					<ul class="nav">
+						<li>我的收藏&nbsp;&nbsp;|</li>
+						<li>企业后台&nbsp;&nbsp;|</li>
+						<li>手机版 </li>
+					</ul>
+				</div>
+				<div class="daohang">
+					<img src="../assets/img/logo.png" class="logo" />
+					<ul class="dh">
+						<router-link to="./" @click.native="flushCom">
+							<li class="shou">首页</li>
+						</router-link>
+						<router-link to="./News" @click.native="flushCom">
+							<li>新闻资讯</li>
+						</router-link>
+						<router-link to="./Product" @click.native="flushCom">
+							<li>产品中心</li>
+						</router-link>
+						<router-link to="./Buyinformation" @click.native="flushCom">
+							<li>求购信息</li>
+						</router-link>
+						<router-link to="./Enterprise" @click.native="flushCom">
+							<li>商务合作</li>
+						</router-link>
+					</ul>
+					<button class="kaitong">开通展位</button>
+				</div>
+				<p class="xuqiu">您的需求</br> 我们都可以满足</p>
+				<button class="fabu" @click="fabuxuqiu">发布需求</button>
 			</div>
-			<div class="daohang">
-				<img src="../assets/img/logo.png" class="logo" />
-				<ul class="dh">
-					<router-link to="./" @click.native="flushCom">
-						<li>首页</li>
-					</router-link>
-					<router-link to="./News" @click.native="flushCom">
-						<li>新闻资讯</li>
-					</router-link>
-					<router-link to="./Product" @click.native="flushCom">
-						<li>产品中心</li>
-					</router-link>
-					<router-link to="./Buyinformation" @click.native="flushCom">
-						<li>求购信息</li>
-					</router-link>
-					<router-link to="./Enterprise" @click.native="flushCom">
-						<li>商务合作</li>
-					</router-link>
-				</ul>
-				<button class="kaitong">开通展位</button>
-			</div>
-			<p class="xuqiu">您的需求</br> 我们都可以满足</p>
-			<button class="fabu" @click="fabuxuqiu">发布需求</button>
 		</div>
 		<div class="cotnet">
-			<div class="tag"></div>
-			<div class="content">
-				<!--<xiangqing v-show="xiangqings" v-bind:xiangqingyes="xiangqingye"></xiangqing>
+			<div class="conts">
+				<div class="tag"></div>
+				<div class="content">
+					<!--<xiangqing v-show="xiangqings" v-bind:xiangqingyes="xiangqingye"></xiangqing>
 				<fabuxuqiu v-show="fabu" v-on:success="serlfs"></fabuxuqiu>-->
-				<div class="con-left" v-show="listshow">
-					<div class="leibie">
-						<p class="jtfenlei" @click="qicai">实验室器材</p>
-						<p class="jtfenlei" @click="fuwu">实验室服务</p>
-						<p class="jtfenlei" @click="jiaju">实验室家具</p>
-						<p class="jtfenlei" @click="haocai">试剂与耗材</p>
-					</div>
-					<div class="zhuangtai">
-						<p class="yijiejues" @click="yijiejue">已解决</p>
-						<p class="jingxing" @click="weijiejue">未解决</p>
-					</div>
-					<div class="chaxun">
-						<p class="fabutime">发布时间
-							<span class="shang el-icon-caret-top"></span>
-							<span class="xia el-icon-caret-bottom"></span>
-						</p>
-						<p class="suozaidiqu">所在地区
-							<span class="xia el-icon-caret-bottom"></span>
-						</p>
-						<p class="suozaidiqu">经营模式
-							<span class="xia el-icon-caret-bottom"></span>
-						</p>
-						<p class="suozaidiqu">资深认证
-							<span class="xia el-icon-caret-bottom"></span>
-						</p>
-						<p class="chazhao">
-							<input type="text" class="sousuokuang" placeholder="请输入关键字" />
-							<img src="../assets/img/search.png" />
-						</p>
-					</div>
-					<div class="list">
-						<ul class="qiulist">
-							<li v-for="i in infomation" @click="inforxiang(i.id)">
-								<p class="li-left">
-									<span class="listname">{{i.title}}</span>
-									<!--<span class="listnamejie" v-html="i.content"></span>-->
-								</p>
-								<p class="li-right">
-									<span class="li-right-l">
+					<div class="con-left" v-show="listshow">
+						<div class="leibie">
+							<p class="jtfenlei" @click="qicai">实验室器材</p>
+							<p class="jtfenlei" @click="fuwu">实验室服务</p>
+							<p class="jtfenlei" @click="jiaju">实验室家具</p>
+							<p class="jtfenlei" @click="haocai">试剂与耗材</p>
+						</div>
+						<div class="zhuangtai" v-show="buyhide">
+							<p class="yijiejues" @click="yijiejue">已解决</p>
+							<p class="jingxing" @click="weijiejue">未解决</p>
+						</div>
+						<div class="chaxun" v-show="buyhide">
+							<p class="fabutime">发布时间
+								<span class="shang el-icon-caret-top"></span>
+								<span class="xia el-icon-caret-bottom"></span>
+							</p>
+							<p class="suozaidiqu">所在地区
+								<span class="xia el-icon-caret-bottom"></span>
+							</p>
+							<p class="suozaidiqu">经营模式
+								<span class="xia el-icon-caret-bottom"></span>
+							</p>
+							<p class="suozaidiqu">资深认证
+								<span class="xia el-icon-caret-bottom"></span>
+							</p>
+							<p class="chazhao">
+								<input type="text" class="sousuokuang" placeholder="请输入关键字" />
+								<img src="../assets/img/search.png" />
+							</p>
+						</div>
+						<div class="list">
+							<ul class="qiulist">
+								<li v-for="i in infomation" @click="inforxiang(i.id)">
+									<p class="li-left">
+										<span class="listname">{{i.title}}</span>
+										<!--<span class="listnamejie" v-html="i.content"></span>-->
+									</p>
+									<p class="li-right">
+										<span class="li-right-l">
 							            <span class="renmuch">
 								            <img src="../assets/img/persens.png" class="xiaoren"/>
 								            <span class="numb">{{i.pageView}}</span>
-									    </span>
-									    <!--<span class="liuyan">
+										</span>
+										<!--<span class="liuyan">
 								            <img src="../assets/img/icon－x.png" class="xiaoren"/>
 								            <span class="numb">1</span>
 									    </span>-->
-									</span>
-									<span class="li-right-r">
+										</span>
+										<span class="li-right-r">
 							            <span class="diming">{{i.addressA}} {{i.addressC}}</span>
-									    <span class="dhijiant">{{i.createTime}}</span>
-									</span>
-								</p>
-							</li>
-							<!--<li>
+										<span class="dhijiant">{{i.createTime}}</span>
+										</span>
+									</p>
+								</li>
+								<!--<li>
 					<p class="li-left">
 						<span class="listname">求购二等标准密度计</span>
 						<span class="listnamejie">购二等标准密度计一套，测氨水用的。急需  联系我</span>
@@ -124,52 +128,52 @@
 						</span>
 					</p>
 				</li>-->
-						</ul>
-						<div class="block">
-							<el-row>
-								<el-col>
-									<div class="pages">
-										<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" :total="total">
-										</el-pagination>
-									</div>
-								</el-col>
-							</el-row>
+							</ul>
+							<div class="block">
+								<el-row>
+									<el-col>
+										<div class="pages">
+											<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" :total="total">
+											</el-pagination>
+										</div>
+									</el-col>
+								</el-row>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="con-right">
-					<div class="geren">
-						<div class="gerenname">
-							<img src="" class="touxaing" />
-							<p class="xname">{{user.username}}</p>
+					<div class="con-right">
+						<div class="geren">
+							<div class="gerenname">
+								<img src="" class="touxaing" />
+								<p class="xname">{{user.username}}</p>
+							</div>
+							<div class="hangyexinxi">
+								<p class="guanhzuhangye"><span class="xiaobiao">关注行业:</span><span class="xiangxi"> </span></p>
+								<p class="guanhzuhangye"><span class="xiaobiao">经营模式:</span><span class="xiangxi"></span></p>
+								<p class="guanhzuhangye"><span class="xiaobiao">所在地区:</span><span class="xiangxi"></span></p>
+							</div>
+							<p class="xian"></p>
+							<p class="mainqiugou">我的求购</p>
+							<div class="yijiejue" @click="yijiejue">
+								<img src="../assets/img/icon-yi.png" class="jiebiao" />
+								<p class="yj">已解决</p>
+								<p class="shuliang">{{shu.resolved}}</p>
+							</div>
+							<div class="weijiejue" @click="weijiejue">
+								<img src="../assets/img/icon-wei.png" class="jiebiao" />
+								<p class="yj">未解决</p>
+								<p class="shuliang">{{shu.unsolved}}</p>
+							</div>
+							<button class="fabuxuqiu" @click="fabuxuqiu">发布需求</button>
 						</div>
-						<div class="hangyexinxi">
-							<p class="guanhzuhangye"><span class="xiaobiao">关注行业:</span><span class="xiangxi"> </span></p>
-							<p class="guanhzuhangye"><span class="xiaobiao">经营模式:</span><span class="xiangxi"></span></p>
-							<p class="guanhzuhangye"><span class="xiaobiao">所在地区:</span><span class="xiangxi"></span></p>
-						</div>
-						<p class="xian"></p>
-						<p class="mainqiugou">我的求购</p>
-						<div class="yijiejue" @click="yijiejue">
-							<img src="../assets/img/icon-yi.png" class="jiebiao" />
-							<p class="yj">已解决</p>
-							<p class="shuliang">{{shu.resolved}}</p>
-						</div>
-						<div class="weijiejue" @click="weijiejue">
-							<img src="../assets/img/icon-wei.png" class="jiebiao" />
-							<p class="yj">未解决</p>
-							<p class="shuliang">{{shu.unsolved}}</p>
-						</div>
-						<button class="fabuxuqiu" @click="fabuxuqiu">发布需求</button>
-					</div>
-					<div class="xiqiu">
-						<p class="edxq">热点需求</p>
-						<p class="edxuqius" v-for="r in redian" @click="inforxiang(r.id)">{{r.title}}</p>
-						<!--<div class="xuqiupin" v-for="r in redian">
+						<div class="xiqiu">
+							<p class="edxq">热点需求</p>
+							<p class="edxuqius edxuqiusln" v-for="(r,index) in redian" @click="inforxiang(index,r.id)" :class="{'edxuqiusact':index===b}">{{r.title}}</p>
+							<!--<div class="xuqiupin" v-for="r in redian">
 							<img src="" class="cqp" />
 							<p class="chanpinname">{{r.title}}</p>
 						</div>-->
-						<!--<div class="xuqiupin">
+							<!--<div class="xuqiupin">
 							<img src="" class="cqp" />
 							<p class="chanpinname">N75 恒温水浴锅</p>
 						</div>
@@ -177,35 +181,38 @@
 							<img src="" class="cqp" />
 							<p class="chanpinname">N75 恒温水浴锅</p>
 						</div>-->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="footer">
-			<div class="wei">
-				<ul class="weinav">
-					<li>|&nbsp;&nbsp;首页|</li>
-					<li>3D展馆&nbsp;&nbsp;|</li>
-					<li>产品中心&nbsp;&nbsp;|</li>
-					<li>求购信息&nbsp;&nbsp;|</li>
-					<li>商务合作&nbsp;&nbsp;|</li>
-				</ul>
-				<ul class="qibiao">
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-				</ul>
-				<p class="dress">©2017 LiVE System.</p>
-				<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+			<div class="foot">
+				<div class="wei">
+					<ul class="weinav">
+						<li>|&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;|</li>
+						<li>3D展馆&nbsp;&nbsp;|</li>
+						<li>产品中心&nbsp;&nbsp;|</li>
+						<li>求购信息&nbsp;&nbsp;|</li>
+						<li>商务合作&nbsp;&nbsp;|</li>
+					</ul>
+					<ul class="qibiao">
+						<li>
+							<img src="../assets/img/logo-baidu.png" class="baidu" />
+						</li>
+						<li>
+							<img src="../assets/img/logo-weibo.png" class="weibo" />
+						</li>
+						<li>
+							<img src="../assets/img/logo-weixin.png" class="weixin" />
+						</li>
+						<li>
+							<img src="../assets/img/logo-xinlang.png" class="xinlang" />
+						</li>
+					</ul>
+					<p class="dress">©2017 LiVE System.</p>
+					<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -239,9 +246,12 @@
 				dianhua: false,
 				us: true,
 				fabu: false,
+				buyhide: true,
+				b:'',
 			}
 		},
 		mounted: function() {
+			console.log(this.token)
 			if(this.iphone == '' || this.iphone == undefined) {
 				this.us = true;
 				this.dianhua = false
@@ -269,8 +279,8 @@
 				this.$ajax.post(this.$Url + "/as/sAty", this.$qs.stringify({
 						typea: this.typea,
 						solve: this.solve,
-						pageSize:this.length,
-						pageNum:this.currentPage,
+						pageSize: this.length,
+						pageNum: this.currentPage,
 					})).then(ret => {
 						console.log(ret)
 						this.infomation = ret.data.data.list.list
@@ -285,12 +295,12 @@
 			},
 			//发布需求
 			fabuxuqiu() {
-				if(this.token==''||this.token==undefined){
+				if(this.token == '' || this.token == undefined) {
 					this.$message.error("请先登陆");
-				}else{
+				} else {
 					this.$router.push({
-					    name: 'Fabuxuqiu',
-				    });
+						name: 'Fabuxuqiu',
+					});
 				}
 			},
 			//查询个人信息
@@ -336,19 +346,24 @@
 			},
 			yijiejue() {
 				this.solve = 1;
+				this.buyhide = false
 				this.fined();
 			},
 			weijiejue() {
 				this.solve = 0;
+				this.buyhide = false
 				this.fined();
 			},
-			inforxiang(id) {
+			inforxiang(index,id) {
+				this.b=index
+				console.log(this.b)
 				this.id = id
 				console.log(this.id)
 				this.$router.push({
 					name: 'Buyinforxiangqing',
 					params: {
-						ids: this.id
+						ids: this.id,
+						a:this.b
 					}
 				});
 				//				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({

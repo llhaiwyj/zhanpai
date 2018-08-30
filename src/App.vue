@@ -102,4 +102,8 @@ a{
 	.el-carousel__arrow i{
 		font-size: 25px;
 	}
+	/*.el-carousel__button{
+		width:0px !important;
+		height:0px !important;
+	}*/
 </style>

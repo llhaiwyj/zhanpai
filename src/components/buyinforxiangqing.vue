@@ -1,51 +1,57 @@
 <template>
 	<div class="xiangqing">
 		<div class="header">
-			<div class="h-top">
-				<img src="../assets/img/dingwei.png" class="dw-ioin" />
-				<p class="city">天津</p>
-				<p class="login" v-show="us">
-					<router-link to="./" @click.native="flushCom">登陆 / </router-link>
-				</p>
+			<p class="xain"></p>
+			<p class="xain1"></p>
+			<div class="header-zi">
+				<div class="h-top">
+					<img src="../assets/img/dingwei.png" class="dw-ioin" />
+					<p class="city">天津</p>
+					<p class="login" v-show="us">
+						<router-link to="./" @click.native="flushCom">登陆 / </router-link>
+					</p>
 
-				<p class="zhuce" v-show="us">
-					<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
-				</p>
-				<p class="login" v-show="dianhua">{{iphone}}</p>
-				<ul class="nav">
-					<!--<li>我的浏览&nbsp;&nbsp;|</li>
+					<p class="zhuce" v-show="us">
+						<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
+					</p>
+					<p class="login" v-show="dianhua">{{iphone}}</p>
+					<ul class="nav">
+						<!--<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>-->
-					<li>个人中心&nbsp;&nbsp;|</li>
-					<li>手机版 </li>
-				</ul>
+						<li>我的收藏&nbsp;&nbsp;|</li>
+						<li>企业后台&nbsp;&nbsp;|</li>
+						<li>手机版 </li>
+					</ul>
+				</div>
+				<div class="daohang">
+					<img src="../assets/img/logo.png" class="logo" />
+					<ul class="dh">
+						<router-link to="./" @click.native="flushCom">
+							<li class="shou">首页</li>
+						</router-link>
+						<router-link to="./News" @click.native="flushCom">
+							<li>新闻资讯</li>
+						</router-link>
+						<router-link to="./Product" @click.native="flushCom">
+							<li>产品中心</li>
+						</router-link>
+						<router-link to="./Buyinformation" @click.native="flushCom">
+							<li>求购信息</li>
+						</router-link>
+						<router-link to="./Enterprise" @click.native="flushCom">
+							<li>商务合作</li>
+						</router-link>
+					</ul>
+					<button class="kaitong">开通展位</button>
+				</div>
+				<p class="xuqiu">您的需求</br> 我们都可以满足</p>
+				<button class="fabu" @click="fabuxuqiu">发布需求</button>
 			</div>
-			<div class="daohang">
-				<img src="../assets/img/logo.png" class="logo" />
-				<ul class="dh">
-					<router-link to="./" @click.native="flushCom">
-						<li>首页</li>
-					</router-link>
-					<router-link to="./News" @click.native="flushCom">
-						<li>新闻资讯</li>
-					</router-link>
-					<router-link to="./Product" @click.native="flushCom">
-						<li>产品中心</li>
-					</router-link>
-					<router-link to="./Buyinformation" @click.native="flushCom">
-						<li>求购信息</li>
-					</router-link>
-					<router-link to="./Enterprise" @click.native="flushCom">
-						<li>商务合作</li>
-					</router-link>
-				</ul>
-				<button class="kaitong">开通展位</button>
-			</div>
-			<p class="xuqiu">您的需求</br> 我们都可以满足</p>
-			<button class="fabu" @click="fabuxuqiu">发布需求</button>
 		</div>
 		<div class="cotnet">
-			<div class="tag"></div>
-			<div class="content">
+			<div class="conts">
+				<div class="tag"></div>
+				<div class="content">
 				<div class="con-left1">
 					<div class="title">
 						<p class="midu">求购二等标准密度计</p>
@@ -62,7 +68,7 @@
 							<p class="shijian">{{xiangqingye.createTime}}</p>
 							<p class="x-x"></p>
 							<p class="x-co" v-html="xiangqingye.content"></p>
-							
+
 							<!--<span>回复</span>-->
 						</div>
 						<!--<div class="yilun">
@@ -117,7 +123,7 @@
 					</div>
 					<div class="xiqiu">
 						<p class="edxq">热点需求</p>
-						<p class="edxuqius" v-for="r in redian" @click="inforxiang(r.id)">{{r.title}}</p>
+						<p class="edxuqius edxuqiusln" v-for="(r,index) in redian" @click="inforxiang(index,r.id)" :class="{'edxuqiusact':index===b}">{{r.title}}</p>
 						<!--<div class="xuqiupin" v-for="r in redian">
 							<img src="" class="cqp" />
 							<p class="chanpinname">{{r.title}}</p>
@@ -133,32 +139,35 @@
 					</div>
 				</div>
 			</div>
+			</div>
 		</div>
 		<div class="footer">
-			<div class="wei">
-				<ul class="weinav">
-					<li>|&nbsp;&nbsp;首页|</li>
-					<li>3D展馆&nbsp;&nbsp;|</li>
-					<li>产品中心&nbsp;&nbsp;|</li>
-					<li>求购信息&nbsp;&nbsp;|</li>
-					<li>商务合作&nbsp;&nbsp;|</li>
-				</ul>
-				<ul class="qibiao">
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-				</ul>
-				<p class="dress">©2017 LiVE System.</p>
-				<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+			<div class="foot">
+				<div class="wei">
+					<ul class="weinav">
+						<li>|&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;|</li>
+						<li>3D展馆&nbsp;&nbsp;|</li>
+						<li>产品中心&nbsp;&nbsp;|</li>
+						<li>求购信息&nbsp;&nbsp;|</li>
+						<li>商务合作&nbsp;&nbsp;|</li>
+					</ul>
+					<ul class="qibiao">
+						<li>
+							<img src="../assets/img/logo-baidu.png" class="baidu" />
+						</li>
+						<li>
+							<img src="../assets/img/logo-weibo.png" class="weibo" />
+						</li>
+						<li>
+							<img src="../assets/img/logo-weixin.png" class="weixin" />
+						</li>
+						<li>
+							<img src="../assets/img/logo-xinlang.png" class="xinlang" />
+						</li>
+					</ul>
+					<p class="dress">©2017 LiVE System.</p>
+					<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -178,6 +187,7 @@
 				iphone: localStorage["username"],
 				token: localStorage["ACCESS_TOKEN"],
 				shu: '',
+				b:this.$route.params.a,
 			}
 		},
 		mounted: function() {
@@ -218,29 +228,30 @@
 						console.log(error);
 					});
 			},
-			inforxiang(id) {
-					this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
-							id: id
-						})).then(ret => {
-							console.log(ret)
-							this.xiangqingye = ret.data.data.ask
-							console.log(this.xiangqingye)
-						})
-						.catch(function(error) {
-							console.log(error);
-						});
-			},
-			inforxiangs(){
+			inforxiang(index,id) {
+				this.b=index
 				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
-							id: this.id
-						})).then(ret => {
-							console.log(ret)
-							this.xiangqingye = ret.data.data.ask
-							console.log(this.xiangqingye)
-						})
-						.catch(function(error) {
-							console.log(error);
-						});
+						id: id
+					})).then(ret => {
+						console.log(ret)
+						this.xiangqingye = ret.data.data.ask
+						console.log(this.xiangqingye)
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},
+			inforxiangs() {
+				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
+						id: this.id
+					})).then(ret => {
+						console.log(ret)
+						this.xiangqingye = ret.data.data.ask
+						console.log(this.xiangqingye)
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
 			},
 			erdain() {
 				this.$ajax.post(this.$Url + "/as/sAhot", this.$qs.stringify({
@@ -253,13 +264,13 @@
 						console.log(error);
 					});
 			},
-			fabuxuqiu(){
-			  if(this.token==''||this.token==undefined){
+			fabuxuqiu() {
+				if(this.token == '' || this.token == undefined) {
 					this.$message.error("请先登陆");
-				}else{
+				} else {
 					this.$router.push({
-					    name: 'Fabuxuqiu',
-				    });
+						name: 'Fabuxuqiu',
+					});
 				}
 			},
 		},

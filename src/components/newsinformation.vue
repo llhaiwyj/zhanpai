@@ -64,14 +64,14 @@
 					<p class="c-l-jian">-A</p>
 				</div>
 				<div class="xushu">
-					<p class="xushu1">【中国化工仪器网 本网视点】6月20-22日，“2018世界生化、分析仪器与实验室装备中国展”(LABWorld China 2018)在上海新国际博览中心隆重举办。3000余仪器厂家云集四方，集中展示行业新技术新成果。国产液相色谱行业领导者上海伍丰科学仪器有限公司(简称“伍丰仪器”)受邀参展，携全新第三代LC-100液相色谱仪等臻品盛装出席。</p>
-					<img :src="x.sourceUrl" class="xutu1" />
+					<p class="xushu1" v-html="x.author"></p>
+					<!--<img :src="x.sourceUrl" class="xutu1" />
 					<p class="xubiao1">伍丰仪器展位现场</p>
 					<p class="xushu2">当下，中国经济转向了稳中上升的发展模式。同时，食品安全、药品安全、环境保护等成为了全社会的关注焦点，这为分析仪器行业带来了前所未有的机遇。用户对更高准确性、更高灵敏度以及微型化仪器产品的需求更加强烈。对精耕液相色谱领域的伍丰仪器而言，是机遇，同时也是很大的挑战。 　　伍丰仪器成立于1998年，回首20年伍丰发展之路，每一步都坚实有力。公司始终秉持“独立自主地研发优秀的分析仪器，为社会做贡献”的理念，坚持自主研发和创新，并希望打造成为中国液相色谱的领军企业。历经多年发展，伍丰仪器将液相色谱的配置、应用越来越丰富化，技术也走向行业前端，在国内的市场占有率名列前茅。 　　借此盛展召开之际，伍丰仪器重量级成员全新第三代LC-100液相色谱仪、LC-80 ChroMini液相色谱仪重磅来袭，尽显品牌领先风采。</p>
 					<p class="xutitle">全新第三代LC-100液相色谱仪</p>
 					<img :src="x.coverImg" class="xutu1" />
 					<p class="xubiao1">伍丰仪器展位现场</p>
-					<p class="xushu3">当下，中国经济转向了稳中上升的发展模式。同时，食品安全、药品安全、环境保护等成为了全社会的关注焦点，这为分析仪器行业带来了前所未有的机遇。用户对更高准确性、更高灵敏度以及微型化仪器产品的需求更加强烈。对精耕液相色谱领域的伍丰仪器而言，是机遇，同时也是很大的挑战。 　　伍丰仪器成立于1998年，回首20年伍丰发展之路，每一步都坚实有力。公司始终秉持“独立自主地研发优秀的分析仪器，为社会做贡献”的理念，坚持自主研发和创新，并希望打造成为中国液相色谱的领军企业。历经多年发展，伍丰仪器将液相色谱的配置、应用越来越丰富化，技术也走向行业前端，在国内的市场占有率名列前茅。 　　借此盛展召开之际，伍丰仪器重量级成员全新第三代LC-100液相色谱仪、LC-80 ChroMini液相色谱仪重磅来袭，尽显品牌领先风采。</p>
+					<p class="xushu3">当下，中国经济转向了稳中上升的发展模式。同时，食品安全、药品安全、环境保护等成为了全社会的关注焦点，这为分析仪器行业带来了前所未有的机遇。用户对更高准确性、更高灵敏度以及微型化仪器产品的需求更加强烈。对精耕液相色谱领域的伍丰仪器而言，是机遇，同时也是很大的挑战。 　　伍丰仪器成立于1998年，回首20年伍丰发展之路，每一步都坚实有力。公司始终秉持“独立自主地研发优秀的分析仪器，为社会做贡献”的理念，坚持自主研发和创新，并希望打造成为中国液相色谱的领军企业。历经多年发展，伍丰仪器将液相色谱的配置、应用越来越丰富化，技术也走向行业前端，在国内的市场占有率名列前茅。 　　借此盛展召开之际，伍丰仪器重量级成员全新第三代LC-100液相色谱仪、LC-80 ChroMini液相色谱仪重磅来袭，尽显品牌领先风采。</p>-->
 				</div>
 			</div>
 			<div class="con-right1">
@@ -80,7 +80,7 @@
 					<span class="shangyipian">上一篇</span>
 					<span class="r-x"></span>
 				</p>
-				<div class="x-r-wen" v-for="h in shangnew">
+				<div class="x-r-wen" v-for="h in shangnew" @click="firstxin(h.id)">
 					<p>{{h.createTime}}</p>
 					<p>{{h.title}}</p>
 				</div>
@@ -88,12 +88,12 @@
 					<span class="shangyipian">下一篇</span>
 					<span class="r-x"></span>
 				</p>
-				<div class="x-r-wen" v-for="x in xianew">
+				<div class="x-r-wen" v-for="x in xianew" @click="firstxin(x.id)">
 					<p>{{x.createTime}}</p>
 					<p>{{x.title}}</p>
 				</div>
 				<p class="remen">热门新闻</p>
-				<p class="x-r-xin" v-for="f in fivenew">{{f.title}}</p>
+				<p class="x-r-xin" v-for="f in fivenew" @click="firstxin(f.id)">{{f.title}}</p>
 			</div>
 			</div>
 		</div>
@@ -201,14 +201,17 @@
 					});
 			},
 			firstxin(id) {
+				this.zuinewinfo=[];
+				this.shangnew=[];
+				this.xianew=[];
 				console.log(id);
 				let Id=id
 				if(Id==''||Id==undefined){
 					Id=this.id
 				}
 				console.log(Id)
-				this.yin = false;
-				this.xian = true;
+//				this.yin = false;
+//				this.xian = true;
 				this.$ajax.post(this.$Url + "/ne/gN", this.$qs.stringify({
 						id: Id,
 					})).then(data => {

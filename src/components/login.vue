@@ -27,7 +27,7 @@
 				</p>
 				<button class="but" @click="deng">登录</button>
 				<p class="shanhou">
-					<router-link to="./retrieve"><span calss="norember">忘记密码</span></router-link>
+					<router-link to="./retrieve"><span class="norember">忘记密码</span></router-link>
 					<router-link to="./retrieve"><span class="mianfei">免费注册</span></router-link>
 				</p>
 			</div>

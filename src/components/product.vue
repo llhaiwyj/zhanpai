@@ -18,7 +18,8 @@
 					<ul class="nav">
 						<!--<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>-->
-						<li>个人中心&nbsp;&nbsp;|</li>
+						<li>我的收藏&nbsp;&nbsp;|</li>
+						<li>企业后台&nbsp;&nbsp;|</li>
 						<li>手机版 </li>
 					</ul>
 				</div>
@@ -68,66 +69,94 @@
 						<p class="gory1">{{leibie[0].typeName}}：</p>
 						<div class="gory1-left">
 							<p class="gory2">
-								<span v-for="(l,index) in erjis0" @click="erji0(index,l.id)">{{l.typeName}}</span>
+								<span class="sl" v-for="(l,index) in erjiso" @click="erjio(index,l.id)" :class="{'sls':index===b}">{{l.typeName}}</span>
 							</p>
-							<!--<p class="gory3" v-show="sanjis">
-								<span v-for="(j,index) in sanjilei" @click="sanji(index,j.id)">{{j.typeName}}</span>
+							<p class="gory3" v-show="sanjiso">
+								<span class="sl" v-for="(j,index) in sanjileio" @click="sanjio(index,j.id)" :class="{'sls':index===c}">{{j.typeName}}</span>
 							</p>
-							<p class="gory3" v-show="sijis">
-								<span v-for="s in sijilei">{{s.typeName}}</span>
-							</p>-->
+							<p class="gory3" v-show="sijiso">
+								<span class="sl" v-for="(s,index) in sijileio" @click="sijio(index,s.id)" :class="{'sls':index===d}">{{s.typeName}}</span>
+							</p>
 						</div>
 					</div>
 					<div class="cate">
 						<p class="gory1">{{leibie[1].typeName}}：</p>
 						<div class="gory1-left">
 							<p class="gory2">
-								<span v-for="(l,index) in erjis1" @click="erji1(index,l.id)">{{l.typeName}}</span>
+								<span class="sl" v-for="(l,index) in erjisT" @click="erjiT(index,l.id)" :class="{'sls':index===t}">{{l.typeName}}</span>
 							</p>
-							<!--<p class="gory3" v-show="sanjis">
-								<span v-for="(j,index) in sanjilei1" @click="sanji1(index,j.id)">{{j.typeName}}</span>
+							<p class="gory3" v-show="sanjisT">
+								<span class="sl" v-for="(j,index) in sanjileiT" @click="sanjiT(index,j.id)" :class="{'sls':index===c}">{{j.typeName}}</span>
 							</p>
-							<p class="gory3" v-show="sijis">
-								<span v-for="s in sijilei">{{s.typeName}}</span>
-							</p>-->
-						</div>
+							<p class="gory3" v-show="sijisT">
+								<span class="sl" v-for="(s,index) in sijileiT" @click="sijiT(index,s.id)" :class="{'sls':index===d}">{{s.typeName}}</span>
+							</p>
+					    </div>
 					</div>
 					<div class="cate">
+						<p class="gory1">{{leibie[2].typeName}}：</p>
+						<div class="gory1-left1">
+							<p class="gory2">
+								<span class="sl" v-for="(l,index) in erjisS" @click="erjiS(index,l.id)" :class="{'sls':index===s}">{{l.typeName}}</span>
+							</p>
+							<p class="gory3" v-show="sanjisS">
+								<span class="sl" v-for="(j,index) in sanjileiS" @click="sanjiS(index,j.id)" :class="{'sls':index===c}">{{j.typeName}}</span>
+							</p>
+							<p class="gory3" v-show="sijisS">
+								<span class="sl" v-for="(s,index) in sijileiS" @click="sijiS(index,s.id)" :class="{'sls':index===d}">{{s.typeName}}</span>
+							</p>
+					    </div>
+					</div>
+					<div class="cate">
+						<p class="gory1">{{leibie[3].typeName}}：</p>
+						<div class="gory1-left1">
+							<p class="gory2">
+								<span class="sl" v-for="(l,index) in erjisF" @click="erjiF(index,l.id)" :class="{'sls':index===f}">{{l.typeName}}</span>
+							</p>
+							<p class="gory3" v-show="sanjisF">
+								<span class="sl" v-for="(j,index) in sanjileiF" @click="sanjiF(index,j.id)" :class="{'sls':index===c}">{{j.typeName}}</span>
+							</p>
+							<p class="gory3" v-show="sijisF">
+								<span class="sl" v-for="(s,index) in sijileiF" @click="sijiF(index,s.id)" :class="{'sls':index===d}">{{s.typeName}}</span>
+							</p>
+					    </div>
+					</div>
+					<!--<div class="cate">
 						<p class="gory1">{{leibie[2].typeName}}：</p>
 						<div class="gory1-left">
 							<p class="gory2">
 								<span v-for="(l,index) in erjis2" @click="erji2(index,l.id)">{{l.typeName}}</span>
-							</p>
-							<!--<p class="gory3" v-show="sanjis">
+							</p>-->
+					<!--<p class="gory3" v-show="sanjis">
 								<span v-for="(j,index) in sanjilei" @click="sanji(index,j.id)">{{j.typeName}}</span>
 							</p>
 							<p class="gory3" v-show="sijis">
 								<span v-for="s in sijilei">{{s.typeName}}</span>
 							</p>-->
-						</div>
+					<!--</div>
 					</div>
 					<div class="cate">
 						<p class="gory1">{{leibie[3].typeName}}：</p>
 						<div class="gory1-left">
 							<p class="gory2">
 								<span v-for="(l,index) in erjis3" @click="erji3(index,l.id)">{{l.typeName}}</span>
-							</p>
-							<!--<p class="gory3" v-show="sanjis">
+							</p>-->
+					<!--<p class="gory3" v-show="sanjis">
 								<span v-for="(j,index) in sanjilei" @click="sanji(index,j.id)">{{j.typeName}}</span>
 							</p>
 							<p class="gory3" v-show="sijis">
 								<span v-for="s in sijilei">{{s.typeName}}</span>
 							</p>-->
-						</div>
-					</div>
+					<!--</div>
+					</div>-->
 				</div>
 				<ul class="chanpin">
 					<li v-for="item in shuju" @click="chaninfo(item.id)">
-						<img :src="item.imgUrl" class="shangpin" />
+						<img v-lazy="item.imgUrl" class="shangpin" :key="item.myimg"/>
 						<div class="jieshao">
 							<p class="diqu">
-								<span class="diming">{{item.firmAddress}}</span>
-								<span class="lilan">522人看过</span>
+								<span class="diming">{{item.areaA}}</span>
+								<span class="lilan">{{item.clickNo}}人看过</span>
 							</p>
 							<p class="chanpinming">{{item.pname}}</p>
 							<p class="copyname">
@@ -164,30 +193,32 @@
 
 		</div>
 		<div class="footer">
-			<div class="wei">
-				<ul class="weinav">
-					<li>|&nbsp;&nbsp;首页|</li>
-					<li>3D展馆&nbsp;&nbsp;|</li>
-					<li>产品中心&nbsp;&nbsp;|</li>
-					<li>求购信息&nbsp;&nbsp;|</li>
-					<li>商务合作&nbsp;&nbsp;|</li>
-				</ul>
-				<ul class="qibiao">
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-					<li>
-						<img src="../assets/img/tu2.png" />
-					</li>
-				</ul>
-				<p class="dress">©2017 LiVE System.</p>
-				<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+			<div class="foot">
+				<div class="wei">
+					<ul class="weinav">
+						<li>|&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;|</li>
+						<li>3D展馆&nbsp;&nbsp;|</li>
+						<li>产品中心&nbsp;&nbsp;|</li>
+						<li>求购信息&nbsp;&nbsp;|</li>
+						<li>商务合作&nbsp;&nbsp;|</li>
+					</ul>
+					<ul class="qibiao">
+						<li>
+							<img src="../assets/img/logo-baidu.png" class="baidu" />
+						</li>
+						<li>
+							<img src="../assets/img/logo-weibo.png" class="weibo" />
+						</li>
+						<li>
+							<img src="../assets/img/logo-weixin.png" class="weixin" />
+						</li>
+						<li>
+							<img src="../assets/img/logo-xinlang.png" class="xinlang" />
+						</li>
+					</ul>
+					<p class="dress">©2017 LiVE System.</p>
+					<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -208,15 +239,51 @@
 				dianhua: false,
 				us: true,
 				leibie: '',
-				erjilei:'',
-				sanjilei1:'',
-				sijilei:'',
-				sanjis:false,
-				sijis:false,
-				erjis0:'',
-				erjis1:'',
-				erjis2:'',
-				erjis3:'',
+				erjilei: '',
+				sanjis: false,
+				sijis: false,
+				erjis1: '',
+				erjis2: '',
+				erjis3: '',
+				sijilei: '',
+				b:'',
+				c:'',
+				d:'',
+				t:'',
+				s:'',
+				f:'',
+				//一级
+				erjiso: '',
+				sanjileio: '',
+				sijileio: '',
+				sanjiso: false,
+				sijiso: false,
+				twoo:'',
+				//二级
+				erjisT: '',
+				sanjileiT: '',
+				sijileiT: '',
+				sanjisT: false,
+				sijisT: false,
+				twoT:'',
+				//三级
+				erjisS: '',
+				sanjileiS: '',
+				sijileiS: '',
+				sanjisS: false,
+				sijisS: false,
+				twoS:'',
+				//四级
+				erjisF: '',
+				sanjileiF: '',
+				sijileiF: '',
+				sanjisF: false,
+				sijisF: false,
+				twoF:'',
+				//反取类的name值
+				erjiname:'',
+				sanjiname:'',
+				sijiname:'',
 			}
 		},
 		mounted: function() {
@@ -251,7 +318,10 @@
 				this.$ajax.post(this.$Url + "/fp/selPWeb", this.$qs.stringify({
 						pageSize: this.length,
 						pageNum: this.currentPage,
-						type: this.types
+						type: this.types ,
+						two: this.erjiname,
+						three: this.sanjiname,
+						four: this.sijiname,
 					})).then(data => {
 						console.log(data)
 						this.shuju = data.data.data.list.list
@@ -310,24 +380,261 @@
 				this.$ajax.post(this.$Url + "/pt/sTs", this.$qs.stringify()).then(data => {
 						console.log(data)
 						this.leibie = data.data.data.info.list
-						this.erjis0=this.leibie[0].list
-						this.erjis1=this.leibie[1].list
-						this.erjis2=this.leibie[2].list
-						this.erjis3=this.leibie[3].list
+						this.erjiso = this.leibie[0].list
+						this.erjisT = this.leibie[1].list
+						this.erjisS = this.leibie[2].list
+						this.erjisF = this.leibie[3].list
 					})
 					.catch(function(error) {
 						console.log(error);
 					})
 			},
-			erji1(index,id){
-//				this.two=id
-				this.sanjilei1=this.erjilei0[index].list
-//				this.sanjis = true
+			//一级获取
+			erjio(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.t='';
+				this.b = index;
+				this.c='';
+				this.d='';
+				this.f ='';
+				this.s='';
+				this.twoo=id
+				if(this.two != 0||this.two!='') {
+					this.sijiso = false
+					this.sijisT = false
+					this.sanjisT = false
+					this.sijisS = false
+					this.sanjisS = false
+					this.sijisF = false
+					this.sanjisF = false
+				}
+				this.sanjiso = true
+				this.sanjileio = this.erjiso[index].list
+				for(let i in this.erjiso){
+					if(this.twoo==this.erjiso[i].id){
+						this.erjiname=this.erjiso[i].typeName
+					}
+				}
+				console.log(this.erjiname)
+				this.fined()
 			},
-			sanji(index,id){
-//				this.three=id
-//			   this.sijis = true
-			   this.sijilei=this.sanjilei[index].list
+			sanjio(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.c = index;
+				this.d='';
+				this.sijiso = true
+				this.sijileio = this.sanjileio[index].list
+				for(let i in this.sanjileio){
+					if(id==this.sanjileio[i].id){
+						this.sanjiname=this.sanjileio[i].typeName
+					}
+				}
+				console.log(this.sanjiname)
+				this.fined()
+			    
+			},
+			sijio(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.d = index;
+				let four = id
+				for(let i in this.sijileio){
+					if(four==this.sijileio[i].id){
+						this.sijiname=this.sijileio[i].typeName
+					}
+				}
+				console.log(this.sijiname)
+				this.fined()
+			},
+			//二级获取
+			erjiT(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.t = index;
+				this.c='';
+				this.d='';
+				this.f ='';
+				this.s='';
+				this.twoT=id
+				if(this.twoT != 0||this.twoT !='') {
+					this.sijiso = false
+					this.sanjiso = false
+					this.sijisT = false
+					this.sijisS = false
+					this.sanjisS = false
+					this.sijisF = false
+					this.sanjisF = false
+				}
+				this.sanjisT = true
+				this.sanjileiT = this.erjisT[index].list
+				for(let i in this.erjisT){
+					if(this.twoT==this.erjisT[i].id){
+						this.erjiname=this.erjisT[i].typeName
+					}
+				}
+				console.log(this.erjiname)
+				this.fined()
+			},
+			sanjiT(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.c = index;
+				this.d='';
+				this.sijisT = true
+				this.sijileiT = this.sanjileiT[index].list
+				for(let i in this.sanjileiT){
+					if(id==this.sanjileiT[i].id){
+						this.sanjiname=this.sanjileiT[i].typeName
+					}
+				}
+				console.log(this.sanjiname)
+				this.fined()
+			},
+			sijiT(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.d = index;
+				let fourT = id
+				for(let i in this.sijileiT){
+					if(fourT==this.sijileiT[i].id){
+						this.sijiname=this.sijileiT[i].typeName
+					}
+				}
+				console.log(this.sijiname)
+				this.fined()
+			},
+			//三级获取
+			erjiS(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.s = index;
+				this.b='';
+				this.c='';
+				this.d='';
+				this.t='';
+				this.f ='';
+				this.twoS=id
+				if(this.twoS != 0|| this.twoS !='') {
+					this.sijisS = false
+					this.sijiso = false
+					this.sanjiso = false
+					this.sijisT = false
+					this.sanjisT = false
+					this.sijisF = false
+					this.sanjisF = false
+				}
+				this.sanjisS = true
+				this.sanjileiS = this.erjisS[index].list
+				for(let i in this.erjisS){
+					if(this.twoS==this.erjisS[i].id){
+						this.erjiname=this.erjisS[i].typeName
+					}
+				}
+				console.log(this.erjiname)
+				this.fined()
+			},
+			sanjiS(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.c = index;
+				console.log(this.c)
+				this.d='';
+				this.sijisS = true
+				this.sijileiS = this.sanjileiS[index].list
+				for(let i in this.sanjileiS){
+					if(id==this.sanjileiS[i].id){
+						this.sanjiname=this.sanjileiS[i].typeName
+					}
+				}
+				console.log(this.sanjiname)
+				this.fined()
+			},
+			sijiS(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.d = index;
+				let fourS = id
+				console.log(this.d)
+				for(let i in this.sijileiS){
+					if(fourS==this.sijileiS[i].id){
+						this.sijiname=this.sijileiS[i].typeName
+					}
+				}
+				console.log(this.sijiname)
+				this.fined()
+			},
+			//四级获取
+			erjiF(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.f = index;
+				this.b='';
+				this.c='';
+				this.d='';
+				this.t='';
+				this.s='';
+				this.twoF=id
+				if(this.twoF != 0 ||this.twoF !='') {
+					this.sijisF = false
+					this.sijiso = false
+					this.sanjiso = false
+					this.sijisT = false
+					this.sanjisT = false
+					this.sijisS = false
+					this.sanjisS = false
+				}
+				this.sanjisF = true
+				this.sanjileiF = this.erjisF[index].list
+				for(let i in this.erjisF){
+					if(this.twoF==this.erjisF[i].id){
+						this.erjiname=this.erjisF[i].typeName
+					}
+				}
+				console.log(this.erjiname)
+				this.fined()
+			},
+			sanjiF(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.c = index;
+				this.d='';
+				this.sijisF = true
+				this.sijileiF = this.sanjileiF[index].list
+				for(let i in this.sanjileiF){
+					if(id==this.sanjileiF[i].id){
+						this.sanjiname=this.sanjileiF[i].typeName
+					}
+				}
+				console.log(this.sanjiname)
+				this.fined()
+			},
+			sijiF(index, id) {
+				this.erjiname='';
+				this.sanjiname='';
+				this.sijiname='';
+				this.d = index;
+				let fourF = id
+//				console.log(four)
+				for(let i in this.sijileiF){
+					if(fourF==this.sijileiF[i].id){
+						this.sijiname=this.sijileiF[i].typeName
+					}
+				}
+				console.log(this.sijiname)
+				this.fined()
 			},
 			flushCom: function() {
 				this.$router.go(0);

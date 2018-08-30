@@ -1,7 +1,10 @@
 <template>
 	<div class="enterprise">
 		<div class="header">
-			<div class="h-top">
+			<p class="xain"></p>
+			<p class="xain1"></p>
+			<div class="header-zi">
+				<div class="h-top">
 				<img src="../assets/img/dingwei.png" class="dw-ioin" />
 				<p class="city">天津</p>
 				<p class="login">嘉科仪科技 </p>
@@ -10,14 +13,15 @@
 				<ul class="nav">
 					<!--<li>我的浏览&nbsp;&nbsp;|</li>
 					<li>我的收藏&nbsp;&nbsp;|</li>-->
-					<li>个人中心&nbsp;&nbsp;|</li>
+					<li>我的收藏&nbsp;&nbsp;|</li>
+					<li>企业后台&nbsp;&nbsp;|</li>
 					<li>手机版 </li>
 				</ul>
 			</div>
 			<div class="daohang">
 				<img src="../assets/img/logo.png" class="logo" />
 				<ul class="dh">
-					<router-link to="./" @click.native="flushCom"><li>首页</li></router-link>
+					<router-link to="./" @click.native="flushCom"><li class="shou">首页</li></router-link>
 					<router-link to="./News" @click.native="flushCom">
 						<li>新闻资讯</li>
 					</router-link>
@@ -27,11 +31,15 @@
 				</ul>
 				<button class="kaitong">开通展位</button>
 			</div>
+			</div>
+			
 		</div>
 		<div class="search">
-			<input type="text" placeholder="请输入搜索内容" class="find" />
-			<p class="quanzhan">搜全站</p>
-			<p class="souzhanwei">搜本展位</p>
+			<div class="searz">
+				<input type="text" placeholder="请输入搜索内容" class="find" />
+				<p class="quanzhan">搜全站</p>
+				<p class="souzhanwei">搜本展位</p>
+			</div>
 		</div>
 		<!--<div class="shangjianame">
 			<img src="../assets/img/logo.png" class="shangbiao" />

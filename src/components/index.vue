@@ -1,6 +1,6 @@
 <template>
 	<div class="index">
-		<video width="100%" height="950" src="https://jkytest.oss-cn-beijing.aliyuncs.com/file/1%E5%88%86%E9%92%9F%E5%B9%BF%E5%91%8A.mp4" class="shipin" autoplay="autoplay" loop="loop"></video>
+		<video id="shipin" width="100%" height="950" src="https://jkytest.oss-cn-beijing.aliyuncs.com/file/1%E5%88%86%E9%92%9F%E5%B9%BF%E5%91%8A.mp4" class="shipin" autoplay="autoplay" loop="loop"></video>
 		<div class="header">
 			<p class="xain"></p>
 			<p class="xain1"></p>
@@ -255,6 +255,7 @@
 				two: '',
 				three: '',
 				four: '',
+				fouername:'',
 				//				zhis: this.unitys.zhi,
 			};
 		},
@@ -263,6 +264,8 @@
 				document.getElementById('erjilie').style.display = "none";
 				document.getElementById('sanjilie').style.display = "none";
 				document.getElementById('sijilie').style.display = "none";
+				document.getElementById('shipin').style.loop = "loop";
+				
 			}
 		},
 		mounted: function() {
@@ -428,13 +431,19 @@
 				this.b=''
 				this.four = id
 				console.log(this.one)
+				for(let i in this.sijnjilei){
+					if(this.four==this.sijnjilei[i].id){
+						this.fouername=this.sijnjilei[i].typeName
+					}
+				}
+				console.log(this.fouername)
 				this.$router.push({
 					name: 'Productserch',
 					params: {
-						one: this.one,
-						two: this.two,
-						three: this.three,
-						four: this.four,
+//						one: this.one,
+//						two: this.two,
+//						three: this.three,
+						four: this.fouername,
 					}
 				});
 			},

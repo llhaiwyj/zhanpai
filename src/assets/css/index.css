@@ -202,6 +202,7 @@
     position: absolute;
     right: 17px;
     top: 16px;
+    cursor: pointer;
 }
 .join{
 	background-color:rgba(255,255,255,0);
@@ -220,7 +221,7 @@
 	margin-top:23px;
 }
 .join p{
-	width:50px;
+	width:55px;
 	height:11px;
 	font-size:10px;
 	color:#fff;
@@ -478,6 +479,9 @@
     white-space: nowrap;
     cursor: pointer;
 }
+.shishi p:hover{
+	text-decoration: underline;
+}
 .shishi p:nth-child(3){
 	margin-right:0px;
 }
@@ -721,6 +725,7 @@
     border:none;
 	color:#ccc; 
 	text-align: center;
+	cursor: pointer;
 }
 .sousuo select option{
 	width:30px;
@@ -728,6 +733,7 @@
 	color:#ccc; 
 	background:rgba(255,255,255,0);
 	 border:none;
+	 cursor: pointer;
 }
 .biglodo{
 	/*width: 57.51%;*/
