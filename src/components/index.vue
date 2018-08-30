@@ -19,7 +19,7 @@
 					<button class="tuichu" v-show="dianhua" @click="tui">退出</button>
 					<ul class="nav">
 						<!--	<li>我的浏览&nbsp;&nbsp;|</li>-->
-						<li>我的收藏&nbsp;&nbsp;|</li>
+						<router-link to="./Collection"><li>我的收藏&nbsp;&nbsp;|</li></router-link>
 						<li>企业后台&nbsp;&nbsp;|</li>
 						<!--	<router-link to="./Ceshi" @click.native="flushCom">-->
 						<li class="shoujiban">手机版 </li>

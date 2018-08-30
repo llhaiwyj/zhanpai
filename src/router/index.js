@@ -13,6 +13,8 @@ import Productserch from '@/components/productserch'
 import Newsinformation from '@/components/newsinformation'
 import Buyinforxiangqing from '@/components/buyinforxiangqing'
 import Fabuxuqiu from '@/components/fabuxuqiu'
+import Collection from '@/components/collection'
+
 //import Ceshi from '@/components/ceshi'
 
 Vue.use(Router)
@@ -34,11 +36,11 @@ export default new Router({
 			name: 'Newsinformation',
 			component: Newsinformation
 		},
-//		{
-//			path: '/Ceshi',
-//			name: 'Ceshi',
-//			component: Ceshi
-//		},
+		{
+			path: '/Collection',
+			name: 'Collection',
+			component: Collection
+		},
 		{
 			path: '/Fabuxuqiu',
 			name: 'Fabuxuqiu',
