@@ -39,13 +39,13 @@
 					<p class="li-right">
 						<span class="li-right-l">
 							<span class="renmuch">
-								<img src="../assets/img/persens.png" class="xiaoren"/>
+								<img src="../assets/img/persens.png" class="xiaoren" />
+								<span class="numb">{{i.pageView}}</span>
+						    </span>
+						<!--<span class="liuyan">
+								<img src="../assets/img/icon－x.png" class="xiaoren" />
 								<span class="numb">1</span>
-						</span>
-						<span class="liuyan">
-								<img src="../assets/img/icon－x.png" class="xiaoren"/>
-								<span class="numb">1</span>
-						</span>
+							</span>-->
 						</span>
 						<span class="li-right-r">
 							<span class="diming">{{i.addressA}} {{i.addressC}}</span>
@@ -77,15 +77,15 @@
 				</li>-->
 			</ul>
 			<div class="block">
-			<el-row>
-				<el-col>
-					<div class="pages">
-						<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" layout="total, sizes, prev, pager, next, jumper" :total="total">
-						</el-pagination>
-					</div>
-				</el-col>
-			</el-row>
-		</div>
+				<el-row>
+					<el-col>
+						<div class="pages">
+							<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" layout="total, sizes, prev, pager, next, jumper" :total="total">
+							</el-pagination>
+						</div>
+					</el-col>
+				</el-row>
+			</div>
 		</div>
 	</div>
 </template>
@@ -97,11 +97,11 @@
 				currentPage: 1,
 				total: '',
 				length: 10,
-				infomation:'',
-				typea:'',
-				solve:'',
-				id:'',
-				xiangqingye:'',
+				infomation: '',
+				typea: '',
+				solve: '',
+				id: '',
+				xiangqingye: '',
 				zhi:
 			}
 		},
@@ -116,56 +116,56 @@
 			handleIndexChange(index) {
 				console.log(index)
 				this.length = index;
-			}, 
+			},
 			fined() {
-				this.$ajax.post(this.$Url+"/as/sAty", this.$qs.stringify({
-						typea:this.typea,
-						solve:this.solve
-				})).then(ret => {
-					console.log(ret)
+				this.$ajax.post(this.$Url + "/as/sAty", this.$qs.stringify({
+						typea: this.typea,
+						solve: this.solve
+					})).then(ret => {
+						console.log(ret)
 						this.infomation = ret.data.data.list
 					})
 					.catch(function(error) {
 						console.log(error);
 					});
 			},
-			qicai(){
-				this.typea=0;
+			qicai() {
+				this.typea = 0;
 				this.fined();
 			},
-			fuwu(){
-				this.typea=1;
+			fuwu() {
+				this.typea = 1;
 				this.fined();
 			},
-			jiaju(){
-				this.typea=2;
+			jiaju() {
+				this.typea = 2;
 				this.fined();
 			},
-			haocai(){
-				this.typea=3;
+			haocai() {
+				this.typea = 3;
 				this.fined();
 			},
-			yijiejue(){
-				this.solve=1;
+			yijiejue() {
+				this.solve = 1;
 				this.fined();
 			},
-			weijiejue(){
-				this.solve=0;
+			weijiejue() {
+				this.solve = 0;
 				this.fined();
 			},
-			inforxiang(id){
-				this.id=id
-				this.$ajax.post(this.$Url+"/as/gA", this.$qs.stringify({
-						id:this.id
-				})).then(ret => {
-					console.log(ret)
+			inforxiang(id) {
+				this.id = id
+				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
+						id: this.id
+					})).then(ret => {
+						console.log(ret)
 						this.xiangqingye = ret.data.data.list
 					})
 					.catch(function(error) {
 						console.log(error);
 					});
 			},
-			flushCom:function(){
+			flushCom: function() {
 				this.$router.go(0);
 			}
 		},
@@ -173,5 +173,5 @@
 </script>
 
 <style scoped>
-   @import "../assets/css/buyinformation.css";
+	@import "../assets/css/buyinformation.css";
 </style>

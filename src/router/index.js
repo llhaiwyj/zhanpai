@@ -14,7 +14,8 @@ import Newsinformation from '@/components/newsinformation'
 import Buyinforxiangqing from '@/components/buyinforxiangqing'
 import Fabuxuqiu from '@/components/fabuxuqiu'
 import Collection from '@/components/collection'
-import Fenxiang from '@/components/fenxiang'
+import Solve from '@/components/solve'
+import Ceshi from '@/components/ceshi'
 
 //import Ceshi from '@/components/ceshi'
 
@@ -38,9 +39,14 @@ export default new Router({
 			component: Newsinformation
 		},
 		{
-			path: '/Fenxiang',
-			name: 'Fenxiang',
-			component: Fenxiang
+			path: '/Ceshi',
+			name: 'Ceshi',
+			component: Ceshi
+		},
+		{
+			path: '/Solve',
+			name: 'Solve',
+			component: Solve
 		},
 		{
 			path: '/Collection',

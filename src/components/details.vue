@@ -4,21 +4,29 @@
 			<p class="xain"></p>
 			<p class="xain1"></p>
 			<div class="header-zi">
-				<div class="h-top">
-					<img src="../assets/img/dingwei.png" class="dw-ioin" />
+				<Header v-on:dianji="dian"></Header>
+				<Info v-show="infos" v-on:dianjis="xian"></Info>
+				<!--<div class="h-top">
+					<img src="../assets/img/icon－ding.png" class="dw-ioin" />
 					<p class="city">天津</p>
-					<p class="login">嘉科仪科技 </p>
-					<!--<img src="" class="xinjian" />
-				<p class="zhuce">消息 <span>1</span></p>-->
-					<ul class="nav">
-						<!--<li>我的浏览&nbsp;&nbsp;|</li>
-					<li>我的收藏&nbsp;&nbsp;|</li>-->
-						<li>我的收藏&nbsp;&nbsp;|</li>
-						<li>企业后台&nbsp;&nbsp;|</li>
-						<li>手机版 </li>
+					<p class="login" v-show="us">
+						<router-link to="./Login" @click.native="flushCom">登陆 / </router-link>
+					</p>
+
+					<p class="zhuce" v-show="us">
+						<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
+					</p>
+					<p class="login1" v-show="dianhua">{{iphone}}</p>
+					<button class="tuichu" v-show="dianhua" @click="tui">退出</button>-->
+				<!--<img src="" class="xinjian" />
+				    <p class="zhuce">消息 <span>1</span></p>-->
+				<!--<ul class="nav">
+						<li class="shoujiban" style="border:none;padding-right:0;">手机版</li>
+						<li>企业后台</li>
+						<li @click="shoucang">我的收藏</li>
 					</ul>
-				</div>
-				<div class="daohang">
+				</div>-->
+				<!--<div class="daohang">
 					<img src="../assets/img/logo.png" class="logo" />
 					<ul class="dh">
 						<router-link to="./" @click.native="flushCom">
@@ -28,7 +36,7 @@
 							<li>新闻资讯</li>
 						</router-link>
 						<router-link to="./Product" @click.native="flushCom">
-							<li>产品中心</li>
+							<li class="shou">产品中心</li>
 						</router-link>
 						<router-link to="./Buyinformation" @click.native="flushCom">
 							<li>求购信息</li>
@@ -37,8 +45,8 @@
 							<li>商务合作</li>
 						</router-link>
 					</ul>
-					<button class="kaitong">开通展位</button>
-				</div>
+					<button class="kaitong" @click="kaitong">开通展位</button>
+				</div>-->
 			</div>
 		</div>
 		<div class="content">
@@ -52,7 +60,7 @@
 							<div class="wenzijieshao">
 								<p class="fen">分享<img src='../assets/img/icon-fengxiang.png' class="fenxiang" /></p>
 								<p class="chanpinming">{{qinginfo.pname}}</p>
-								<p class="xiaochanpinming">{{qinginfo.firmName}}</p>
+								<p class="xiaochanpinming" @click="copyinfo(qinginfo.firmId)">{{qinginfo.firmName}}</p>
 								<p class="sa">
 									<span class="diqu">地区：{{qinginfo.firmAddress}}</span>
 									<span class="changshang" v-show="sheng">厂商类型：生产商</span>
@@ -74,7 +82,7 @@
 								<!--<p class="dc">应用领域：{{qinginfo.field}}</p>-->
 							</div>
 							<div class="suotu">
-								<span v-for="(i,index) in imgList"><img :src="i.url" class="suot" :class="{'suots':index===b}" @click="xiaotu(i.url,index)"/></span>
+								<span v-for="(i,index) in imgList"><img :src="i.url" class="suot" :class="{'suots':index===b}" @click="xiaotu(i.url,index)" /></span>
 								<!--<img :src="qinginfo.imgUrl" class="suot" />
 							<img :src="qinginfo.imgUrl" class="suot" />-->
 							</div>
@@ -109,7 +117,9 @@
 						<p class="tongleituijian">同类推荐</p>
 						<div class="imgming" v-for="item in tonglei" @click="tuijianxiang(item.id)">
 							<img :src="item.url" class="imgxian" />
-							<p class="imga"><span>{{item.pname}}</span></p>
+							<p class="imga">
+								<span>{{item.pname}}</span>
+							</p>
 						</div>
 						<!--<div class="imgming">
 						<img src="../assets/img/img-zhanwei.png" class="imgxian"/>
@@ -123,15 +133,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer">
+		<Footer></Footer>
+		<!--<div class="footer">
 			<div class="foot">
 				<div class="wei">
 					<ul class="weinav">
-						<li>|&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;|</li>
-						<li>3D展馆&nbsp;&nbsp;|</li>
-						<li>产品中心&nbsp;&nbsp;|</li>
-						<li>求购信息&nbsp;&nbsp;|</li>
-						<li>商务合作&nbsp;&nbsp;|</li>
+						<li>首页</li>
+						<li>3D展馆</li>
+						<li>产品中心</li>
+						<li>求购信息</li>
+						<li>商务合作</li>
 					</ul>
 					<ul class="qibiao">
 						<li>
@@ -151,67 +162,126 @@
 					<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
 				</div>
 			</div>
+		</div>-->
+		<div class="fixed">
+			<div class="fixed_right" @click="shoucangs">
+				<!--:class="{'fixed_right1':0===a}"-->
+				<img src="../assets/img/icon_Collection.png" alt="" v-show="weishoucang">
+				<img src="../assets/img/shou.png" v-show="yishoucang" />
+			</div>
+			<div class="fixed_right">
+				<img src="../assets/img/icon_kefu.png" alt="">
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import Header from './header'
+	import Footer from './foot'
+	import Info from './gereninfo'
 	export default {
+		components: {
+			Header,
+			Footer,
+			Info,
+		},
+		inject: ['reload'],
 		data() {
 			return {
+				iphone: localStorage["username"],
 				qinginfo: this.$route.params.xianginfos,
-				tonglei: '',
+				tonglei: "",
 				sheng: false,
 				dai: false,
 				lainxi: false,
 				imgList: this.$route.params.imglist,
 				tuyin: true,
 				tuxian: false,
-				Url: '',
-				b: '',
-			}
+				Url: "",
+				b: "",
+				token: localStorage["ACCESS_TOKEN"],
+				uid: localStorage["Id"],
+				collStatus: this.$route.params.statudes,
+				status: "",
+				a: "",
+				us: true,
+				dianhua: false,
+				weishoucang: true,
+				yishoucang: false,
+				infos: false,
+			};
 		},
 		mounted: function() {
-			this.fined()
-			console.log(this.qinginfo)
-			if(this.qinginfo.firmType == 0) {
-				this.sheng = true
+			if(this.iphone == "" || this.iphone == undefined) {
+				this.us = true;
+				this.dianhua = false;
 			} else {
-				this.dai = true
+				this.us = false;
+				this.dianhua = true;
+			}
+			this.fined();
+			console.log(this.qinginfo);
+			if(this.qinginfo.firmType == 0) {
+				this.sheng = true;
+			} else {
+				this.dai = true;
+			}
+			console.log(this.collStatus);
+			if(this.collStatus == 1) {
+				//				alert(1)
+				this.yishoucang = true
+				this.weishoucang = false
+			}
+			if(this.qinginfo == '' || this.qinginfo == null || this.qinginfo == undefined) {
+				this.$router.push({
+					name: "Product"
+				});
 			}
 		},
 		methods: {
-			//			onEditorChange({
-			//				editor,
-			//				html,
-			//				text
-			//			}) {
-			//				this.qinginfo.detailed = html;
-			//			},
-			//			onEditorReady(res) {},
-			//			onEditorBlur(editor) {
-			//				this.$emit('getValue', his.qinginfo.detailed)
-			//			},
+			xian(b) {
+				this.reload()
+				//				this.$router.push({
+				//					name: "News",
+				//				});
+				//				this.$router.go(0);
+
+				this.infos = b
+
+			},
+			dian(a) {
+				this.infos = false
+
+				this.infos = a
+			},
 			fined() {
-				this.$ajax.post(this.$Url + "/fp/getPSame", this.$qs.stringify({})).then(data => {
-						console.log(data)
-						this.tonglei = data.data.data.list
+				this.$ajax
+					.post(this.$Url + "/fp/getPSame", this.$qs.stringify({}))
+					.then(data => {
+						console.log(data);
+						this.tonglei = data.data.data.list;
 					})
 					.catch(function(error) {
 						console.log(error);
 					});
 			},
 			tuijianxiang(id) {
-				this.qinginfo = ''
-				this.$ajax.post(this.$Url + "/fp/getP", this.$qs.stringify({
-						id: id
-					})).then(data => {
-						console.log(data)
-						this.qinginfo = data.data.data.info
+				this.qinginfo = "";
+				this.$ajax
+					.post(
+						this.$Url + "/fp/getP",
+						this.$qs.stringify({
+							id: id
+						})
+					)
+					.then(data => {
+						console.log(data);
+						this.qinginfo = data.data.data.info;
 						if(this.qinginfo.firmType == 0) {
-							this.sheng = true
+							this.sheng = true;
 						} else {
-							this.dai = true
+							this.dai = true;
 						}
 					})
 					.catch(function(error) {
@@ -228,15 +298,103 @@
 			//				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
 			//			},
 			xiaotu(url, inde) {
-				this.b = inde
-				this.tuyin = false
-				this.tuxian = true
-				this.Url = url
-				console.log(this.Url)
-			}
-
-		},
-	}
+				this.b = inde;
+				this.tuyin = false;
+				this.tuxian = true;
+				this.Url = url;
+				console.log(this.Url);
+			},
+			//收藏产品
+			shoucangs() {
+				if(
+					this.uid == "" ||
+					this.uid == undefined ||
+					this.token == "" ||
+					this.token == undefined
+				) {
+					this.$message.error("请先登陆然后在收藏");
+				}
+				this.$ajax
+					.post(
+						this.$Url + "/fp/CPStatus",
+						this.$qs.stringify({
+							userId: this.uid,
+							productId: this.qinginfo.id,
+							status: this.collStatus
+						})
+					)
+					.then(data => {
+						console.log(data);
+						this.collStatus = data.data.data.status;
+						if(this.collStatus == 1) {
+							this.yishoucang = true
+							this.weishoucang = false
+							this.$message.success("收藏成功！")
+							//							this.a = 1;
+						} else {
+							//							alert(2)
+							this.yishoucang = false
+							this.weishoucang = true
+							this.$message.error("已取消收藏")
+							//							this.a = 0;
+						}
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},
+			tui() {
+				localStorage.removeItem("ACCESS_TOKEN");
+				localStorage.removeItem("username");
+				localStorage.removeItem("Id");
+				localStorage.removeItem("postId");
+				localStorage.removeItem("Data");
+				this.iphone = '';
+				this.us = true
+				this.dianhua = false
+				this.$router.push({
+					name: "Index"
+				});
+			},
+			shoucang() {
+				if(this.iphone == '' || this.iphone == null || this.iphone == undefined) {
+					this.$message.error("请先登录")
+					this.$router.push({
+						name: "Login"
+					});
+				} else {
+					this.$router.push({
+						name: "Collection"
+					});
+				}
+			},
+			kaitong() {
+				if(this.iphone == '' || this.iphone == null || this.iphone == undefined) {
+					this.$router.push({
+						name: "Login"
+					});
+				} else {
+					if(this.postId == 0) {
+						window.open(encodeURI("http://39.105.24.238/busys.html#/personalCenter2/index"), "_blank");
+					} else {
+						window.open(encodeURI("http://39.105.24.238/busys.html#/dataAnalysis0/index"), "_blank");
+					}
+				}
+			},
+			copyinfo(firId) {
+				console.log(firId);
+				if(firId == null || firId == "" || firId == undefined) {
+					firId = 1;
+				}
+				this.$router.push({
+					name: "Enterprise",
+					params: {
+						firid: firId
+					}
+				});
+			},
+		}
+	};
 </script>
 
 <style scoped>

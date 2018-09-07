@@ -4,30 +4,31 @@
 			<p class="xain"></p>
 			<p class="xain1"></p>
 			<div class="header-zi">
-				<div class="h-top">
-					<img src="../assets/img/dingwei.png" class="dw-ioin" />
+				<Header :t='3' v-on:dianji="dian"></Header>
+				<Info v-show="infos" v-on:dianjis="xian"></Info>
+				<!--<div class="h-top">
+					<img src="../assets/img/icon－ding.png" class="dw-ioin" />
 					<p class="city">天津</p>
 					<p class="login" v-show="us">
-						<router-link to="./" @click.native="flushCom">登陆 / </router-link>
+						<router-link to="./Login" @click.native="flushCom">登陆 / </router-link>
 					</p>
 
 					<p class="zhuce" v-show="us">
 						<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
 					</p>
-					<p class="login" v-show="dianhua">{{iphone}}</p>
+					<p class="login1" v-show="dianhua">{{iphone}}</p>
+					<button class="tuichu" v-show="dianhua" @click="tui">退出</button>
 					<ul class="nav">
-						<!--<li>我的浏览&nbsp;&nbsp;|</li>
-					<li>我的收藏&nbsp;&nbsp;|</li>-->
-						<li>我的收藏&nbsp;&nbsp;|</li>
-						<li>企业后台&nbsp;&nbsp;|</li>
-						<li>手机版 </li>
+						<li class="shoujiban" style="border:none;padding-right:0;">手机版</li>
+						<li>企业后台</li>
+						<li @click="shoucang">我的收藏</li>
 					</ul>
-				</div>
-				<div class="daohang">
+				</div>-->
+				<!--<div class="daohang">
 					<img src="../assets/img/logo.png" class="logo" />
 					<ul class="dh">
 						<router-link to="./" @click.native="flushCom">
-							<li class="shou">首页</li>
+							<li>首页</li>
 						</router-link>
 						<router-link to="./News" @click.native="flushCom">
 							<li>新闻资讯</li>
@@ -36,14 +37,14 @@
 							<li>产品中心</li>
 						</router-link>
 						<router-link to="./Buyinformation" @click.native="flushCom">
-							<li>求购信息</li>
+							<li class="shou">求购信息</li>
 						</router-link>
 						<router-link to="./Enterprise" @click.native="flushCom">
 							<li>商务合作</li>
 						</router-link>
 					</ul>
-					<button class="kaitong">开通展位</button>
-				</div>
+					<button class="kaitong" @click="kaitong">开通展位</button>
+				</div>-->
 				<p class="xuqiu">您的需求</br> 我们都可以满足</p>
 				<button class="fabu" @click="fabuxuqiu">发布需求</button>
 			</div>
@@ -113,21 +114,30 @@
 								<p class="xname">{{user.username}}</p>
 							</div>
 							<div class="hangyexinxi">
-								<p class="guanhzuhangye"><span class="xiaobiao">关注行业:</span><span class="xiangxi"> </span></p>
-								<p class="guanhzuhangye"><span class="xiaobiao">经营模式:</span><span class="xiangxi"></span></p>
-								<p class="guanhzuhangye"><span class="xiaobiao">所在地区:</span><span class="xiangxi"></span></p>
+								<p class="guanhzuhangye">
+									<span class="xiaobiao">关注行业:</span>
+									<span class="xiangxi"> </span>
+								</p>
+								<p class="guanhzuhangye">
+									<span class="xiaobiao">经营模式:</span>
+									<span class="xiangxi"></span>
+								</p>
+								<p class="guanhzuhangye">
+									<span class="xiaobiao">所在地区:</span>
+									<span class="xiangxi"></span>
+								</p>
 							</div>
 							<p class="xian"></p>
 							<p class="mainqiugou">我的求购</p>
-							<div class="yijiejue">
+							<div class="yijiejue" @click="yijiejue">
 								<img src="../assets/img/icon-yi.png" class="jiebiao" />
 								<p class="yj">已解决</p>
-								<p class="shuliang">0</p>
+								<!--<p class="shuliang">0</p>-->
 							</div>
-							<div class="weijiejue">
+							<div class="weijiejue" @click="weijiejue">
 								<img src="../assets/img/icon-wei.png" class="jiebiao" />
 								<p class="yj">未解决</p>
-								<p class="shuliang">0</p>
+								<!--<p class="shuliang">0</p>-->
 							</div>
 							<button class="fabuxuqiu">发布需求</button>
 						</div>
@@ -151,15 +161,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer">
+		<Footer></Footer>
+		<!--<div class="footer">
 			<div class="foot">
 				<div class="wei">
 					<ul class="weinav">
-						<li>|&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;|</li>
-						<li>3D展馆&nbsp;&nbsp;|</li>
-						<li>产品中心&nbsp;&nbsp;|</li>
-						<li>求购信息&nbsp;&nbsp;|</li>
-						<li>商务合作&nbsp;&nbsp;|</li>
+						<li>首页</li>
+						<li>3D展馆</li>
+						<li>产品中心</li>
+						<li>求购信息</li>
+						<li>商务合作</li>
 					</ul>
 					<ul class="qibiao">
 						<li>
@@ -179,12 +190,15 @@
 					<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 </template>
 
 <script>
-	import { newArr } from '../../static/city.js'
+	import { newArr } from '../../static/city.js';
+	import Header from './header'
+	import Footer from './foot'
+	import Info from './gereninfo'
 	const toolbarOptions = [
 		["bold", "italic", "underline", "strike"], // toggled buttons
 		["blockquote", "code-block"],
@@ -232,8 +246,15 @@
 		["clean"] // remove formatting button
 	];
 	export default {
+		components: {
+			Header,
+			Footer,
+			Info,
+		},
+		inject:['reload'],
 		data() {
 			return {
+				infos:false,
 				dianhua: false,
 				us: true,
 				fabu: false,
@@ -254,15 +275,18 @@
 				addressA: '',
 				addressB: '',
 				addressC: '',
-				id: localStorage["Id"],
+				ids: localStorage["Id"],
 				leibie: '',
 				phone: '',
 				qq: '',
 				weixin: '',
 				a: '',
-				b:'',
+				b: '',
 				imgs: [],
+				solve: "",
+				id: this.$route.params.ids,
 				iphoneNo: localStorage["username"],
+				token: localStorage["ACCESS_TOKEN"],
 				fenleis: [{
 						id: '0',
 						label: '实验室器材'
@@ -308,6 +332,7 @@
 			}
 		},
 		mounted: function() {
+			
 			this.erdain()
 			this.gereninfo()
 			this.geren()
@@ -322,12 +347,118 @@
 					console.log(this.shengs)
 				}
 			}
+			if(this.id != '' || this.id != null || this.id != undefined) {
+				this.fined()
+			}
+			if(this.iphone == "" || this.iphone == undefined) {
+				this.us = true;
+				this.dianhua = false;
+			} else {
+				this.us = false;
+				this.dianhua = true;
+			}
 		},
 		methods: {
+			xian(b){
+				this.reload()
+//				this.$router.push({
+//					name: "News",
+//				});
+//				this.$router.go(0);
+			   
+			   this.infos=b
+			    
+			},
+			dian(a){
+				this.infos=false
+				
+				this.infos=a
+			},
+			yijiejue() {
+				if(this.token==''||this.token==null||this.token==undefined){
+					this.$message.error("请先登陆")
+				}else{
+					this.solve = 1;
+				//    this.buyhide = false;
+				//    this.fined();
+				this.$router.push({
+					name: "Solve",
+					params: {
+						solveds: this.solve
+					}
+				});
+				}
+				
+			},
+			weijiejue() {
+				if(this.token==''||this.token==null||this.token==undefined){
+					this.$message.error("请先登陆")
+				}else{
+					this.solve = 0;
+				this.$router.push({
+					name: "Solve",
+					params: {
+						solveds: this.solve
+					}
+				});
+				}
+				
+				//    this.buyhide = false;
+				//    this.fined();
+			},
 			//diqu
+			fined() {
+				this.$ajax.post(this.$Url + "/as/gA", this.$qs.stringify({
+						id: this.id
+					})).then(ret => {
+						console.log(ret)
+						this.xiangqingye = ret.data.data.ask
+						this.title = this.xiangqingye.title
+						this.content = this.xiangqingye.content
+						this.leibie = this.xiangqingye.typeAId
+						this.provice = this.xiangqingye.addressAId
+						this.citys = this.xiangqingye.addressBId
+						this.zhen = this.xiangqingye.addressCId
+						this.phone = this.xiangqingye.iphoneNo
+						this.qq = this.xiangqingye.qq
+						this.weixin = this.xiangqingye.wechat
+						console.log(this.xiangqingye)
+						//获取城市
+						this.chengshis = [];
+						for(let sh in newArr) {
+							for(let shis in newArr[sh].list) {
+								if(newArr[sh].list[shis].areaParentId == this.provice) {
+									let cs = {}
+									cs.sn = newArr[sh].list[shis].areaName
+									cs.sid = newArr[sh].list[shis].id
+									this.chengshis.push(cs)
+								}
+							}
+						}
+						//获取地区
+						this.sanji = [];
+						for(let l in newArr) {
+							for(let k in newArr[l].list) {
+								//						console.log(newArr[l].list[k].list)
+								for(var z in newArr[l].list[k].list) {
+									//							console.log(newArr[l].list[k].list[z])
+									if(newArr[l].list[k].list[z].areaParentId == this.citys) {
+										let cs = {}
+										cs.sn = newArr[l].list[k].list[z].areaName
+										cs.sid = newArr[l].list[k].list[z].id
+										this.sanji.push(cs)
+									}
+								}
+							}
+						}
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},
 			gereninfo() {
 				this.$ajax.post(this.$Url + "/st/sS", this.$qs.stringify({
-						ACCESS_TOKEN: this.token
+//						ACCESS_TOKEN: this.token
 					})).then(ret => {
 						console.log(ret)
 						this.user = ret.data.data.user
@@ -339,7 +470,7 @@
 			},
 			geren() {
 				this.$ajax.post(this.$Url + "/as/sAso", this.$qs.stringify({
-						ACCESS_TOKEN: this.token
+//						ACCESS_TOKEN: this.token
 					})).then(data => {
 						console.log(data)
 						this.shu = data.data.data.data
@@ -349,56 +480,55 @@
 					});
 			},
 			erdain() {
-				this.$ajax.post(this.$Url + "/as/sAhot", this.$qs.stringify({
-
-					})).then(ret => {
-						console.log(ret)
-						this.redian = ret.data.data.list
+				this.$ajax.post(this.$Url + "/as/sAhot", this.$qs.stringify({}))
+					.then(ret => {
+						console.log(ret);
+						this.redian = ret.data.data.list;
 					})
 					.catch(function(error) {
 						console.log(error);
 					});
 			},
 			areaprov: function(even) {
-				console.log(newArr)
+				console.log(newArr);
 				this.chengshis = [];
-				this.provice = even.target.value
-				console.log(this.provice)
+				this.provice = even.target.value;
+				console.log(this.provice);
 				for(let sh in newArr) {
 					for(let shis in newArr[sh].list) {
 						if(newArr[sh].list[shis].areaParentId == this.provice) {
-							let cs = {}
-							cs.sn = newArr[sh].list[shis].areaName
-							cs.sid = newArr[sh].list[shis].id
-							this.chengshis.push(cs)
+							let cs = {};
+							cs.sn = newArr[sh].list[shis].areaName;
+							cs.sid = newArr[sh].list[shis].id;
+							this.chengshis.push(cs);
 						}
 					}
 				}
 			},
 			city(even) {
 				this.sanji = [];
-				this.citys = even.target.value
-				console.log(this.citys)
+				this.citys = even.target.value;
+				console.log(this.citys);
 				for(let l in newArr) {
 					for(let k in newArr[l].list) {
 						//						console.log(newArr[l].list[k].list)
 						for(var z in newArr[l].list[k].list) {
 							//							console.log(newArr[l].list[k].list[z])
 							if(newArr[l].list[k].list[z].areaParentId == this.citys) {
-								let cs = {}
-								cs.sn = newArr[l].list[k].list[z].areaName
-								cs.sid = newArr[l].list[k].list[z].id
-								this.sanji.push(cs)
+								let cs = {};
+								cs.sn = newArr[l].list[k].list[z].areaName;
+								cs.sid = newArr[l].list[k].list[z].id;
+								this.sanji.push(cs);
 							}
 						}
 					}
 				}
 			},
 			zheng(even) {
-				this.zhen = even.target.value
+				this.zhen = even.target.value;
 			},
 			fenlei(even) {
-				this.leibie = even.target.value
+				this.leibie = even.target.value;
 			},
 			beforeUpload() {
 				// 显示loading动画
@@ -412,8 +542,8 @@
 				this.content = html;
 			},
 			onEditorReady(res) {},
-			uploadSuccess(res, file, ) {
-				console.log(res)
+			uploadSuccess(res, file) {
+				console.log(res);
 				// res为图片服务器返回的数据
 				// 获取富文本组件实例
 				let quill = this.$refs.myQuillEditor.quill;
@@ -422,7 +552,7 @@
 				if(res.msg === "success" && res.data.imgUrl !== null) {
 					// 获取光标所在位置
 					let length = quill.getSelection().index;
-					console.log(res.info)
+					console.log(res.info);
 					// 插入图片  res.info为服务器返回的图片地址
 					quill.insertEmbed(length, "image", res.data.imgUrl);
 					// 调整光标到最后
@@ -441,69 +571,83 @@
 				this.$message.error("图片插入失败");
 			},
 			truefa() {
-				let r = /^((0\d{2,3}-\d{7,8})|(1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}))$/;
-				if(!r.test(this.phone)) {
-					this.$message.error("请输入正确的手机号码")
-				}
-				var regexps = /^[1-9][0-9]{4,9}$/gim;
-				if(!regexps.test(this.qq)) {
-					this.$message.error("请输入正确的QQ")
-				}
+				console.log(this.iphone)
+				console.log(this.ids)
+//				let r = /^((0\d{2,3}-\d{7,8})|(1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}))$/;
+//				if(!r.test(this.phone)) {
+//					this.$message.error("请输入正确的手机号码");
+//				}
+//				var regexps = /^[1-9][0-9]{4,9}$/gim;
+//				if(!regexps.test(this.qq)) {
+//					this.$message.error("请输入正确的QQ");
+//				}
 				//				var  judge = "^[a-zA-Z][a-zA-Z0-9_-]{5,19}$";
 				//				if(this.weixin!=myreg){
 				//					this.$message.error("请输入正确的微信号")
 				//				}
 				for(let i in newArr) {
 					if(newArr[i].id == this.provice) {
-						this.addressA = newArr[i].areaName
+						this.addressA = newArr[i].areaName;
 					}
-				};
+				}
+				console.log(this.addressA)
 				for(let i in newArr) {
 					for(let k in newArr[i].list) {
 						if(newArr[i].list[k].id == this.citys) {
-							this.addressB = newArr[i].list[k].areaName
+							this.addressB = newArr[i].list[k].areaName;
 						}
 					}
-				};
+				}
+				console.log(this.addressB)
 				for(let i in newArr) {
 					for(let k in newArr[i].list) {
 						for(let j in newArr[i].list[k].list) {
 							if(newArr[i].list[k].list[j].id == this.zhen) {
-								console.log(newArr[i].list[k].list[j].areaName)
-								this.addressC = newArr[i].list[k].list[j].areaName
+								console.log(newArr[i].list[k].list[j].areaName);
+								this.addressC = newArr[i].list[k].list[j].areaName;
 							}
 						}
 					}
-				};
+				}
+				console.log(this.addressC)
 				for(let s in this.fenleis) {
 					if(this.fenleis[s].id == this.leibie) {
-						this.a = this.fenleis[s].label
+						this.a = this.fenleis[s].label;
 					}
-				};
-				if(this.id == '') {
-					this.$message.error("请您先登陆")
 				}
-				if(this.title == '' || this.content == '' || this.provice == '' || this.citys == '' || this.zhen == '' || this.leibie == '') {
-					this.$message.error("请您填写完整的发布内容")
+				console.log(this.a)
+				if(this.ids == ""||this.ids==null||this.ids==undefined) {
+					this.$message.error("请您先登陆");
+				}else if(
+					this.title == "" ||
+					this.content == "" ||
+					this.provice == "" ||
+					this.citys == "" ||
+					this.zhen == "" ||
+					this.leibie == ""
+				) {
+					this.$message.error("请您填写完整的发布内容");
 				} else {
-					this.$ajax.post(this.$Url + "/as/iA", this.$qs.stringify({
-							loginId: this.id,
-							title: this.title,
-							content: this.content,
-							typeA: this.a,
-							typeAId: this.leibie,
-							addressA: this.addressA,
-							addressB: this.addressB,
-							addressC: this.addressC,
-							addressAId: this.provice,
-							addressBId: this.citys,
-							addressCId: this.zhen,
-							iphoneNo: this.iphoneNo,
-						})).then(data => {
-							console.log(data)
-							if(data.data.msg == 'success') {
+					this.$ajax.post(this.$Url + "/as/iAsk",this.$qs.stringify({
+								loginId: this.ids,
+								title: this.title,
+								content: this.content,
+								typeA: this.a,
+								typeAId: this.leibie,
+								addressA: this.addressA,
+								addressB: this.addressB,
+								addressC: this.addressC,
+								addressAId: this.provice,
+								addressBId: this.citys,
+								addressCId: this.zhen,
+								iphoneNo: this.phone,
+							})
+						)
+						.then(data => {
+							console.log(data);
+							if(data.data.msg == "success") {
 								this.$router.push({
-									name: 'Buyinformation',
+									name: "Buyinformation"
 								});
 							}
 						})
@@ -513,26 +657,63 @@
 				}
 			},
 			inforxiang(id) {
-				this.id = id
-				console.log(this.id)
+				this.id = id;
+				console.log(this.id);
 				this.$router.push({
-					name: 'Buyinforxiangqing',
+					name: "Buyinforxiangqing",
 					params: {
 						ids: this.id
 					}
 				});
 			},
 			fabuxuqiu() {
-				if(this.token == '' || this.token == undefined) {
+				if(this.token == "" || this.token == undefined) {
 					this.$message.error("请先登陆");
 				} else {
 					this.$router.push({
-						name: 'Fabuxuqiu',
+						name: "Fabuxuqiu"
 					});
 				}
 			},
-		},
-	}
+			tui() {
+				localStorage.removeItem("ACCESS_TOKEN");
+				localStorage.removeItem("username");
+				localStorage.removeItem("Id");
+				localStorage.removeItem("postId");
+				localStorage.removeItem("Data");
+				this.us = true
+				this.dianhua = false
+				this.$router.push({
+					name: "Index"
+				});
+			},
+			shoucang() {
+				if(this.iphone == '' || this.iphone == null || this.iphone == undefined) {
+					this.$message.error("请先登录")
+					this.$router.push({
+						name: "Login"
+					});
+				} else {
+					this.$router.push({
+						name: "Collection"
+					});
+				}
+			},
+			kaitong() {
+				if(this.iphone == '' || this.iphone == null || this.iphone == undefined) {
+					this.$router.push({
+						name: "Login"
+					});
+				} else {
+					if(this.postId == 0) {
+						window.open(encodeURI("http://39.105.24.238/busys.html#/personalCenter2/index"), "_blank");
+					} else {
+						window.open(encodeURI("http://39.105.24.238/busys.html#/dataAnalysis0/index"), "_blank");
+					}
+				}
+			}
+		}
+	};
 </script>
 
 <style scoped>

@@ -4,32 +4,34 @@
 			<p class="xain"></p>
 			<p class="xain1"></p>
 			<div class="header-zi">
-				<div class="h-top">
-					<img src="../assets/img/dingwei.png" class="dw-ioin" />
+				<Header :t='1' v-on:dianji="dian"></Header>
+				<Info v-show="infos" v-on:dianjis="xian"></Info>
+				<!--<div class="h-top">
+					<img src="../assets/img/icon－ding.png" class="dw-ioin" />
 					<p class="city">天津</p>
 					<p class="login" v-show="us">
-						<router-link to="./" @click.native="flushCom">登陆 / </router-link>
+						<router-link to="./Login" @click.native="flushCom">登陆 / </router-link>
 					</p>
 
 					<p class="zhuce" v-show="us">
 						<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
 					</p>
-					<p class="login" v-show="dianhua">{{iphone}}</p>
+					<p class="login1" v-show="dianhua">{{iphone}}</p>
+					<button class="tuichu" v-show="dianhua" @click="tui">退出</button>
 					<ul class="nav">
-						<!--<li>我的浏览&nbsp;&nbsp;|</li>
-					<li>我的收藏&nbsp;&nbsp;|</li>-->
-						<li>个人中心&nbsp;&nbsp;|</li>
-						<li>手机版 </li>
+						<li class="shoujiban" style="border:none;padding-right:0;">手机版</li>
+						<li>企业后台</li>
+						<li @click="shoucang">我的收藏</li>
 					</ul>
-				</div>
-				<div class="daohang">
+				</div>-->
+				<!--<div class="daohang">
 					<img src="../assets/img/logo.png" class="logo" />
 					<ul class="dh">
 						<router-link to="./" @click.native="flushCom">
-							<li class="shou">首页</li>
+							<li>首页</li>
 						</router-link>
 						<router-link to="./News" @click.native="flushCom">
-							<li>新闻资讯</li>
+							<li class="shou">新闻资讯</li>
 						</router-link>
 						<router-link to="./Product" @click.native="flushCom">
 							<li>产品中心</li>
@@ -41,32 +43,39 @@
 							<li>商务合作</li>
 						</router-link>
 					</ul>
-					<button class="kaitong">开通展位</button>
-				</div>
-				<p class="xuqiu">新闻动态</br> <span>相关行业政策信息、媒体报道和公司举办的活动等</span></p>
-				<ul class="newsfenlei">
-					<li @click="pingtai">平台动态</li>
-					<li @click="hangye">行业新闻</li>
-					<li @click="zhengce">政策法规</li>
-				</ul>
+					<button class="kaitong" @click="kaitong">开通展位</button>
+				</div>-->
+				<p class="xuqiu">新闻动态</br>
+					<span>相关行业政策信息、媒体报道和公司举办的活动等</span>
+				</p>
+
 			</div>
+			<ul class="newsfenlei">
+				<li @click="pingtai" :class="{'change':0===fla}">平台动态</li>
+				<li @click="hangye" :class="{'change':1===fla}">行业新闻</li>
+				<li @click="zhengce" :class="{'change':2===fla}">政策法规</li>
+			</ul>
 		</div>
-		<div class="search">
+		<!--<div class="search">
 			<div class="searz">
 				<input type="text" placeholder="请输入搜索内容" class="find" />
 				<p><img src="../assets/img/icon_search.png" /></p>
 			</div>
-		</div>
+		</div>-->
 		<div class="content">
 			<div class="conts">
 				<div class="con-left">
 					<div class="shounews" v-for="item in firstnew" @click="firstxin(item.id)">
 						<p class="firsttitle">{{item.title}}</p>
-						<p class="firstfutit">{{item.createTime}}<span>作者 |{{item.author}}</span></p>
+						<p class="firstfutit">{{item.createTime}}
+							<span>作者 |{{item.author}}</span>
+						</p>
 						<div class="neirong">
 							<img :src="item.coverImg" class="pict" />
 							<div class="wen">
-								<p class="liulanliang">浏览量 | {{item.pageView}}次<span>分享按钮</span></p>
+								<p class="liulanliang">浏览量 | {{item.pageView}}次
+									<img src="../assets/img/icon-fengxiang.png" alt="" srcset="" class="share shareP">
+								</p>
 								<p class="xiangwen">{{item.intro}}</p>
 								<button class="liaojiegengduo">了解更多</button>
 							</div>
@@ -81,11 +90,19 @@
 								</p>
 							</div>
 							<div class="tuwen">
-								<p class="newstitle">{{n.title}}</p>
-								<p class="zuozhe">
-									<span class="bizhe">作者 | {{n.author}}</span>
-									<span class="fenixnag">浏览量 | {{n.pageView}}次  拷贝<span>分享按钮</span></span>
-								</p>
+								<div class="newstitle">{{n.title}}</div>
+								<div class="zuozhe">
+									<div class="bizhe">
+										<span>作者</span>
+										<span class="celBorder">{{n.author}}</span>
+									</div>
+									<div class="fenixnag">
+										<span style="padding-right:10px; ">浏览量</span>
+										<span class="celBorder">{{n.pageView}}次</span>
+										<!-- <span class="share">分享按钮</span> -->
+										<img src="../assets/img/icon-fengxiang.png" alt="" srcset="" class="share">
+									</div>
+								</div>
 								<p class="wz">{{n.intro}}</p>
 								<p class="liaojiemore">了解更多>></p>
 							</div>
@@ -110,15 +127,18 @@
 						<el-row>
 							<el-col>
 								<div class="pages">
-									<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" layout="total, sizes, prev, pager, next, jumper" :total="total">
+
+									<el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" layout="prev, pager, next" :total="total">
 									</el-pagination>
+									<!-- <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="length" layout="total, sizes, prev, pager, next, jumper" :total="total">
+									</el-pagination> -->
 								</div>
 							</el-col>
 						</el-row>
 					</div>
 				</div>
 				<div class="con-right">
-					<p class="tuijian">推荐视频</p>
+					<p class="tuijian">推荐新闻</p>
 					<div class="video" v-for="z in zuinews" @click="firstxin(z.id)">
 						<p class="laiyuan">{{z.title}}</p>
 						<p class="riqi">{{z.createTime}}</p>
@@ -133,6 +153,9 @@
 				</div>
 			</div>
 		</div>
+		<Footer></Footer>
+		
+		
 		<!--<div class="content1" v-for="x in zuinewinfo">
 			<div class="con-left">
 				<p class="c-l-t">{{x.title}}</p>
@@ -177,96 +200,122 @@
 				<p class="x-r-xin" v-for="f in fivenew">{{f.title}}</p>
 			</div>
 		</div>-->
-		<div class="footer">
+		<!--<div class="footer">
 			<div class="foot">
 				<div class="wei">
 					<ul class="weinav">
-						<li>|&nbsp;&nbsp;首页|</li>
-						<li>3D展馆&nbsp;&nbsp;|</li>
-						<li>产品中心&nbsp;&nbsp;|</li>
-						<li>求购信息&nbsp;&nbsp;|</li>
-						<li>商务合作&nbsp;&nbsp;|</li>
+						<li>首页</li>
+						<li>3D展馆</li>
+						<li>产品中心</li>
+						<li>求购信息</li>
+						<li>商务合作</li>
 					</ul>
 					<ul class="qibiao">
 						<li>
-							<img src="../assets/img/tu2.png" />
+							<img src="../assets/img/logo-baidu.png" class="baidu" />
 						</li>
 						<li>
-							<img src="../assets/img/tu2.png" />
+							<img src="../assets/img/logo-weibo.png" class="weibo" />
 						</li>
 						<li>
-							<img src="../assets/img/tu2.png" />
+							<img src="../assets/img/logo-weixin.png" class="weixin" />
 						</li>
 						<li>
-							<img src="../assets/img/tu2.png" />
+							<img src="../assets/img/logo-xinlang.png" class="xinlang" />
 						</li>
 					</ul>
 					<p class="dress">©2017 LiVE System.</p>
 					<p class="lainxi">泰富总部 0731-52837000 泰富营销 0731-52837288 <br/>总部地址：湖南省湘潭市九华经济技术开发区奔驰路6号 <br/>E-mail：sales@tidfore.com</p>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 </template>
 
-<script scoped>
+<script>
+	import Header from './header'
+	import Footer from './foot'
+	import Info from './gereninfo'
 	export default {
+		components: {
+			Header,
+			Footer,
+			Info,
+		},
+		inject:['reload'],
 		data() {
 			return {
 				currentPage: 1,
-				total: '',
+				total: "",
 				length: 10,
-				news: '',
+				news: "",
 				arr: [],
-				types: '',
+				types: "",
 				firstnew: [],
 				riqi: [],
-				zuinews: '',
+				zuinews: "",
 				//				yin: true,
 				//				xian: false,
 				zuinewinfo: [],
-				fivenew: '',
+				fivenew: "",
 				shangnew: [],
 				xianew: [],
-				arrs: '',
+				arrs: "",
 				id: this.$route.params.ids,
 				iphone: localStorage["username"],
 				dianhua: false,
 				us: true,
-			}
+				Types: this.$route.params.Type,
+				fla:'',
+				infos:false,
+			};
 		},
 		mounted: function() {
-			this.fined();
-			console.log(this.id)
-			if(this.iphone == '' || this.iphone == undefined) {
+			if(this.Types==''||this.Types==null||this.Types==undefined){
+				this.fined();
+			}
+			console.log(this.id);
+			if(this.iphone == "" || this.iphone == undefined) {
 				this.us = true;
-				this.dianhua = false
+				this.dianhua = false;
 			} else {
 				this.us = false;
-				this.dianhua = true
+				this.dianhua = true;
 			}
-			//			if(this.id==''||this.id==undefined){
-			//				this.fined();
-			//				this.ermennews()
-			//			}else{
-			//				this.yin = false;
-			//				this.xian = true;
-			//				this.firstxin();
-			//				this.ermennews()
-			//				
-			//			}
-			//			if(this.id==''||this.id==undefined){
-			//				
-			//			}
+			if(this.Types == 1) {
+				this.fla=0
+				this.fined()
+			} else if(this.Types == 2) {
+				this.fla=1
+				this.fined()
+			} else if(this.Types == 3){
+				this.fla=2
+				this.fined()
+			}
 		},
 		methods: {
+			xian(b){
+				this.reload()
+//				this.$router.push({
+//					name: "News",
+//				});
+//				this.$router.go(0);
+			   
+			   this.infos=b
+			    
+			},
+			dian(a){
+				this.infos=false
+				
+				this.infos=a
+			},
 			handleCurrentChange(page) {
-				console.log(page)
+				console.log(page);
 				this.currentPage = page;
 				this.fined();
 			}, //改变条数触发
 			handleIndexChange(index) {
-				console.log(index)
+				console.log(index);
 				this.length = index;
 				this.fined();
 			},
@@ -275,43 +324,51 @@
 				let dates = [];
 				let riqis = [];
 				this.zuinewinfo = [];
-				this.news = '';
+				this.news = "";
 				this.riqi = [];
-				this.zuinews = '';
-				this.fivenew = '';
-				this.arrs = '';
+				this.zuinews = "";
+				this.fivenew = "";
+				this.arrs = "";
 				this.firstnew = [];
-				this.$ajax.post(this.$Url + "/ne/sN", this.$qs.stringify({
-						pageSize: this.length,
-						pageNum: this.currentPage,
-						type: this.types
-					})).then(data => {
-						console.log(data)
-						this.firstnew.push(data.data.data.info)
-						console.log(this.firstnew)
-						this.news = data.data.data.list.list
-						this.total=data.data.data.list.total
-						this.arrs = this.news.splice(1, 9)
-						console.log(this.arrs)
-						this.total = this.news.total
+				this.$ajax
+					.post(
+						this.$Url + "/ne/sN",
+						this.$qs.stringify({
+							pageSize: this.length,
+							pageNum: this.currentPage,
+							type: this.types
+						})
+					)
+					.then(data => {
+						console.log(data);
+						this.firstnew.push(data.data.data.info);
+						console.log(this.firstnew);
+						this.news = data.data.data.list.list;
+						this.total = data.data.data.list.total;
+						console.log(this.total);
+						this.arrs = this.news.splice(1, 9);
+						console.log(this.arrs);
+						//        this.total = this.news.total;
 						for(let i in this.arrs) {
-							dates.push(this.arrs[i].createTime)
-							console.log(dates)
+							dates.push(this.arrs[i].createTime);
+							console.log(dates);
 						}
 						for(let a in dates) {
 							let b = {};
-							b.da = dates[a].substring(10, 8)
-							b.ds = dates[a].substring(0, 7)
-							this.riqi.push(b)
+							b.da = dates[a].substring(10, 8);
+							b.ds = dates[a].substring(0, 7);
+							this.riqi.push(b);
 							//							console.log(this.riqi)
 						}
 					})
 					.catch(function(error) {
 						console.log(error);
 					});
-				this.$ajax.post(this.$Url + "/ne/sNpv", this.$qs.stringify({})).then(data => {
-						console.log(data)
-						this.zuinews = data.data.data.list
+				this.$ajax
+					.post(this.$Url + "/ne/sNpv", this.$qs.stringify({}))
+					.then(data => {
+						console.log(data);
+						this.zuinews = data.data.data.list;
 					})
 					.catch(function(error) {
 						console.log(error);
@@ -319,31 +376,35 @@
 			},
 			ermennews() {
 				//详情页面右边的五条新闻
-				this.$ajax.post(this.$Url + "/ne/sNHn", this.$qs.stringify({})).then(data => {
-						console.log(data)
-						this.fivenew = data.data.data.list
-
+				this.$ajax
+					.post(this.$Url + "/ne/sNHn", this.$qs.stringify({}))
+					.then(data => {
+						console.log(data);
+						this.fivenew = data.data.data.list;
 					})
 					.catch(function(error) {
 						console.log(error);
 					});
 			},
 			pingtai() {
-				this.types = 1
-				console.log(this.types)
-				this.fined()
+				this.fla=0;
+				this.types = 1;
+				console.log(this.types);
+				this.fined();
 			},
 			hangye() {
-				this.types = 2
-				this.fined()
+				this.fla=1;
+				this.types = 2;
+				this.fined();
 			},
 			zhengce() {
-				this.types = 3
-				this.fined()
+				this.fla=2;
+				this.types = 3;
+				this.fined();
 			},
 			firstxin(id) {
 				this.$router.push({
-					name: 'Newsinformation',
+					name: "Newsinformation",
 					params: {
 						ids: id
 					}
@@ -385,16 +446,53 @@
 			////				this.flushCom()
 			//				this.fined();
 			//				this.ermennews()
-			//			}, 
+			//			},
 			flushCom: function() {
 				this.$router.go(0);
 			},
+			tui() {
+				localStorage.removeItem("ACCESS_TOKEN");
+				localStorage.removeItem("username");
+				localStorage.removeItem("Id");
+				localStorage.removeItem("postId");
+				localStorage.removeItem("Data");
+				this.iphone='';
+				this.us = true
+				this.dianhua = false
+				this.$router.push({
+					name: "Index"
+				});
+			},
+			shoucang() {
+				if(this.iphone == '' || this.iphone == null || this.iphone == undefined) {
+					this.$message.error("请先登录")
+					this.$router.push({
+						name: "Login"
+					});
+				} else {
+					this.$router.push({
+						name: "Collection"
+					});
+				}
+			},
+			kaitong() {
+				if(this.iphone == '' || this.iphone == null || this.iphone == undefined) {
+					this.$router.push({
+						name: "Login"
+					});
+				} else {
+					if(this.postId == 0) {
+						window.open(encodeURI("http://39.105.24.238/busys.html#/personalCenter2/index"), "_blank");
+					} else {
+						window.open(encodeURI("http://39.105.24.238/busys.html#/dataAnalysis0/index"), "_blank");
+					}
+				}
+			}
 			//			zhan() {
 			//				window.open(encodeURI("http://39.105.31.48:8080/ud/index.html?keyword="), '_blank');
 			//			},
-
-		},
-	}
+		}
+	};
 </script>
 
 <style scoped>

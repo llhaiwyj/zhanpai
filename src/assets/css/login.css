@@ -63,15 +63,16 @@
 	width:36px;
 	height:36px;
 	float:left;
-	border:1px dashed #333;
+/*	border:1px dashed #333;*/
 	margin-left:38%;
 }
 .weixin{
 	width:36px;
 	height:36px;
 	float:left;
-	border:1px dashed #333;
+	/*border:1px dashed #333;*/
 	margin-left:5%;
+	
 }
 .zhanghaodenglu{
 	width:100%;
@@ -152,7 +153,7 @@
 }
 .shanhou{
 	width:80%;
-	height:20px;
+	height:12px;
 	margin-left:10%;
 	margin-top:16px;
 	font-size:12px;
@@ -160,15 +161,18 @@
 }
 .norember{
 	width:50%;
-	height:20px;
+	height:12px;
 	display:block;
 	float:left;
+	cursor: pointer;
 }
 .mianfei{
     width:20%;
-	height:20px;
+	height:12px;
 	display:block;
 	float:right;	
+	cursor: pointer;
+	text-align: right;
 }
 .footer{
 	width:100%;
@@ -192,6 +196,7 @@
 	margin-right:40px;
 	color:#333;
 	font-size:16px;
+	cursor: pointer;
 }
 .copyxinxi{
 	width:80%;
