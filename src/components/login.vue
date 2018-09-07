@@ -27,8 +27,10 @@
 				</p>
 				<button class="but" @click="deng">登录</button>
 				<p class="shanhou">
-					<router-link to="./retrieve"><span class="norember">忘记密码</span></router-link>
-					<router-link to="./retrieve"><span class="mianfei">免费注册</span></router-link>
+					<span class="norember" @click="rember">忘记密码</span>
+					<span class="mianfei" @click="zhuce">注册密码</span>
+					<!--<span class="norember"><router-link to="./retrieve">忘记密码</router-link></span>
+					<span class="mianfei"><router-link to="./retrieve">免费注册</router-link></span>-->
 				</p>
 			</div>
 		</div>
@@ -61,7 +63,16 @@
 			};
 		},
 		methods: {
-
+            rember(){
+            	this.$router.push({
+					name: 'retrieve',
+				});
+            },
+            zhuce(){
+            	this.$router.push({
+					name: 'retrieve',
+				});
+            },
 			deng() {
 				console.log(this.iphone)
 				this.$ajax.post(this.$Url + "/login/userLogin", this.$qs.stringify({

@@ -69,8 +69,8 @@
 					<p @click="ranking">综合排序</p>
 					<p @click="renqi">人气</p>
 					<p @click="fabudata">发布时间</p>
-					<p @click.stop="diqu">所在地区</p>
-					<p>经营模式</p>
+					<p @click.stop="diqu">所在地区 <span class="el-icon-arrow-down"></span></p>
+					<p>经营模式<span class="el-icon-arrow-down"></span></p>
 					<div class="tiao">共{{total}}条产品信息</div>
 					<ul class="liandong" id="sheng" v-show="shengkuang">
 						<li v-for="se in shengs" @click.stop="shis(se.sid)">

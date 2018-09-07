@@ -152,7 +152,7 @@
 }
 .shanhou{
 	width:80%;
-	height:12px;
+	height:20px;
 	margin-left:10%;
 	margin-top:16px;
 	font-size:12px;
@@ -160,13 +160,13 @@
 }
 .norember{
 	width:50%;
-	height:12px;
+	height:20px;
 	display:block;
 	float:left;
 }
 .mianfei{
     width:20%;
-	height:12px;
+	height:20px;
 	display:block;
 	float:right;	
 }

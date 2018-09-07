@@ -14,6 +14,7 @@ import Newsinformation from '@/components/newsinformation'
 import Buyinforxiangqing from '@/components/buyinforxiangqing'
 import Fabuxuqiu from '@/components/fabuxuqiu'
 import Collection from '@/components/collection'
+import Fenxiang from '@/components/fenxiang'
 
 //import Ceshi from '@/components/ceshi'
 
@@ -35,6 +36,11 @@ export default new Router({
 			path: '/Newsinformation',
 			name: 'Newsinformation',
 			component: Newsinformation
+		},
+		{
+			path: '/Fenxiang',
+			name: 'Fenxiang',
+			component: Fenxiang
 		},
 		{
 			path: '/Collection',

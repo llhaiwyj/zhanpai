@@ -15,7 +15,7 @@
 					<p class="zhuce" v-show="us">
 						<router-link to="./Register" @click.native="flushCom"> 注册</router-link>
 					</p>
-					<p class="login1" v-show="dianhua">{{iphone}}</p>
+					<p class="login1" v-show="dianhua" @click="info">{{iphone}}</p>
 					<button class="tuichu" v-show="dianhua" @click="tui">退出</button>
 					<ul class="nav">
 						<!--	<li>我的浏览&nbsp;&nbsp;|</li>-->
@@ -23,9 +23,9 @@
 							<li>我的收藏&nbsp;&nbsp;|</li>
 						</router-link>
 						<li>企业后台&nbsp;&nbsp;|</li>
-						<!--	<router-link to="./Ceshi" @click.native="flushCom">-->
+							<router-link to="./Fenxiang" @click.native="flushCom">
 						<li class="shoujiban">手机版 </li>
-						<!--</router-link>-->
+						</router-link>
 					</ul>
 				</div>
 				<div class="daohang">
@@ -52,10 +52,12 @@
 				<img src="../assets/img/zahn.png" class="biglodo" />
 				<div class="sousuo">
 					<input type="text" class="sou" placeholder="输入文字" v-model="cont" />
-					<el-select v-model="xuan" @change="areaprov">
+					<div id="xia">
+						<el-select v-model="xuan" @change="areaprov">
 						<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
 						</el-option>
-					</el-select>
+					    </el-select>
+					</div>
 					<!--<select v-model="xuan" v-on:change="areaprov($event)">
 						<option selected="selected">3D</option>
 						<option>极简</option>
@@ -74,6 +76,82 @@
 				<div class="join">
 					<img src="../assets/img/iocn_zhanguan.png" class="dain" />
 					<p @click="zhan">进入展馆</p>
+				</div>
+				<div class="gereninfor" v-show="inforhide">
+					<img src="../../build/logo.png"  class="i-tx"/>
+					<div class="i-info">
+						<p class="i-gs">天马衡基仪器设备有限公司</p>
+						<p class="i-zh">
+							<span>账号：</span>17610038211
+						</p>
+						<p class="i-xb">
+							<span>性别：</span>保密
+						</p>
+						<p class="i-xb">
+							<span>手机：</span>17610038211
+						</p>
+						<p class="i-xb">
+							<span>微信：</span>17610038211
+						</p>
+						<p class="i-xb">
+							<span>QQ：</span>17610038211
+						</p>
+					</div>
+					<div class="i-czuo">
+						<p @click="xiumima">修改密码</p>
+						<button @click="bianji">编辑</button>				
+					</div>
+				</div>
+				<div class="i-xiugai" v-show="inforxiugai">
+					<div class="i-xg">
+						<div class="i-sh">
+							<img src="" class="i-xiu-tou"/>
+							<p>上传图片</p>
+						</div>
+						<div class="i-xiu-name">
+							<p class="x-na">公司名：</p>
+						    <p class="x-n">的说法是否收到</p>
+						</div>
+						<div class="i-xiu-xb">
+							<p class="x-na">性别：</p>
+						    <p class="x-xing"><input type="checkbox">男<input type="checkbox">女</p>
+						</div>
+						<div class="i-xiu-xb">
+							<p class="x-na">手机号：</p>
+						    <p class="x-xing">17610038211<span>修改</span></p>
+						</div>
+						<div class="i-xiu-xb">
+							<p class="x-na">微信：</p>
+						    <p class="x-xing">17610038211<span>绑定</span></p>
+						</div>
+						<div class="i-xiu-xb">
+							<p class="x-na">QQ：</p>
+						    <p class="x-xing">17610038211<span>绑定</span></p>
+						</div>
+						<div class="i-xiu-an">
+							<button>确定</button>
+							<button>取消</button>
+						</div>
+					</div>
+				</div>
+				<div class="x-mima" v-show="mima">
+					<p class="x-m-m">修改密码</p>
+					<div class="ymima">
+						<p class="x-yuan">原密码：</p>
+						<p class="x-y-nei"></p>
+					</div>
+					<div class="shemima">
+						<p class="x-yuan">设置密码：</p>
+						<p class="x-y-nei"></p>
+					</div>
+					<div class="shemima">
+						<p class="x-yuan">确认密码：</p>
+						<p class="x-y-nei"></p>
+					</div>
+					<div class="i-xiu-anniu">
+							<button>确定</button>
+							<button>取消</button>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -262,6 +340,9 @@
 				three: '',
 				four: '',
 				fouername: '',
+				inforhide:false,
+				inforxiugai:false,
+				mima:false,
 				//				zhis: this.unitys.zhi,
 			};
 		},
@@ -488,6 +569,18 @@
 				this.$router.push({
 					name: 'Login',
 				});
+			},
+			bianji(){
+				this.inforhide=false
+				this.inforxiugai=true
+			},
+			xiumima(){
+				this.inforhide=false
+				this.inforxiugai=false
+				this.mima=true
+			},
+			info(){
+				this.inforhide=true
 			}
 			//			denglu(){
 			//				window.open("http://39.105.24.238/busys.html?, '_blank'");

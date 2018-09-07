@@ -241,6 +241,10 @@
 .category .cate:nth-child(1){
 	margin-top:20px;
 }
+.category .cate:nth-child(4){
+	margin-bottom:5px;
+	border:none;
+}
 .cate{
 	width:100%;
 	height:auto;
@@ -267,31 +271,33 @@
 	width:1057px;
 	height:auto;
 	overflow: hidden;
+	margin-bottom:5px;
 }
 .gory1-left1{
 	float:left;
 	width:1057px;
 	height:auto;
 	overflow: hidden;
-	margin-bottom:10px;
+	margin-bottom:5px;
 }
 .gory2{
 	width:1057px;
 	height:auto;
-	border-bottom:1px dashed #d9d9d9;
+	/*border-bottom:1px dashed #d9d9d9;*/
 	overflow: hidden;
 }
 .gory3{
 	width:1057px;
 	height:auto;
 	/*margin-left:102px;*/
-	border-bottom:1px dashed #d9d9d9;
+	border-top:1px dashed #d9d9d9;
 	overflow: hidden;
 }
 .gory3 span{
 	height:16px;
 	/*color:#7f7f7f;*/
 	margin-right:20px;
+	margin-top:9px;
 }
 .gory2 span{
 	height:16px;
@@ -367,6 +373,7 @@
 .lilan{
 	width:67px;
 	float:right;
+	text-align: right;
 }
 .chanpinming{
 	width:84%;

@@ -12,15 +12,20 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import VueLazyLoad from 'vue-lazyload'
+import SocialSharing from 'vue-social-sharing'
+import Share from 'vue-social-share'
+import 'vue-social-share/dist/client.css';
 
 Vue.config.productionTip = false
+Vue.use(Share)
 Vue.use(ElementUI)
 Vue.use(VueQuillEditor)
+Vue.use(SocialSharing);
 
 Vue.prototype.$qs = qs
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-Vue.prototype.$Url = "http://39.105.24.238" 
-//Vue.prototype.$Url = '/api'
+//Vue.prototype.$Url = "http://39.105.24.238" 
+Vue.prototype.$Url = '/api'
 //全局header设置TOKEN
 //图片懒加载
 Vue.use(VueLazyLoad, {

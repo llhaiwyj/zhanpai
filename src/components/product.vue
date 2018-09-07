@@ -66,7 +66,8 @@
 			<div class="conts">
 				<div class="category">
 					<div class="cate">
-						<p class="gory1">{{leibie[0].typeName}}：</p>
+					    <!--<p class="gory1">{{leibie[0].typeName}}：</p>-->
+						<p class="gory1">实验室仪器：</p>
 						<div class="gory1-left">
 							<p class="gory2">
 								<span class="sl" v-for="(l,index) in erjiso" @click="erjio(index,l.id)" :class="{'sls':index===b}">{{l.typeName}}</span>
@@ -80,7 +81,8 @@
 						</div>
 					</div>
 					<div class="cate">
-						<p class="gory1">{{leibie[1].typeName}}：</p>
+						<!--<p class="gory1">{{leibie[1].typeName}}：</p>-->
+						<p class="gory1">实验室服务：</p>
 						<div class="gory1-left">
 							<p class="gory2">
 								<span class="sl" v-for="(l,index) in erjisT" @click="erjiT(index,l.id)" :class="{'sls':index===t}">{{l.typeName}}</span>
@@ -94,7 +96,8 @@
 					    </div>
 					</div>
 					<div class="cate">
-						<p class="gory1">{{leibie[2].typeName}}：</p>
+						<!--<p class="gory1">{{leibie[2].typeName}}：</p>-->
+						<p class="gory1">家具及配件：</p>
 						<div class="gory1-left1">
 							<p class="gory2">
 								<span class="sl" v-for="(l,index) in erjisS" @click="erjiS(index,l.id)" :class="{'sls':index===s}">{{l.typeName}}</span>
@@ -108,7 +111,8 @@
 					    </div>
 					</div>
 					<div class="cate">
-						<p class="gory1">{{leibie[3].typeName}}：</p>
+						<!--<p class="gory1">{{leibie[3].typeName}}：</p>-->
+						<p class="gory1">常用耗材：</p>
 						<div class="gory1-left1">
 							<p class="gory2">
 								<span class="sl" v-for="(l,index) in erjisF" @click="erjiF(index,l.id)" :class="{'sls':index===f}">{{l.typeName}}</span>

@@ -106,44 +106,49 @@ a{
 		width:0px !important;
 		height:0px !important;
 	}*/
-	.el-select{
+#xia .el-select{
 	position: absolute !important;
     left: 18px !important;
     top: 5px !important;
     width: 30px !important;
     z-index: 999;
 }
-.el-input__inner{
+#xia .el-input__inner{
 	background-color:rgba(255,255,255,0) !important;
 }
-.el-input__suffix {
+#xia .el-input__suffix {
     right: -27px !important;
    
 }
-.el-input__inner{
-	color:rgba(255,255,255,0.5) !important;
+#xia .el-input__inner{
+	color:rgba(255,255,255,0.8) !important;
 	border:none !important;
 }
-.el-input--suffix .el-input__inner{
+#xia .el-input--suffix .el-input__inner{
 	padding-left:0px !important;
 	padding-right:0px !important;
 }
-.el-scrollbar{
+#xia .el-scrollbar{
 	width:50px !important;
 	background-color:rgba(255,255,255,0) !important;
 }
-.el-select-dropdown__list{
+#xia .el-select-dropdown__list{
 	background-color:rgba(255,255,255,0) !important;
 	text-align: center;
+	color: #333;
 }
-.el-select-dropdown__item.hover, .el-select-dropdown__item:hover{
+#xia .el-select-dropdown__item.hover, .el-select-dropdown__item:hover{
 	background-color:rgba(255,255,255,0) !important;
 }
-.el-select-dropdown{
-	background-color:rgba(255,255,255,0.3) !important;
+#xia .el-select-dropdown{
+	/*background-color:rgba(255,255,255,0.8) !important;*/
+	background: #fff !important;
 	border:none !important;
 }
-.popper__arrow{
+#xia .popper__arrow{
 	left:19px !important;
+}
+#xia .el-select-dropdown__item{
+	color: #333 !important;
 }
 </style>
